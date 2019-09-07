@@ -6,11 +6,11 @@ Download Node.js from the following website: https://nodejs.org/en/download/
 Use npm to globally install @angular/cli with the following command line: `npm install -g @angular/cli`
 
 ## Basic Set Up/ Command Line Short Cuts
-create project outline: ng new testProj
+create project outline: `ng new testProj`
 
-create page: ng g c page1
+create page: `ng g c page1`
 
-compile page: node file.js
+compile page: `node file.js`
 
-get running in browser (http://localhost:4200): ng serve
+get running in browser (http://localhost:4200): `ng serve`
 
