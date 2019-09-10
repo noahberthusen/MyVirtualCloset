@@ -13,8 +13,8 @@ export class TestPage1Component implements OnInit {
   ngOnInit() {
   }
 
-  goToPage2(){
-    this.router.navigate(["testpage2"]);
+  goToLogin(){
+    this.router.navigate(["login"]);
   }
 
 }
