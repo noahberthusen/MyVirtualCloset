@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
-using Emgu.CV.Structure;
-
+using Emgu.CV.Util;
+using Microsoft.AspNetCore.Http;
 
 namespace test.Controllers
 {
@@ -19,22 +19,35 @@ namespace test.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             String win = "test window";
-            CvInvoke.NamedWindow(win);
 
-            Mat img = new Mat(200, 400, DepthType.Cv8U, 3);
-            img.SetTo(new Bgr(255, 0, 0).MCvScalar);
+            Mat img = CvInvoke.Imread("C:/Users/nfberthusen/Downloads/shirt.jpg");
+            Mat edges = new Mat();
 
-            CvInvoke.PutText(
-                img,
-                "hello, world",
-                new System.Drawing.Point(10, 80),
-                FontFace.HersheyComplex,
-                1.0,
-                new Bgr(0, 255, 0).MCvScalar);
+            CvInvoke.Canny(img, edges, 100, 200);
+            using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
+            {
+                CvInvoke.FindContours(edges, contours, null, RetrType.List, ChainApproxMethod.ChainApproxSimple);
+                int count = contours.Size;
 
-            CvInvoke.Imshow(win, img);
-            CvInvoke.WaitKey(0);
-            CvInvoke.DestroyWindow(win);
+                for (int i = 0; i < count; i++)
+                {
+                    using (VectorOfPoint contour = contours[i])
+                    using (VectorOfPoint approxContour = new VectorOfPoint())
+                    {
+                        CvInvoke.ApproxPolyDP(contour, approxContour, CvInvoke.ArcLength(contour, true) * 0.05, true);
+                        if (CvInvoke.ContourArea(approxContour, false) > 250)
+                        {
+                            Console.WriteLine(approxContour.Size);
+                        }
+                    }
+                }
+
+                CvInvoke.NamedWindow(win);
+                CvInvoke.Imshow(win, edges);
+                CvInvoke.WaitKey(0);
+                CvInvoke.DestroyWindow(win);
+            }
+     
             return new string[] { "value1", "value2" };
         }
 
@@ -47,8 +60,9 @@ namespace test.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] IFormFile file)
         {
+            Console.WriteLine(file.FileName);
         }
 
         // PUT api/values/5
