@@ -1,0 +1,9 @@
+Observables
+what is it: commmonly used Angular feature
+
+purpose: an observer can subscribe to 'watch' a service
+
+potential applications to our project: 
+- page loads what it can and since pictures may be slower, the picture will show up when
+it has been loaded
+
