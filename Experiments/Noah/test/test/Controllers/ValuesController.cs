@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
-
+using Microsoft.AspNetCore.Http;
 
 namespace test.Controllers
 {
@@ -60,8 +60,9 @@ namespace test.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] IFormFile file)
         {
+            Console.WriteLine(file.FileName);
         }
 
         // PUT api/values/5
