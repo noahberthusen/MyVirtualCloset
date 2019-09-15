@@ -1,0 +1,9 @@
+API
+allows applications to communicate with each other
+
+tools:
+Postman - for sending test requests from your app to an API
+
+APIs/sites:
+https://www.programmableweb.com/
+https://any-api.com/
