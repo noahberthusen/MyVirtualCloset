@@ -7,12 +7,16 @@ Quick Set Up
 - https://docs.nativescript.org/angular/start/quick-setup
 - install node.js
 - npm install -g nativescript
-- tns to check for basic commands
+- tns 
+    - to check for basic commands
+- npm i @nativescript/schematics
+    - for code sharing stuff
 
 Helpful commands
 - format: tns <Command> [command parameters] [--command <options>]
 - create: makes a project
 - preview: generates QR code for Playground app
+- ng new --collection=@nativescript/schematics app-name --shared
 - tns run ios: run native script for ios devices
     - cannot be built/run on pc
 - tns run android: run native script for android devices
