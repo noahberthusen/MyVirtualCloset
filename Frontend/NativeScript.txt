@@ -1,0 +1,23 @@
+Native Script
+- framework for creating mobile apps
+- can be used with angular, called code sharing
+    - link with more information: https://www.nativescript.org/nativescript-is-how-you-build-native-mobile-apps-with-angular/code-sharing-angular-and-nativescript
+
+Quick Set Up
+- https://docs.nativescript.org/angular/start/quick-setup
+- install node.js
+- npm install -g nativescript
+- tns to check for basic commands
+
+Helpful commands
+- format: tns <Command> [command parameters] [--command <options>]
+- create: makes a project
+- preview: generates QR code for Playground app
+- tns run ios: run native script for ios devices
+    - cannot be built/run on pc
+- tns run android: run native script for android devices
+
+
+Code-Sharing (with angular)
+- this feature enables Angular to be used for the web application and NativeScript for the mobile application
+- only code not shared between the two is the html/other styling
