@@ -6,6 +6,7 @@ using MyVirtualCloset.Core.ProgramUser;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MyVirtualCloset.Infrastructure.Auth
@@ -21,7 +22,7 @@ namespace MyVirtualCloset.Infrastructure.Auth
 
         public User Authenticate(string username, string password)
         {
-            // find user in the db using password hashing
+            // find user in the db using username
             User user = new User();
             user.Id = 1;
             user.FirstName = "Noah";
@@ -32,6 +33,13 @@ namespace MyVirtualCloset.Infrastructure.Auth
 
             if (user == null)
                 return null;
+
+            // get salt and hash from database, if user exists
+            //string salt = "";
+            //string hash = "";
+
+            //if (!HashService.VerifyHash(user.Password, salt, hash))
+            //    return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
