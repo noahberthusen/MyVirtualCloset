@@ -3,24 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Api", "MyVirtualCloset\MyVirtualCloset.Api.csproj", "{F1999454-10CF-40AA-BC8E-E4C3E7719162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Api", "MyVirtualCloset\MyVirtualCloset.Api.csproj", "{F1999454-10CF-40AA-BC8E-E4C3E7719162}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D134298C-4560-4B1E-980E-8EE53118BB8F} = {D134298C-4560-4B1E-980E-8EE53118BB8F}
+		{A2661198-F910-427B-B63A-4FC9440804E6} = {A2661198-F910-427B-B63A-4FC9440804E6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Core", "MyVirtualCloset.Core\MyVirtualCloset.Core.csproj", "{A2661198-F910-427B-B63A-4FC9440804E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Core", "MyVirtualCloset.Core\MyVirtualCloset.Core.csproj", "{A2661198-F910-427B-B63A-4FC9440804E6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4D321740-9836-472D-B296-0663C8863EB8} = {4D321740-9836-472D-B296-0663C8863EB8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Domain", "MyVirtualCloset.Domain\MyVirtualCloset.Domain.csproj", "{4D321740-9836-472D-B296-0663C8863EB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Domain", "MyVirtualCloset.Domain\MyVirtualCloset.Domain.csproj", "{4D321740-9836-472D-B296-0663C8863EB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Infrastructure", "MyVirtualCloset.Infrastructure\MyVirtualCloset.Infrastructure.csproj", "{D134298C-4560-4B1E-980E-8EE53118BB8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Infrastructure", "MyVirtualCloset.Infrastructure\MyVirtualCloset.Infrastructure.csproj", "{D134298C-4560-4B1E-980E-8EE53118BB8F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A2661198-F910-427B-B63A-4FC9440804E6} = {A2661198-F910-427B-B63A-4FC9440804E6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Infrastructure.Shared", "MyVirtualCloset.Infrastructure.Shared\MyVirtualCloset.Infrastructure.Shared.csproj", "{292468F3-EB9F-4DC9-A0F2-910E3482AA94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Infrastructure.Shared", "MyVirtualCloset.Infrastructure.Shared\MyVirtualCloset.Infrastructure.Shared.csproj", "{292468F3-EB9F-4DC9-A0F2-910E3482AA94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
