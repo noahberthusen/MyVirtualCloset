@@ -7,14 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '@src/app/app-routing.module';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+import { fakeBackendProvider } from '@src/app/_helpers';
 
-import { AppComponent } from './app.component';
-import { routing } from './app.routing';
+import { AppComponent } from '@src/app/app.component';
+import { routing } from '@src/app/app.routing';
 
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
+import { JwtInterceptor, ErrorInterceptor } from '@src/app/_helpers';
+import { HomeComponent } from '@src/app/home';
+import { LoginComponent } from '@src/app/login';
 
 @NgModule({
   declarations: [
