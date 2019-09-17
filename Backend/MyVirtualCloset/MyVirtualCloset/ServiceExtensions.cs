@@ -8,6 +8,8 @@ namespace MyVirtualCloset.Api
         {
             services.AddTransient<Core.Auth.IAuthService, Infrastructure.Auth.AuthService>();
 
+            services.AddTransient<Core.DB.IDBService, Infrastructure.DB.DBServices>();
+
             return services;
         }
     }
