@@ -5,6 +5,7 @@ import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
 import { LoginComponent } from '@src/app/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -22,6 +23,8 @@ import { LoginComponent } from '@src/app/login/login.component';
   imports: [
     NativeScriptModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
