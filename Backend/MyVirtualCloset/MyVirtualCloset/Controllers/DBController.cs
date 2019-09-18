@@ -31,7 +31,8 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpGet("test")]
         public string test2()
         {
-            _dbs.ConnectTest("datasource=127.0.0.1;port=3306;username=root;password=;database=test;sslmode=none;");
+            //_dbs.ConnectTest("datasource=127.0.0.1;port=3306;username=root;password=;database=test;sslmode=none;");
+            _dbs.ConnectTest("datasource=coms-309-ks-7.misc.iastate.edu;port=3306;username=ks7;password=Password#7;database=MyVirtualCloset;");
             return "TEST";
         }
 

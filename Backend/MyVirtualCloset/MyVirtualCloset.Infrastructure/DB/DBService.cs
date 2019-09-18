@@ -16,7 +16,7 @@ namespace MyVirtualCloset.Infrastructure.DB
             using (var client = new MySqlConnection(connectionString))
             {
                 client.Open(); 
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM t1", client);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM test", client);
                 client.Close();
             }
 
