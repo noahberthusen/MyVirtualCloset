@@ -2,9 +2,7 @@
 using MyVirtualCloset.Core.ProgramUser;
 using MyVirtualCloset.Infrastructure.Auth;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MyVirtualCloset.Infrastructure.ProgramUser
 {
@@ -19,14 +17,18 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
         public User Create(User newUser)
         {
-            // do some validation on username and password
-            //if (_context.User.Any(x => x.Username == newUser.Username))
-            //    return null;
+            var existingUser = _context.User.SingleOrDefault(x => x.Username == newUser.Username);
 
+            if (existingUser != null)
+                throw new Exception("Username \"" + existingUser.Username + "\" is already taken");
+
+            if (newUser.Password == null || newUser.Username == null)
+                throw new Exception("Username and password cannot be null");
+
+            Guid guid = Guid.NewGuid();
+            newUser.Id = guid.ToString();
             newUser.Salt = HashService.GetSalt();
-            Console.WriteLine(newUser.Salt);
             newUser.Hash = HashService.GetHash(newUser.Password, newUser.Salt);
-            Console.WriteLine(newUser.Hash);
             newUser.Password = null;
 
             _context.User.Add(newUser);

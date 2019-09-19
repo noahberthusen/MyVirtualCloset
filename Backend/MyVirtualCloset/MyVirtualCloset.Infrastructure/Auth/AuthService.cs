@@ -31,16 +31,10 @@ namespace MyVirtualCloset.Infrastructure.Auth
             User user = _context.User.SingleOrDefault(x => x.Username == username);
 
             if (user == null)
-            {
-                Console.WriteLine("couldn't find user");
                 return null;
-            }
 
             if (!HashService.VerifyHash(password, user.Salt, user.Hash))
-            {
-                Console.WriteLine("wrong password");
                 return null;
-            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

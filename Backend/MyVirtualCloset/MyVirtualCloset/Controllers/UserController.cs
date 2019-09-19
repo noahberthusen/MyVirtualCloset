@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.ProgramUser;
 
@@ -28,7 +25,7 @@ namespace MyVirtualCloset.Api.Controllers
                 user = _userService.Create(newUser);
             } catch (Exception e)
             {
-                Console.WriteLine("there was an error");
+                return BadRequest(new { message = e.Message });
             }
             return Ok(user);
         }
