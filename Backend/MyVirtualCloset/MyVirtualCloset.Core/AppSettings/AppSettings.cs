@@ -1,4 +1,4 @@
-﻿namespace MyVirtualCloset.Api.AppSettings
+﻿namespace MyVirtualCloset.Core.AppSettings
 {
     public class AppSettings
     {

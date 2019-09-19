@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
-using MyVirtualCloset.Api.AppSettings;
+using MyVirtualCloset.Core.AppSettings;
 using MyVirtualCloset.Api;
+using MyVirtualCloset.Core.DB;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyVirtualCloset
 {
@@ -27,6 +29,10 @@ namespace MyVirtualCloset
             services.Configure<AppSettings>(appSettingSection);
             var appSettings = appSettingSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            // db context
+            services.AddDbContext<DataContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(x =>
             {
