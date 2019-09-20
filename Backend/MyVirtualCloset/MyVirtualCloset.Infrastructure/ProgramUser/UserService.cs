@@ -20,7 +20,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             var existingUser = _context.User.SingleOrDefault(x => x.Username == newUser.Username);
 
             if (existingUser != null)
-                throw new Exception("Username \"" + existingUser.Username + "\" is already taken");
+                throw new Exception("Username '" + existingUser.Username + "' is already taken");
 
             if (newUser.Password == null || newUser.Username == null)
                 throw new Exception("Username and password cannot be null");
