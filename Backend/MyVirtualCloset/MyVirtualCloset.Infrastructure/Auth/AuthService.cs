@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MyVirtualCloset.Api.AppSettings;
+using MyVirtualCloset.Core.AppSettings;
 using MyVirtualCloset.Core.Auth;
+using MyVirtualCloset.Core.DB;
 using MyVirtualCloset.Core.ProgramUser;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,32 +16,25 @@ namespace MyVirtualCloset.Infrastructure.Auth
     public class AuthService : IAuthService
     {
         private readonly AppSettings _appSettings;
+        private readonly DataContext _context;
 
-        public AuthService(IOptions<AppSettings> appSettings)
+        public AuthService(IOptions<AppSettings> appSettings,
+            DataContext context)
         {
             this._appSettings = appSettings.Value;
+            this._context = context;
         }
 
         public User Authenticate(string username, string password)
         {
             // find user in the db using username
-            User user = new User();
-            user.Id = 1;
-            user.FirstName = "Noah";
-            user.LastName = "Berthusen";
-            user.Username = "nfbert";
-            user.Password = "password";
-            user.Role = Role.Admin;
+            User user = _context.User.SingleOrDefault(x => x.Username == username);
 
             if (user == null)
                 return null;
 
-            // get salt and hash from database, if user exists
-            //string salt = "";
-            //string hash = "";
-
-            //if (!HashService.VerifyHash(user.Password, salt, hash))
-            //    return null;
+            if (!HashService.VerifyHash(password, user.Salt, user.Hash))
+                return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
