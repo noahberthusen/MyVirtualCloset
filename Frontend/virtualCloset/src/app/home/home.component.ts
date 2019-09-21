@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+
+import { User } from '@src/app/_models';
+import { UserService, AuthenticationService } from '@src/app/_services';
 
 @Component({
-  selector: 'app-home',
+  // selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-})
+  // styleUrls: ['./home.component.css'],
+  })
 export class HomeComponent implements OnInit {
-  title = 'virtualCloset';
+  users: User[] = [];
 
-  constructor() { }
+    constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.userService.getAll().pipe(first()).subscribe(users => {
+            this.users = users;
+        });
+    }
 }

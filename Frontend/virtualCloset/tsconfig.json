@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+//   "compileOnSave": false,
   "compilerOptions": {
       "outDir": "./dist/out-tsc",
       "sourceMap": true,
@@ -17,7 +17,7 @@
           "es6",
           "es2015.iterable"
       ],
-      "baseUrl": ".",
+      "baseUrl": "src", //.
       "paths": {
           "@src/*": [
               "src/*.android.ts",
