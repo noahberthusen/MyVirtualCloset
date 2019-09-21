@@ -2,6 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.ProgramUser;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using MyVirtualCloset.Core.Clothes;
+
 namespace MyVirtualCloset.Api.Controllers
 {
     [Route("api/user")]
@@ -23,11 +28,14 @@ namespace MyVirtualCloset.Api.Controllers
             try
             {
                 user = _userService.Create(newUser);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return BadRequest(new { message = e.Message });
             }
             return Ok(user);
         }
+
+
     }
 }
