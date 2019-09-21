@@ -1,0 +1,82 @@
+Visual Studio
+Purpose: for editiing and running the database code
+Setup:
+- Open MyVirtualCloset project from local folder
+- Open Solution Explorer to see files
+- Api:
+- Core:
+- Domain: (not used in this project)
+- Infrastructure:
+- Infrastructure.Shared: (not used in this project)
+
+Postman
+Purpose: for testing to see what Angular's http requests would be doing
+
+Setup:
+
+
+Example:
+POST: https://localhost:44383/api/user/register
+Under tab Body:
+{
+	"FirstName": "M",
+	"LastName": "A",
+	"Username": "ma2",
+	"Password": "password",
+	"Role": "Admin"
+}
+- select raw and JSON
+- send requests
+- response: 
+{
+    "id": "251dce9b-f4da-4c77-a564-e46d1a29abeb",
+    "firstName": "M",
+    "lastName": "A",
+    "username": "ma2",
+    "password": null,   //null because hashed and salt added for security
+    "role": "Admin",
+    "token": null,
+    "salt": "OxskHLrXShGoHFYPgAHXIg==",
+    "hash": "wbQ2Xo/+RzBHjZRO+1CGif0qoXY="
+}
+
+POST: https://localhost:44383/api/auth/login
+Under tab Body:
+{
+	"Username": "ma2",
+	"Password": "password"
+}
+- raw and JSON
+- response: 
+{
+    "id": "251dce9b-f4da-4c77-a564-e46d1a29abeb",
+    "firstName": "M",
+    "lastName": "A",
+    "username": "ma2",
+    "password": null,
+    "role": "Admin",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjI1MWRjZTliLWY0ZGEtNGM3Ny1hNTY0LWU0NmQxYTI5YWJlYiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTU2OTA4ODAyNCwiZXhwIjoxNTY5MDg5MjI0LCJpYXQiOjE1NjkwODgwMjR9.Wy5xas2DEFt72A9w06GdYfdNvvvIWtYbldX7Dtz4TW8",
+    "salt": "OxskHLrXShGoHFYPgAHXIg==",
+    "hash": "wbQ2Xo/+RzBHjZRO+1CGif0qoXY="
+}   //now has a token (used for input of auth/test)
+
+GET: https://localhost:44383/api/auth/test
+- Under Authorization tab:
+    - choose type as Bearer token
+    - insert token 
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjI1MWRjZTliLWY0ZGEtNGM3Ny1hNTY0LWU0NmQxYTI5YWJlYiIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTU2OTA4ODAyNCwiZXhwIjoxNTY5MDg5MjI0LCJpYXQiOjE1NjkwODgwMjR9.Wy5xas2DEFt72A9w06GdYfdNvvvIWtYbldX7Dtz4TW8
+- Response:
+    251dce9b-f4da-4c77-a564-e46d1a29abeb    //user ID
+
+MySQL Workbench
+Setup:
+- Database --> Connect to Database
+- Change hostname to coms-309-ks-7.misc.iastate.edu
+- Change username to ks7
+- Change password to Password#7
+
+Viewing Databases:
+- Select Schema tab at bottom left
+- MyVirtualCloset --> Tables 
+- right click on a table and choose "Select Rows" 
+    same as typing: SELECT * FROM MyVirtualCloset.User;
