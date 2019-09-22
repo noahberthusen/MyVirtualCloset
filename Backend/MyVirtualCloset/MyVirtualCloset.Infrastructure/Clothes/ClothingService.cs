@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MyVirtualCloset.Core.Clothes;
 using MyVirtualCloset.Core.DB;
@@ -28,6 +29,13 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             _context.ClothingItem.Add(c1);
             _context.SaveChanges();
+        }
+
+        public string viewClothes(string id)
+        {
+            var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == id);
+
+            return clothSelected.url;
         }
     }
 }
