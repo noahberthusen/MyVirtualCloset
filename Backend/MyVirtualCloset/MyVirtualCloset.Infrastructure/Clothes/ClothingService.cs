@@ -17,25 +17,24 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             this._context = context;
         }
 
-        public void addClothes(string path, string tags, string name)
+        public void addClothes(string id, string tags, string name, string user)
         {
             var c1 = new ClothingItem();
 
-            Guid guid = Guid.NewGuid();
-            c1.id = guid.ToString();
+            c1.id = id;
             c1.name = name;
             c1.tags = tags;
-            c1.url = path;
+            c1.user = user;
 
             _context.ClothingItem.Add(c1);
             _context.SaveChanges();
         }
 
-        public string viewClothes(string id)
+        public string viewClothes(string user)
         {
-            var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == id);
+            var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == user);
 
-            return clothSelected.url;
+            return clothSelected.id;
         }
     }
 }
