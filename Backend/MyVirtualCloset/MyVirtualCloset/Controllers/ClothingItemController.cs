@@ -5,6 +5,7 @@ using System.IO;
 using MyVirtualCloset.Core.Clothes;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyVirtualCloset.Api.Controllers
 {
@@ -21,8 +22,9 @@ namespace MyVirtualCloset.Api.Controllers
             this._clothingService = clothingService;
         }
 
+        //[Authorize]
         [HttpPost("add")]
-        public IActionResult imageTest([FromForm(Name = "file")] IFormFile file, [FromForm(Name = "tags")] string tags, [FromForm(Name = "name")] string name)
+        public IActionResult addImage([FromForm(Name = "file")] IFormFile file, [FromForm(Name = "tags")] string tags, [FromForm(Name = "name")] string name)
         {
             var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
             Guid guid = Guid.NewGuid();
@@ -36,33 +38,31 @@ namespace MyVirtualCloset.Api.Controllers
 
             _clothingService.addClothes(id, tags, name, User.Identity.Name);
 
-            //file.SaveAs(filePath);
             return Ok();
         }
 
-        [HttpGet("view")]
-        public IActionResult viewimage()
+        //[Authorize]
+        [HttpGet("viewAllUserClothes")]
+        public List<ReturnImage> viewAllUserClothes()
         {
-            var path = _clothingService.viewClothes("139efe16-2900-41a2-809a-1b8465485b69");
-            var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
-            var filePath = Path.Combine(uploads, path);
-            Byte[] b = System.IO.File.ReadAllBytes(filePath);
-            return File(b, "image/jpeg");
-        }
 
-        [HttpGet("test")]
-        public List<ReturnImage> test()
-        {
-            var a = new ReturnImage();
-            var path = _clothingService.viewClothes("139efe16-2900-41a2-809a-1b8465485b69");
-            var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
-            var filePath = Path.Combine(uploads, path);
-            a.image = System.IO.File.ReadAllBytes(filePath);
-            a.name = "test";
-            var l = new List<ReturnImage>();
-            l.Add(a);
+            var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
 
-            return l;
+            var temp = new ReturnImage();
+            var re = new List<ReturnImage>();
+
+            foreach(var i in clothes)
+            {
+                temp.name = i.name;
+                temp.tags = i.tags;
+                var path = i.id;
+                var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
+                var filePath = Path.Combine(uploads, path);
+                temp.image = System.IO.File.ReadAllBytes(filePath);
+                re.Add(temp);
+            }
+
+            return re;
         }
     }
 }

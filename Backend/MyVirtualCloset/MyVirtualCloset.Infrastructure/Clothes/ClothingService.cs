@@ -30,11 +30,11 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             _context.SaveChanges();
         }
 
-        public string viewClothes(string user)
+        public List<ClothingItem> viewClothesIdByUser(string user)
         {
-            var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == user);
+            var clothSelected = _context.ClothingItem.Where(x => x.user == user);
 
-            return clothSelected.id;
+            return clothSelected.ToList();
         }
     }
 }
