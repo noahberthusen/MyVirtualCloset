@@ -6,6 +6,6 @@ export class User {
     password: string;
     role: string;
     token: string;
-    salt: string;
+    salt: string;   //added to password in case of duplicates
     hash: string;
 }

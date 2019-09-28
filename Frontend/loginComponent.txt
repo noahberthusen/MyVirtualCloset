@@ -1,0 +1,29 @@
+Login page info
+- routed here first (app-routing.module)
+- routes to home next (or can be changed)
+
+Structure of login page
+html
+- username input
+- password input
+- submit button
+
+ts
+- imports: authservice, form stuff, router stuff
+- constructs authservice, form builder, and router
+- ngOnInit: 
+    - creates a form fb where username and password are required fields 
+        - error returned if not a valid input on submit
+        - groups username and password together
+        - .controls and .invalid are functions of loginForm
+    - logs out the auth service (so when returning to login page, user not yet logged in)
+    - something with returnURL???
+- f function:
+    - returns this.loginForm.controls
+    - used in html file for determining if errors in user input
+- onSubmit function:
+    - if invalid login info, returns nothing
+    - else
+        - send username and password to login function of authservice
+        - subscribe with data (router link to navigate to) and error
+   

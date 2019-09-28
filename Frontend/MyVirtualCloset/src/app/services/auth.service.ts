@@ -21,6 +21,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    console.log("inside auth service");
     return this.http.post<User>('https://localhost:44383/api/auth/login', { username, password })
       .pipe(map(user => {
         if (user && user.token) {

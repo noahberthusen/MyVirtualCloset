@@ -1,0 +1,26 @@
+JWT interceptor info:
+- jwt : json web token
+- intercepts http requests from the application to add a JWT auth token to the Authorization header if the user is logged in
+- extends the HttpInterceptor class (a part of HttpClientModule) to create a custom interceptor to modify http requests before they get sent to the server
+- interceptors added to request pipeline in providers section of app.module.ts file
+
+Structure:
+- imports: injectable, authservice, observable, http stuff
+- is an injectable, opposed to being a component (doesnt have a page assosciated with it)
+- implements HttpInterceptor (so has to provide intercept function seen below)
+- construct an authservice
+- intercept function:
+    - inputs are req: HttpRequest<any> and next: HttpHandler
+    - is an observable of type http event
+    - set variables: 
+        - currentUser = this.authService.currentUserValue;
+        - isLoggedIn = currentUser && currentUser.token;
+    - the following code returns the user with a token added
+        if (isLoggedIn) {
+                req = req.clone({
+                    setHeaders: {
+                        Authorization: `Bearer ${currentUser.token}`
+                    }
+                });
+            }
+            return next.handle(req);
