@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     });
 
     this.authService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || ''
-    console.log(this.returnUrl);
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';    //what is returnUrl?
+    console.log(this.returnUrl);    //does this actually print somewhere??
   }
 
   get f() {

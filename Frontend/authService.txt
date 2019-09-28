@@ -1,0 +1,30 @@
+Authentication Service:
+- used to login/out of appl
+- login: posts users credentials to api and checks response for JWT token
+    - user details are added to local storage with the token if auth successful
+    - token used by JWT interceptor above to set auth header of http requests made to secure api endpoints
+    - logged in user details stored in local storage so the user will stay logged in (browser sessions and refresh)
+- two properties exposed by authservice for accessing currently logged in user
+    - currentUser observable:
+        - used when you want a component to reactively update when a user logs in or out
+            - ie: in the app.component.ts, could show/hide main nav bar when the user logs in/out
+    - currentUserValue: 
+        - used when you just want to get current value of the logged in user but don't need to reactively update when it changes, 
+            - ie: in the auth.guard.ts, restricts access to routes by checking if the user is currently logged in
+
+Structure:
+- imports: injectable, httpclient, behaviorsubject (?), observable, map, user
+- http client constructor:
+    - initialize currentUserSubject (behaviorsubject) and currentUser (observable)
+- currentUserValue method:
+    - return currentUserSubject.value
+- login method:
+    - inputs: username, password
+    - http post to api/auth/login
+    - if valid user and token
+        - set currentUser item to local storage
+        - sets currentUserSubject. next to user
+    - returns user
+- logout method:
+    - removes currentUser from local storage
+    - sets currentUserSubject. next to null

@@ -1,0 +1,25 @@
+Tutorial on auth/login
+https://jasonwatmore.com/post/2018/11/16/angular-7-jwt-authentication-example-tutorial#authentication-service-ts
+
+to register:
+- post
+- http request to https://localhost:44383/api/user/register
+- json input of user info
+
+to login:
+- post
+- http request to https://localhost:44383/api/auth/login
+- json input of username and password
+
+to authorize:
+- get
+- http request to https://localhost:44383/api/auth/test
+- token input
+
+notes:
+- individual pages explained in text files (with name of corresponding page)
+
+
+
+
+

@@ -1,0 +1,24 @@
+Auth Guard info:
+- purpose: angular route guard that's used to prevent unauthenticated users from accessing restricted routes
+- how it works: implements the CanActivate interface which allows the guard to decide if a route can be activated with the canActivate() method
+    - if canActivate returns true route can proceed, else redirects to login page again
+    - within app-routing module, canActivate: [AuthGuard] added to a specific path
+
+Structure of auth.guard.ts:
+- imports: authService, observable, router, canActivate, ActivatedRouteSnapshot (?), RouterStateSnapshot (?), UrlTree (?)
+- is an injectable (?) opposed to a component
+    - providedIn: 'root'
+- implements CanActivate so must include canActivate function (seen below)
+- constructor for authService and router
+- canActivate function:
+    - next: ActivatedRouteSnapshot, state: RouterStateSnapshot
+    - Observable
+        - how do the pipes work?? boolean, urltree, promise
+            - <boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
+        - set currentUser  as authService.currentUserValue
+        - if currentUser exists (is not null), return true
+        - if not a user
+            - return to login page (router.navigate(['/login'])
+            - queryParams: { returnUrl: state.url } 
+                - not sure how this part works, what is queryParams and returnUrl???
+            - return false
