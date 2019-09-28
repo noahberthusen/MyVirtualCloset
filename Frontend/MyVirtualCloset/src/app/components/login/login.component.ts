@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
     this.authService.login(this.f.username.value, this.f.password.value)
       .subscribe(
         data => {
@@ -47,5 +46,10 @@ export class LoginComponent implements OnInit {
           console.log(error);
         }
       )
+  }
+
+  goToSignup() {
+    console.log("signup");
+    this.router.navigate( ['/signup']);
   }
 }

@@ -21,3 +21,8 @@
     </div>
     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 </form>
+
+<div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary" (click)="goToSignup()">Signup</button>
+</div>
+
