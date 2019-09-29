@@ -26,7 +26,7 @@ export class ImagesService {
     return this.http.get<Image>('https://localhost:44383/api/ClothingItem/viewAllUserClothes')
       .pipe(map(images => {
         console.log("inside http get request");
-        console.log(images);    //do not get any data for images
+        console.log(images);  
         return images;
       }));
   }
