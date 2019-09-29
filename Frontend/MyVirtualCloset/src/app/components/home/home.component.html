@@ -1,11 +1,7 @@
 <p>you shouldn't see this unless you log in</p>
 
 <h3>Basic Buttons</h3>
-<div class="example-button-row">
-  <button mat-button>Basic</button>
-  <button mat-button color="primary">Primary</button>
-  <button mat-button color="accent">Accent</button>
-  <button mat-button color="warn">Warn</button>
-  <button mat-button disabled>Disabled</button>
-  <a mat-button routerLink=".">Link</a>
+<div class="example-button-row" (click)="displayImages()">
+  <button mat-button>See Images</button>
+  <img src="data:image/png;base64,encodedImages">
 </div>
