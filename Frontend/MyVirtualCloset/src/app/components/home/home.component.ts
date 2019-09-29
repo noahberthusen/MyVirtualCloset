@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';\
+import { Component, OnInit } from '@angular/core';
 import { ImagesService } from 'src/app/services/images.service';
 
 //angular material requires installation first: ng add @angular/material
@@ -18,10 +18,6 @@ export class HomeComponent implements OnInit {
   constructor( private imagesService: ImagesService) { }
 
   ngOnInit() {
-  }
-
-  renderImages() {
-    var
   }
 
   displayImages() {
