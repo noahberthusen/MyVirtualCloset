@@ -3,6 +3,5 @@
 <h3>Basic Buttons</h3>
 <div class="example-button-row" (click)="displayImages()">
   <button mat-button>See Images</button>
-  <!-- <img src="data:image/png;base64,encodedImages"> -->
   <img *ngIf="encodedImages" [src]="encodedImages">
 </div>

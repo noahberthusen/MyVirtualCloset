@@ -23,9 +23,8 @@ export class HomeComponent implements OnInit {
     this.imagesService.displayImages()
       .subscribe(
         data => {
-          // this.encodedImages = btoa(this.decoder.decode(data.image));
-          // console.log("in data");
-          // console.log(data[1].image);
+          console.log("in data");
+          console.log(data[1].image);
           this.encodedImages = "data:image/jpeg;base64,"+data[1].image;
         },
         error => {
