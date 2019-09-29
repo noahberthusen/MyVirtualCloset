@@ -13,18 +13,20 @@ export class ImagesService {
   public currentImage: Observable<Image>;
 
   constructor(private http: HttpClient) {
-    this.currentImageSubject = new BehaviorSubject<Image>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentImageSubject = new BehaviorSubject<Image>(JSON.parse(localStorage.getItem('currentImage')));
     this.currentImage = this.currentImageSubject.asObservable();
   }
 
-  public get currentUserValue(): Image {
+  public get currentImageValue(): Image {
     return this.currentImageSubject.value;
   }
 
   displayImages() {
     console.log("inside clothing service");
-    return this.http.post<Image>('https://localhost:44383/api/ClothingItem/viewAllUserClothes', {})
+    return this.http.get<Image>('https://localhost:44383/api/ClothingItem/viewAllUserClothes')
       .pipe(map(images => {
+        console.log("inside http get request");
+        console.log(images);    //do not get any data for images
         return images;
       }));
   }

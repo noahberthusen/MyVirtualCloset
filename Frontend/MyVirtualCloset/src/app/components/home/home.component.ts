@@ -10,10 +10,8 @@ import { ImagesService } from 'src/app/services/images.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   encodedImages: string;
-  decoder: TextDecoder;
-  //btoa((data.image).toString)
+  imageObj;
 
   constructor( private imagesService: ImagesService) { }
 
@@ -21,10 +19,14 @@ export class HomeComponent implements OnInit {
   }
 
   displayImages() {
+    console.log("in displayImages");
     this.imagesService.displayImages()
       .subscribe(
         data => {
-          this.encodedImages = btoa(this.decoder.decode(data.image));
+          // this.encodedImages = btoa(this.decoder.decode(data.image));
+          // console.log("in data");
+          // console.log(data[1].image);
+          this.encodedImages = "data:image/jpeg;base64,"+data[1].image;
         },
         error => {
           console.log(error);
