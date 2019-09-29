@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
+  submitted: false;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
