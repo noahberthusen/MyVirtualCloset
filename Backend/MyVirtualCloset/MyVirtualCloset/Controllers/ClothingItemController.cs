@@ -22,14 +22,14 @@ namespace MyVirtualCloset.Api.Controllers
             this._clothingService = clothingService;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("add")]
         public IActionResult addImage([FromForm(Name = "file")] IFormFile file, [FromForm(Name = "tags")] string tags, [FromForm(Name = "name")] string name)
         {
-            var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
+
             Guid guid = Guid.NewGuid();
             var id = guid.ToString();
-            var filePath = Path.Combine(uploads, id);
+            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -41,7 +41,7 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("viewAllUserClothes")]
         public List<ReturnImage> viewAllUserClothes()
         {
@@ -56,8 +56,8 @@ namespace MyVirtualCloset.Api.Controllers
                 temp.name = i.name;
                 temp.tags = i.tags;
                 var path = i.id;
-                var uploads = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
-                var filePath = Path.Combine(uploads, path);
+
+                var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, path);
                 temp.image = System.IO.File.ReadAllBytes(filePath);
                 re.Add(temp);
             }
