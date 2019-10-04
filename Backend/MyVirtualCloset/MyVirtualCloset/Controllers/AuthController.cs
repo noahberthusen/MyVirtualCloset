@@ -42,5 +42,12 @@ namespace MyVirtualCloset.Api.Controllers
             string id = User.Identity.Name;
             return Ok(id);
         }
+
+        [HttpGet("forgot")]
+        public IActionResult ForgotPassword()
+        {
+            this._authService.ForgotPassword("nfb");
+            return Ok();
+        }
     }
 }

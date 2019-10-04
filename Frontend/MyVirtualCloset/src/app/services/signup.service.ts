@@ -21,9 +21,9 @@ import { User } from '../models/User';
       return this.currentUserSubject.value;
     }
   
-    signup(firstName: string, lastName:string, username: string, password: string, role: string) {
+    signup(user: User) {
       console.log("inside signup service");     //for testing purposes
-      return this.http.post<User>('https://localhost:44383/api/user/register', { firstName, lastName, username, password, role })
+      return this.http.post<User>('https://localhost:44383/api/user/register', user)
         .pipe(map(user => {
           if (user) {
             localStorage.setItem('currentUser', JSON.stringify(user));

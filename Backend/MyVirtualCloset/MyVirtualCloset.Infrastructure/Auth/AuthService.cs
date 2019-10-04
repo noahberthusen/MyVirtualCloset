@@ -7,6 +7,7 @@ using MyVirtualCloset.Core.ProgramUser;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,6 +56,48 @@ namespace MyVirtualCloset.Infrastructure.Auth
             user.Password = null;
 
             return user;
+        }
+
+        public string ForgotPassword(string username)
+        {
+            //User user = _context.User.SingleOrDefault(x => x.Username == username);
+
+            //if (user == null)
+            //    return null;
+
+            //string guid = Guid.NewGuid().ToString();
+            //byte[] salt = HashService.GetSalt();
+            //byte[] hash = HashService.GetHash(guid, salt);
+
+            //ResetTickets ticket = new ResetTickets();
+            //ticket.Id = user.Id;
+            //ticket.Salt = salt;
+            //ticket.Hash = hash;
+            //ticket.ExpirationDate = DateTime.Now.AddHours(1);
+            //ticket.TokenUsed = false;
+
+            //_context.ResetTickets.Add(ticket);
+            //_context.SaveChanges();
+
+            // send an email to the user with the link
+            using (SmtpClient smtpClient = new SmtpClient("coms-309-ks-7.misc.iastate.edu"))
+            {
+                smtpClient.Credentials = new System.Net.NetworkCredential("nfb1@coms-309-ks-7.misc.iastate.edu", "custom hammock drawl");
+                smtpClient.UseDefaultCredentials = true;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("nfb1@coms-309-ks-7.misc.iastate.edu", "MyVirtualCloset");
+                    mail.To.Add(new MailAddress("nfb1@iastate.edu"));
+                    smtpClient.Send(mail);
+                }
+            }            
+
+
+            return null;
+
         }
     }
 }
