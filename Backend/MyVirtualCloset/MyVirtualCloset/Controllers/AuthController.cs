@@ -27,10 +27,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] User userInfo)
         {
-            var user = _authService.Authenticate(userInfo.Username, userInfo.Password);
-
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+            User user = userInfo;
+            try
+            {
+                user = _authService.Authenticate(userInfo.Username, userInfo.Password);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
 
             return Ok(user);
         }
@@ -43,10 +48,33 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok(id);
         }
 
-        [HttpGet("forgot")]
-        public IActionResult ForgotPassword()
+        [HttpPost("forgot")]
+        public IActionResult ForgotPassword([FromBody] User user)
         {
-            this._authService.ForgotPassword("nfb");
+            try
+            {
+                _authService.ForgotPassword(user.Username);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
+            return Ok();
+        }
+
+        [HttpPost("reset")]
+        public IActionResult ChangePassword([FromBody] User user)
+        {
+            try
+            {
+                _authService.ChangePassword(user.Username, user.Password, user.Id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+
             return Ok();
         }
     }

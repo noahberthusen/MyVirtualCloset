@@ -5,6 +5,7 @@ namespace MyVirtualCloset.Core.Auth
     public interface IAuthService
     {
         User Authenticate(string username, string password);
-        string ForgotPassword(string username);
+        void ForgotPassword(string username);
+        void ChangePassword(string username, string password, string token);
     }
 }

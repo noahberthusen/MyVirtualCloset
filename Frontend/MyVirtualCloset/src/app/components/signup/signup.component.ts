@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private signupService: SignupService
   ) { }
