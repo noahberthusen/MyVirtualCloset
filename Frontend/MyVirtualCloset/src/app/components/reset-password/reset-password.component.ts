@@ -11,6 +11,7 @@ import { User } from 'src/app/models/User';
 })
 export class ResetPasswordComponent implements OnInit {
   passwordResetForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
