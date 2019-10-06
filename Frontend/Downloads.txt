@@ -1,0 +1,16 @@
+the following commands are completed by one developer. 
+when other developers try to run the project, they need to run npm install to get all new downloads
+
+Toast: 
+npm install ngx-toastr --save
+
+Angular Animations:
+npm install @angular/animations --save
+
+Angular Material:
+ng add @angular/material
+
+hammerjs:
+npm install --save hammerjs
+
+
