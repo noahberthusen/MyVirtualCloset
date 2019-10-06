@@ -4,6 +4,7 @@ using MyVirtualCloset.Core.Clothes;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyVirtualCloset.Core.Auth;
 
 namespace MyVirtualCloset.Core.DB
 {
@@ -12,5 +13,6 @@ namespace MyVirtualCloset.Core.DB
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<User> User { get; set; }
         public DbSet<ClothingItem> ClothingItem { get; set;}
+        public DbSet<ResetTickets> ResetTickets { get; set; }
     }
 }
