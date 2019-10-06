@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';    //what is returnUrl?
-    console.log(this.returnUrl);    //does this actually print somewhere??
   }
 
   get f() {
@@ -39,7 +39,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.login(this.f.username.value, this.f.password.value)
+
+    let user = new User();
+    user.username = this.f.username.value;
+    user.password = this.f.password.value;
+    
+    this.authService.login(user)
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl])
@@ -51,7 +56,26 @@ export class LoginComponent implements OnInit {
   }
 
   goToSignup() {
-    console.log("signup");
     this.router.navigate( ['/signup']);
+  }
+
+  forgotPassword() {
+    let user = new User();
+    user.username = this.f.username.value;
+
+    if (user.username == null) 
+      return;
+    // make sure they know they need to put username in
+
+    this.authService.forgotPassword(user)
+    .subscribe(
+      data => {
+        console.log(data);
+        // want to switch to toasts
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
