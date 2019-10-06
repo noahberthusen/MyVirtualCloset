@@ -3,6 +3,8 @@ when other developers try to run the project, they need to run npm install to ge
 
 Toast: 
 npm install ngx-toastr --save
+- to use import the following:  
+    @import '~ngx-toastr/toastr';
 
 Angular Animations:
 npm install @angular/animations --save
