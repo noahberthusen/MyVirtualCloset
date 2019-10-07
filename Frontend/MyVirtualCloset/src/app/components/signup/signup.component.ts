@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
 import { User } from 'src/app/models/User';
+// import {MatDialog} from 'src/app/material';
 
 @Component({
   selector: 'app-signup',
@@ -51,6 +52,7 @@ export class SignupComponent implements OnInit {
     this.signupService.signup(user)
     .subscribe(
       data => {
+        console.log("inside signup");
         this.router.navigate(['/login']);        
       },
       error => {
