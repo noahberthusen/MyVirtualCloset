@@ -6,6 +6,7 @@ dotnet-build:
     tags:
         - dotnet
     script:
+        - cd Backend/MyVirtualCloset
         - dotnet build
 
     
