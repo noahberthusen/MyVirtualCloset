@@ -1,0 +1,11 @@
+stages:
+    - dotnetbuild
+     
+dotnet-build:
+    stage: dotnetbuild
+    tags:
+        - dotnet
+    script:
+        - dotnet build
+
+    
