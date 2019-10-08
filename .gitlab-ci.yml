@@ -1,6 +1,7 @@
 stages:
     - dotnetbuild
     - angularbuild
+    - dotnettest
     - dotnetdeploy
     - angulardeploy
      
@@ -13,6 +14,16 @@ dotnet-build:
         - dotnet restore
     script:
         - dotnet build
+        
+dotnet-test:
+    stage: dotnettest
+    tags:
+        - dotnet
+    before_script:
+        - cd Backend/MyVirtualCloset
+        - dotnet restore
+    script:
+        - dotnet test
         
 dotnet-deploy:
     stage: dotnetdeploy
@@ -43,8 +54,9 @@ angular-build:
         - ng build --prod
     
 angular-deploy:
-    image: trion/ng-cli
     stage: angulardeploy
+    only:
+        - master
     tags:
         - shell
     before_script:
