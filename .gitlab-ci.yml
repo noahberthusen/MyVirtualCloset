@@ -21,7 +21,7 @@ dotnet-deploy:
         - cd Backend/MyVirtualCloset
         - dotnet restore
     script:
-        - dotnet publish -c release --self-contained
+        - dotnet publish -c release -r linux-x64 --self-contained
         - sudo systemctl stop MyVirtualCloset-backend
         - sudo systemctl start MyVirtualCloset-backend
 
