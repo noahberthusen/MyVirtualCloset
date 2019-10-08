@@ -1,6 +1,7 @@
 stages:
     - dotnetbuild
     - angularbuild
+    - dotnetdeploy
      
 dotnet-build:
     stage: dotnetbuild
@@ -10,6 +11,14 @@ dotnet-build:
         - cd Backend/MyVirtualCloset
         - dotnet restore
         - dotnet build
+        
+dotnet-deploy:
+    stage: dotnetdeploy
+    tags:
+        - dotnet
+    script:
+        - sudo systemctl MyVirtualCloset-backend stop
+        - sudo systemctl MyVirtualCloset-backend start
 
 angular-build:
     image: trion/ng-cli
