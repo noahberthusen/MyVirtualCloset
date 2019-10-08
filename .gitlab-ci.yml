@@ -1,8 +1,8 @@
 stages:
     - dotnetbuild
+    - angularbuild
      
 dotnet-build:
-    image: microsoft/dotnet:latest
     stage: dotnetbuild
     tags:
         - dotnet
@@ -11,4 +11,12 @@ dotnet-build:
         - dotnet restore
         - dotnet build
 
+angular-build:
+    image: trion/ng-cli
+    stage: angularbuild
+    tags:
+        - angular
+    script:
+        - cd Frontend/MyVirtualCloset
+        - ng build --prod
     
