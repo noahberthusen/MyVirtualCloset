@@ -17,6 +17,7 @@ dotnet-deploy:
     tags:
         - shell
     script:
+        - dotnet publish -c release --self-contained
         - sudo systemctl stop MyVirtualCloset-backend
         - sudo systemctl start MyVirtualCloset-backend
 
@@ -25,8 +26,9 @@ angular-build:
     stage: angularbuild
     tags:
         - angular
-    script:
+    before_script:
         - cd Frontend/MyVirtualCloset
-        - npm install --silent
+        - npm install
+    script:
         - ng build --prod
     
