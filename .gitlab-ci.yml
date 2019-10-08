@@ -16,7 +16,6 @@ dotnet-deploy:
     stage: dotnetdeploy
     tags:
         - dotnet
-        - shell
     script:
         - dotnet publish -c release --self-contained
         - sudo systemctl stop MyVirtualCloset-backend
