@@ -46,7 +46,7 @@ angular-deploy:
     image: trion/ng-cli
     stage: angulardeploy
     tags:
-        - angular
+        - shell
     before_script:
         - cd Frontend/MyVirtualCloset
         - npm install
