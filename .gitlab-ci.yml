@@ -18,5 +18,6 @@ angular-build:
         - angular
     script:
         - cd Frontend/MyVirtualCloset
+        - npm install --silent
         - ng build --prod
     
