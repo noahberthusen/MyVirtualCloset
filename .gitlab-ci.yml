@@ -2,6 +2,7 @@ stages:
     - dotnetbuild
     - angularbuild
     - dotnetdeploy
+    - angulardeploy
      
 dotnet-build:
     stage: dotnetbuild
@@ -15,6 +16,8 @@ dotnet-build:
         
 dotnet-deploy:
     stage: dotnetdeploy
+    only:
+        - master
     tags:
         - shell
     before_script:
@@ -39,3 +42,14 @@ angular-build:
     script:
         - ng build --prod
     
+angular-deploy:
+    image: trion/ng-cli
+    stage: angulardeploy
+    tags:
+        - angular
+    before_script:
+        - cd Frontend/MyVirtualCloset
+        - npm install
+    script:
+        - ng build --prod
+        - sudo mv ./dist/MyVirtualCloset/* /var/www/html/
