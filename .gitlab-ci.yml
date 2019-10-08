@@ -7,15 +7,19 @@ dotnet-build:
     stage: dotnetbuild
     tags:
         - dotnet
-    script:
+    before_script:
         - cd Backend/MyVirtualCloset
         - dotnet restore
+    script:
         - dotnet build
         
 dotnet-deploy:
     stage: dotnetdeploy
     tags:
         - dotnet
+    before_script:
+        - cd Backend/MyVirtualCloset
+        - dotnet restore
     script:
         - dotnet publish -c release --self-contained
         - sudo systemctl stop MyVirtualCloset-backend
