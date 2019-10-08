@@ -22,7 +22,7 @@ dotnet-deploy:
         - dotnet restore
         - sudo systemctl daemon-reload
     script:
-        - dotnet publish -c release -r linux-x64 -c /var/www/MyVirtualCloset/test --self-contained
+        - dotnet publish -c release -r linux-x64 -o /var/www/MyVirtualCloset/test --self-contained
         - sudo systemctl stop MyVirtualCloset-backend
         - sudo systemctl start MyVirtualCloset-backend
 
