@@ -16,7 +16,7 @@ dotnet-build:
 dotnet-deploy:
     stage: dotnetdeploy
     tags:
-        - dotnet
+        - shell
     before_script:
         - cd Backend/MyVirtualCloset
         - dotnet restore
