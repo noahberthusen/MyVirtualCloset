@@ -2,6 +2,7 @@ stages:
     - dotnetbuild
      
 dotnet-build:
+    image: microsoft/dotnet:2.1
     stage: dotnetbuild
     tags:
         - dotnet
