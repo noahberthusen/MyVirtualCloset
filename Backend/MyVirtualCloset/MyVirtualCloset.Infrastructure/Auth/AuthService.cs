@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace MyVirtualCloset.Infrastructure.Auth
