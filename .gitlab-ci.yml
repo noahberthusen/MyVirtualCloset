@@ -17,8 +17,8 @@ dotnet-deploy:
     tags:
         - shell
     script:
-        - sudo systemctl MyVirtualCloset-backend stop
-        - sudo systemctl MyVirtualCloset-backend start
+        - sudo systemctl stop MyVirtualCloset-backend
+        - sudo systemctl start MyVirtualCloset-backend
 
 angular-build:
     image: trion/ng-cli
