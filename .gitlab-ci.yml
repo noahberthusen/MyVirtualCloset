@@ -1,23 +1,67 @@
 stages:
     - dotnetbuild
     - angularbuild
+    - dotnettest
+    - dotnetdeploy
+    - angulardeploy
      
 dotnet-build:
     stage: dotnetbuild
     tags:
         - dotnet
-    script:
+    before_script:
         - cd Backend/MyVirtualCloset
         - dotnet restore
+    script:
         - dotnet build
+        
+dotnet-test:
+    stage: dotnettest
+    tags:
+        - dotnet
+    before_script:
+        - cd Backend/MyVirtualCloset
+        - dotnet restore
+    script:
+        - dotnet test
+        
+dotnet-deploy:
+    stage: dotnetdeploy
+    only:
+        - master
+    tags:
+        - shell
+    before_script:
+        - cd Backend/MyVirtualCloset
+        - dotnet restore
+        - sudo systemctl daemon-reload
+    script:
+        - dotnet publish -c release -r linux-x64 --self-contained
+        - sudo mv ./MyVirtualCloset/bin/Release/netcoreapp2.1/linux-x64/publish/* /var/www/MyVirtualCloset
+        - sudo chmod +x /var/www/MyVirtualCloset/MyVirtualCloset.Api
+        - sudo systemctl stop MyVirtualCloset-backend
+        - sudo systemctl start MyVirtualCloset-backend
 
 angular-build:
     image: trion/ng-cli
     stage: angularbuild
     tags:
         - angular
-    script:
+    before_script:
         - cd Frontend/MyVirtualCloset
-        - npm install --silent
+        - npm install
+    script:
         - ng build --prod
     
+angular-deploy:
+    stage: angulardeploy
+    only:
+        - master
+    tags:
+        - shell
+    before_script:
+        - cd Frontend/MyVirtualCloset
+        - npm install
+    script:
+        - ng build --prod
+        - sudo mv ./dist/MyVirtualCloset/* /var/www/html/
