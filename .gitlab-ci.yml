@@ -25,6 +25,7 @@ dotnet-test:
         - dotnet restore
     script:
         - dotnet test
+        - sudo docker system prune --volumes -f -a
         
 dotnet-deploy:
     stage: dotnetdeploy
@@ -64,7 +65,6 @@ angular-test:
         - npm install
     script:
         - ng test
-        - sudo docker system prune --volumes -f -a
     
 angular-deploy:
     stage: angulardeploy
