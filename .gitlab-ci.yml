@@ -63,9 +63,7 @@ angular-test:
         - npm install
     script:
         - ng test
-    after_script:
-        - sudo docker system prune --volumes -f -a
-    
+        
 angular-deploy:
     stage: angulardeploy
     only:
