@@ -55,7 +55,7 @@ angular-build:
         - ng build --prod
         
 angular-test:
-    image: trion/ng-cli
+    image: trion/ng-cli-karma:${CLI_VERSION}
     stage: angulartest
     tags:
         - angular
