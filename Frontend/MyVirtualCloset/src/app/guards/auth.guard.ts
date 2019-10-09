@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
       console.log("inside auth guard");
       //if not a user, return to login page
       this.router.navigate(
-        ['/login'], { queryParams: { returnUrl: state.url }}  //not sure how the queryParams works??
+        ['/front'], { queryParams: { returnUrl: state.url }}  //not sure how the queryParams works??
       );
       return false;
     }
