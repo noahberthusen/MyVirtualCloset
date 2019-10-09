@@ -1,6 +1,4 @@
-﻿using MyVirtualCloset.Core.Auth;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Security.Cryptography;
 
 namespace MyVirtualCloset.Infrastructure.Auth
 {
