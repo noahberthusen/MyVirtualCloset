@@ -9,7 +9,7 @@ stages:
 dotnet-build:
     stage: dotnetbuild
     tags:
-        - dotnet
+        - shell
     before_script:
         - cd Backend/MyVirtualCloset
         - dotnet restore
@@ -19,7 +19,7 @@ dotnet-build:
 dotnet-test:
     stage: dotnettest
     tags:
-        - dotnet
+        - shell
     before_script:
         - cd Backend/MyVirtualCloset
         - dotnet restore
@@ -47,7 +47,7 @@ angular-build:
     image: trion/ng-cli
     stage: angularbuild
     tags:
-        - angular
+        - shell
     before_script:
         - cd Frontend/MyVirtualCloset
         - npm install
