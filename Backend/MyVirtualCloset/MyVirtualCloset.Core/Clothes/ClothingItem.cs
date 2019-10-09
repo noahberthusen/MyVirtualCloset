@@ -8,6 +8,7 @@ namespace MyVirtualCloset.Core.Clothes
         public string tags { get; set; }
         public string name { get; set; }
         public string user { get; set; }
+        public byte[] image { get; set; }
 
     }
 }
