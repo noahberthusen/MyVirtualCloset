@@ -1,8 +1,8 @@
 stages:
-    - dotnetbuild
     - angularbuild
-    - dotnettest
+    - dotnetbuild
     - angulartest
+    - dotnettest
     - dotnetdeploy
     - angulardeploy
      
@@ -64,6 +64,7 @@ angular-test:
         - npm install
     script:
         - ng test
+        - sudo docker system prune --volumes -f -a
     
 angular-deploy:
     stage: angulardeploy
