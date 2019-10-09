@@ -2,6 +2,7 @@ stages:
     - dotnetbuild
     - angularbuild
     - dotnettest
+    - angulartest
     - dotnetdeploy
     - angulardeploy
      
@@ -52,6 +53,17 @@ angular-build:
         - npm install
     script:
         - ng build --prod
+        
+angular-test:
+    image: trion/ng-cli
+    stage: angulartest
+    tags:
+        - angular
+    before_script:
+        - cd Frontend/MyVirtualCloset
+        - npm install
+    script:
+        - ng test
     
 angular-deploy:
     stage: angulardeploy
