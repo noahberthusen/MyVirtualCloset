@@ -9,7 +9,7 @@ namespace MyVirtualCloset.Api
             services.AddTransient<Core.Auth.IAuthService, Infrastructure.Auth.AuthService>();
             services.AddTransient<Core.ProgramUser.IUserService, Infrastructure.ProgramUser.UserService>();
             services.AddTransient<Core.Clothes.IClothingService, Infrastructure.ProgramUser.ClothingService>();
-            services.AddTransient<Core.Outfit.IOutfitService, Infrastructure.Outfit.OutfitService>();
+            services.AddTransient<Core.Outfits.IOutfitService, Infrastructure.Outfits.OutfitService>();
 
             return services;
         }
