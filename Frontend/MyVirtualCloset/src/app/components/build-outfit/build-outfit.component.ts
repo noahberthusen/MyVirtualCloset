@@ -8,7 +8,6 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class BuildOutfitComponent implements OnInit {
 
-  //TODO modalService????
   constructor(private modalService: ModalService) { }
 
   ngOnInit() {

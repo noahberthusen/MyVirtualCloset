@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   encodedImages: string;
   imageObj;
 
-  //TODO modalService????
   constructor( private imagesService: ImagesService, private modalService: ModalService) { }
 
   ngOnInit() {
