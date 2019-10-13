@@ -15,6 +15,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
         {
             this._context = context;
         }
+
         public void addItemToOutfit(string outfitId, string itemId)
         {
             var c1 = new Outfit();
@@ -53,14 +54,23 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             _context.Outfit.Remove(existingOutfit);
         }
 
-        public Outfit viewOutfit(string outfitId)
+        public List<Outfit> viewOutfit(string outfitId)
         {
-            throw new NotImplementedException();
+            var outfit = _context.Outfit.Where(x => x.Id == outfitId);
+            return outfit.ToList<Outfit>();
         }
 
-        public List<Outfit> viewOutfitsByUser(string user)
+        public List<List<Outfit>> viewOutfitsByUser(string user)
         {
-            throw new NotImplementedException();
+            var outfits = _context.Outfit.Where(x => x.User == user);
+            var groups = outfits.GroupBy(x => x.Id);
+
+            List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();
+            foreach (var group in groups)
+            {
+                groupedUserOutfits.Add(group.ToList());
+            }
+            return groupedUserOutfits;
         }
     }
 }

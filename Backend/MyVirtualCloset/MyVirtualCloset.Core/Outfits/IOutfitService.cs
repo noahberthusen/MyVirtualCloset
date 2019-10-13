@@ -10,8 +10,8 @@ namespace MyVirtualCloset.Core.Outfits
         void createOutfit(string user, string name);
         void addItemToOutfit(string outfitId, string itemId);
         void removeItemFromOutfit(string outfitId, string itemId);
-        List<Outfit> viewOutfitsByUser(string user);
-        Outfit viewOutfit(string outfitId);
+        List<List<Outfit>> viewOutfitsByUser(string user);
+        List<Outfit> viewOutfit(string outfitId);
 
     }
 }
