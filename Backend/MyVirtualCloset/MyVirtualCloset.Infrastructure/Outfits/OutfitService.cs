@@ -27,6 +27,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
 
             c1.User = existingOutfit.User;
             c1.Name = existingOutfit.Name;
+            c1.Key = c1.Id + c1.ItemID;
 
             _context.Outfit.Add(c1);
             _context.SaveChanges();
@@ -43,6 +44,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             c1.ItemID = "Base";
             c1.Name = name;
             c1.User = user;
+            c1.Key = c1.Id + c1.ItemID;
 
             _context.Outfit.Add(c1);
             _context.SaveChanges();

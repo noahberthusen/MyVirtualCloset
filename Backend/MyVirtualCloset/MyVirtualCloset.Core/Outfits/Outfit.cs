@@ -10,5 +10,6 @@ namespace MyVirtualCloset.Core.Outfits
         public string ItemID { get; set; }
         public string User { get; set; }
         public string Name { get; set; }
+        public string Key { get; set; }
     }
 }

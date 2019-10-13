@@ -20,42 +20,41 @@ namespace MyVirtualCloset.Api.Controllers
 
         [Authorize]
         [HttpPost("create")]
-        public IActionResult CreateOutfit()
+        public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
         {
-
+            _outfitService.createOutfit(User.Identity.Name, name);
             return Ok();
         }
 
         [Authorize]
         [HttpPost("addTo")]
-        public IActionResult addToOutfit()
+        public IActionResult addToOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
         {
-
+            _outfitService.addItemToOutfit(outfitId, itemId);
             return Ok();
         }
 
         [Authorize]
         [HttpPost("removeFrom")]
-        public IActionResult removeFromOutfit()
+        public IActionResult removeFromOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
         {
-
+            _outfitService.removeItemFromOutfit(outfitId, itemId);
             return Ok();
         }
 
         [Authorize]
         [HttpGet("viewByUser")]
-        public IActionResult viewUserOutfits()
+        public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
-            return Ok();
+            return _outfitService.viewOutfit(outfitId);
         }
 
         [Authorize]
         [HttpGet("viewOutfit")]
-        public IActionResult viewoutfit()
+        public List<List<Outfit>> viewUserOutfits()
         {
-
-            return Ok();
+            return _outfitService.viewOutfitsByUser(User.Identity.Name);
         }
     }
 }
