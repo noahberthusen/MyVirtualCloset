@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
 import { User } from 'src/app/models/User';
-// import {MatDialog} from 'src/app/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +17,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -25,9 +26,9 @@ export class SignupComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      role:['', Validators.required]    //this should not be a self defined field, but is required to get a token and login the way the system is currently set up
+      role:['']    //this should not be a self defined field, but is required to get a token and login the way the system is currently set up
     })
   }
 
@@ -47,7 +48,7 @@ export class SignupComponent implements OnInit {
     user.username = this.f.username.value;
     user.email = this.f.email.value;
     user.password = this.f.password.value;
-    user.role = this.f.role.value;
+    user.role = 'Admin';
 
     this.signupService.signup(user)
     .subscribe(
@@ -56,7 +57,7 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/login']);        
       },
       error => {
-        console.log(error);
+        this.toastr.error(error);
       }
     )
   }
