@@ -2,6 +2,6 @@
 {
     public interface IImagePreprocessing
     {
-        void process();
+        byte[] process(byte[] image);
     }
 }

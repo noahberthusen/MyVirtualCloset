@@ -28,9 +28,6 @@ namespace MyVirtualCloset.Api.Controllers
         {
             Guid guid = Guid.NewGuid();
             var id = guid.ToString();
-            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
-
-  
 
             var bytes = default(byte[]);
             using (var stream = new MemoryStream())

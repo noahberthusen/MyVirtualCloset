@@ -8,11 +8,13 @@ namespace MyVirtualCloset.Infrastructure.ImagePreprocessing
 {
     public class ImagePreprocessing : IImagePreprocessing
     {
-        public void process()
+        public byte[] process(byte[] image)
         {
             String win = "test window";
 
-            Mat img = CvInvoke.Imread("C:/Users/nfberthusen/Downloads/shirt.jpg");
+            Mat img = new Mat();
+            CvInvoke.Imdecode(image, ImreadModes.Unchanged, img);
+
             Mat edges = new Mat();
 
             CvInvoke.Canny(img, edges, 100, 200);
@@ -39,6 +41,8 @@ namespace MyVirtualCloset.Infrastructure.ImagePreprocessing
                 CvInvoke.WaitKey(0);
                 CvInvoke.DestroyWindow(win);
             }
+
+            return null;
         }
     }
 }

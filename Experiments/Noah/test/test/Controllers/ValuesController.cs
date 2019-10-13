@@ -7,23 +7,30 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Microsoft.AspNetCore.Http;
+using Emgu.CV.Structure;
 
 namespace test.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/values")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         // GET api/values
-        [HttpGet]
+        [HttpGet("image")]
         public ActionResult<IEnumerable<string>> Get()
         {
             String win = "test window";
 
             Mat img = CvInvoke.Imread("C:/Users/nfberthusen/Downloads/shirt.jpg");
             Mat edges = new Mat();
+            Mat thresh = new Mat();
+            CvInvoke.Threshold(img, thresh, 225, 255, ThresholdType.Binary);
 
-            CvInvoke.Canny(img, edges, 100, 200);
+            double largest_area = 0;
+            int largest_contour_index = 0;
+            VectorOfPoint largetsContour;
+
+            CvInvoke.Canny(thresh, edges, 225, 250);
             using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
             {
                 CvInvoke.FindContours(edges, contours, null, RetrType.List, ChainApproxMethod.ChainApproxSimple);
@@ -35,10 +42,9 @@ namespace test.Controllers
                     using (VectorOfPoint approxContour = new VectorOfPoint())
                     {
                         CvInvoke.ApproxPolyDP(contour, approxContour, CvInvoke.ArcLength(contour, true) * 0.05, true);
-                        if (CvInvoke.ContourArea(approxContour, false) > 250)
-                        {
-                            Console.WriteLine(approxContour.Size);
-                        }
+                        CvInvoke.DrawContours(thresh, contours, i, new MCvScalar(0, 255, 0), 3);
+                        CvInvoke.Imshow("screen", thresh);
+                        CvInvoke.WaitKey(0);
                     }
                 }
 
@@ -46,7 +52,15 @@ namespace test.Controllers
                 CvInvoke.Imshow(win, edges);
                 CvInvoke.WaitKey(0);
                 CvInvoke.DestroyWindow(win);
+
+
             }
+
+
+            CvInvoke.NamedWindow(win);
+            CvInvoke.Imshow(win, edges);
+            CvInvoke.WaitKey(0);
+            CvInvoke.DestroyWindow(win);
      
             return new string[] { "value1", "value2" };
         }
