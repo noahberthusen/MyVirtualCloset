@@ -43,4 +43,5 @@ export class HomeComponent implements OnInit {
     this.modalService.init(BuildOutfitComponent, inputs, {});
   }
 
+
 }

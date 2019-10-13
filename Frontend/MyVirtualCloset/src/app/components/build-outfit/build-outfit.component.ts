@@ -17,5 +17,6 @@ export class BuildOutfitComponent implements OnInit {
   public close() {
     this.modalService.destroy();
   }
+ 
 
 }
