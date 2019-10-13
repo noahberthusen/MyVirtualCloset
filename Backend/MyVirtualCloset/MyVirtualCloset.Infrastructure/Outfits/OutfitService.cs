@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using MyVirtualCloset.Core.DB;
 using MyVirtualCloset.Core.Outfits;
 
 namespace MyVirtualCloset.Infrastructure.Outfits
 {
     public class OutfitService : IOutfitService
     {
+        private readonly DataContext _context;
+
+        public OutfitService(DataContext context)
+        {
+            this._context = context;
+        }
+
         public void addItemToOutfit(string outfitId, string itemId)
         {
             throw new NotImplementedException();
@@ -22,14 +31,23 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             throw new NotImplementedException();
         }
 
-        public Outfit viewOutfit(string outfitId)
+        public List<Outfit> viewOutfit(string outfitId)
         {
-            throw new NotImplementedException();
+            var outfit = _context.Outfits.Where(x => x.Id == outfitId);
+            return outfit.ToList<Outfit>();
         }
 
-        public List<Outfit> viewOutfitsByUser(string user)
+        public List<List<Outfit>> viewOutfitsByUser(string user)
         {
-            throw new NotImplementedException();
+            var outfits = _context.Outfits.Where(x => x.User == user);
+            var groups = outfits.GroupBy(x => x.Id);
+
+            List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();
+            foreach (var group in groups)
+            {
+                groupedUserOutfits.Add(group.ToList());
+            }
+            return groupedUserOutfits;
         }
     }
 }
