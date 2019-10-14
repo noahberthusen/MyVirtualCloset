@@ -13,6 +13,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 
+import { MaterialModule } from 'src/app/material'; 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,9 @@ import { BuildOutfitComponent } from './components/build-outfit/build-outfit.com
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    ToastrModule.forRoot()
   ],
   entryComponents:[
     BuildOutfitComponent

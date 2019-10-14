@@ -1,0 +1,28 @@
+.mat-card {    
+    text-align: -webkit-center;    
+}    
+    
+.form-table {
+    margin: auto;
+}
+
+.form {    
+    min-width: 150px;    
+    max-width: 500px;    
+    width: 100%;
+    margin: auto;    
+}    
+    
+.full-width {    
+    width: 100%;    
+}      
+    
+mat-card {    
+    max-width: 45%;    
+    margin: 2em auto;    
+    text-align: center;    
+}   
+    
+.content-center {    
+    text-align: -webkit-center;    
+}  
