@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
 import { User } from 'src/app/models/User';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,8 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private signupService: SignupService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,8 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/login']);        
       },
       error => {
-        this.toastr.error(error);
+        this.errorService.parseError(error);
+        this.toastr.error();
       }
     )
   }
