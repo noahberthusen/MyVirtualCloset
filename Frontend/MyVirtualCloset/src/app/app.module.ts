@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 
 import { MaterialModule } from 'src/app/material'; 
 import { ToastrModule } from 'ngx-toastr';
@@ -21,7 +22,8 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     HomeComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    BuildOutfitComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,9 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MaterialModule,
     ToastrModule.forRoot()
+  ],
+  entryComponents:[
+    BuildOutfitComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

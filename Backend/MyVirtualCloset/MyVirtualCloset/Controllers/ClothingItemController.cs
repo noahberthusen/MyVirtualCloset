@@ -30,12 +30,16 @@ namespace MyVirtualCloset.Api.Controllers
             var id = guid.ToString();
             var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
+  
+
+            var bytes = default(byte[]);
+            using (var stream = new MemoryStream())
             {
                 file.CopyTo(stream);
+                bytes = stream.ToArray();
             }
 
-            _clothingService.addClothes(id, tags, name, User.Identity.Name);
+            _clothingService.addClothes(id, tags, name, User.Identity.Name, bytes);
 
             return Ok();
         }
@@ -54,9 +58,7 @@ namespace MyVirtualCloset.Api.Controllers
             {
                 temp.name = i.name;
                 temp.tags = i.tags;
-                var path = i.id;
-                var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, path);
-                temp.image = System.IO.File.ReadAllBytes(filePath);
+                temp.image = i.image;
                 re.Add(temp);
             }
 
