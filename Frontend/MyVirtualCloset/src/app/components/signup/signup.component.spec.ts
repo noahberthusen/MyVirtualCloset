@@ -4,6 +4,9 @@ import { SignupComponent } from './signup.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from 'src/app/material';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -14,7 +17,10 @@ describe('SignupComponent', () => {
       imports: [ 
         HttpClientTestingModule,
         ReactiveFormsModule,
-        RouterTestingModule 
+        RouterTestingModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot() 
       ],
       declarations: [ SignupComponent ]
     })

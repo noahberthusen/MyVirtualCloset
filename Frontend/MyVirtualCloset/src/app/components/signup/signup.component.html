@@ -1,56 +1,60 @@
-<h2>Signup</h2>
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">First name is required</div>
-        </div>
-    </div>
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <a mat-button routerLink="/">MyVirtualCloset</a>
+
+        <span class="spacer"></span>
+        
+        <a mat-button routerLink="/login">Login</a>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>    
+    <mat-card-title>    
+        <strong>Signup</strong>   
+    </mat-card-title>    
     
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Last name is required</div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="role">Role</label>
-        <input type="role" formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" />
-        <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-            <div *ngIf="f.role.errors.required">Role is required</div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <button class="btn btn-primary">Signup</button>
-    </div>
-</form>
-
-
+    <mat-card-content>    
+        <form class="form" [formGroup]="signupForm">    
+            <table class="form-table">    
+                <tr>    
+                    <td>    
+                        <mat-form-field class="full-width">    
+                            <input matInput formControlName="firstName" placeholder="First Name" required>    
+                        </mat-form-field>    
+                    </td>    
+                    <td>    
+                        <mat-form-field class="full-width">    
+                            <input matInput formControlName="lastName" placeholder="Last Name" required>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="full-width">    
+                            <input matInput type="email" formControlName="email" placeholder="Email" required> 
+                        </mat-form-field>    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="full-width">    
+                            <input matInput formControlName="username" placeholder="Username" required>    
+                        </mat-form-field>  
+                    </td>    
+                </tr> 
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="full-width">    
+                            <input type="password" matInput formControlName="password" placeholder="Password" required>    
+                        </mat-form-field>  
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2" class="content-center">    
+                        <button mat-raised-button color="accent" (click)="onSubmit()" [disabled]="signupForm.invalid">Submit</button>    
+                    </td>    
+                </tr>    
+            </table>    
+        </form>    
+    </mat-card-content>    
+</mat-card> 

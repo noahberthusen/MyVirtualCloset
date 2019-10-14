@@ -11,9 +11,10 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './components/signup/signup.component';
-import { MyMaterialModule } from  './material.module';
+import { MaterialModule } from  './material';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BuildOutfitComponent } from './components/build-outfit/build-outfit.com
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MyMaterialModule
+    MaterialModule,
+    ToastrModule.forRoot()
   ],
   entryComponents:[
     BuildOutfitComponent
