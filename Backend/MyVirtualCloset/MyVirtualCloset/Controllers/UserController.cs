@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.ProgramUser;
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using MyVirtualCloset.Core.Clothes;
-
 namespace MyVirtualCloset.Api.Controllers
 {
     [Route("api/user")]

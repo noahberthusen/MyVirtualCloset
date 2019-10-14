@@ -10,18 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Api", "MyVi
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Core", "MyVirtualCloset.Core\MyVirtualCloset.Core.csproj", "{A2661198-F910-427B-B63A-4FC9440804E6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4D321740-9836-472D-B296-0663C8863EB8} = {4D321740-9836-472D-B296-0663C8863EB8}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Domain", "MyVirtualCloset.Domain\MyVirtualCloset.Domain.csproj", "{4D321740-9836-472D-B296-0663C8863EB8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Infrastructure", "MyVirtualCloset.Infrastructure\MyVirtualCloset.Infrastructure.csproj", "{D134298C-4560-4B1E-980E-8EE53118BB8F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A2661198-F910-427B-B63A-4FC9440804E6} = {A2661198-F910-427B-B63A-4FC9440804E6}
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Infrastructure.Shared", "MyVirtualCloset.Infrastructure.Shared\MyVirtualCloset.Infrastructure.Shared.csproj", "{292468F3-EB9F-4DC9-A0F2-910E3482AA94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +30,10 @@ Global
 		{A2661198-F910-427B-B63A-4FC9440804E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2661198-F910-427B-B63A-4FC9440804E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2661198-F910-427B-B63A-4FC9440804E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D321740-9836-472D-B296-0663C8863EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D321740-9836-472D-B296-0663C8863EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D321740-9836-472D-B296-0663C8863EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D321740-9836-472D-B296-0663C8863EB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D134298C-4560-4B1E-980E-8EE53118BB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D134298C-4560-4B1E-980E-8EE53118BB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D134298C-4560-4B1E-980E-8EE53118BB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D134298C-4560-4B1E-980E-8EE53118BB8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{292468F3-EB9F-4DC9-A0F2-910E3482AA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{292468F3-EB9F-4DC9-A0F2-910E3482AA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{292468F3-EB9F-4DC9-A0F2-910E3482AA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{292468F3-EB9F-4DC9-A0F2-910E3482AA94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

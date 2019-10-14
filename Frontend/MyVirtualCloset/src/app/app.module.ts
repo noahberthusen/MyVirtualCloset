@@ -12,6 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './components/signup/signup.component';
 import { MyMaterialModule } from  './material.module';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MyMaterialModule } from  './material.module';
     FrontComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    ResetPasswordComponent,
+    BuildOutfitComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,9 @@ import { MyMaterialModule } from  './material.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MyMaterialModule
+  ],
+  entryComponents:[
+    BuildOutfitComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

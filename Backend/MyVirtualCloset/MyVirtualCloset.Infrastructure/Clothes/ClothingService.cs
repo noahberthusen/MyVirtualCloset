@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MyVirtualCloset.Core.Clothes;
 using MyVirtualCloset.Core.DB;
 
@@ -17,7 +15,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             this._context = context;
         }
 
-        public void addClothes(string id, string tags, string name, string user)
+        public void addClothes(string id, string tags, string name, string user, byte[] image)
         {
             var c1 = new ClothingItem();
 
@@ -25,6 +23,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             c1.name = name;
             c1.tags = tags;
             c1.user = user;
+            c1.image = image;
 
             _context.ClothingItem.Add(c1);
             _context.SaveChanges();
