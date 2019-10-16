@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import { FrontComponent } from './front.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,9 +8,9 @@ import { MaterialModule } from 'src/app/material';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('FrontComponent', () => {
+  let component: FrontComponent;
+  let fixture: ComponentFixture<FrontComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,13 +22,13 @@ describe('LoginComponent', () => {
         BrowserAnimationsModule,
         ToastrModule.forRoot() 
       ],
-      declarations: [ LoginComponent ]
+      declarations: [ FrontComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(FrontComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
