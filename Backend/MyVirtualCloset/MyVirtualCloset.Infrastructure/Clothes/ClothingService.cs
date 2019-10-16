@@ -27,6 +27,23 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             _context.ClothingItem.Add(c1);
             _context.SaveChanges();
+
+            var arr = tags.Split(';');
+
+            foreach(var thing in arr)
+            {
+                var c2 = new tag();
+
+                c2.name = thing;
+                c2.user = user;
+                c2.key = thing + user;
+
+                _context.tag.Add(c2);
+                _context.SaveChanges();
+            }
+
+            
+
         }
 
         public List<ClothingItem> viewClothesIdByUser(string user)
