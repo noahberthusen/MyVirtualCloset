@@ -7,7 +7,7 @@ namespace MyVirtualCloset.Core.Clothes
     public class tag
     {
         public string name { get; set; }
-        public string user { get; set; }
-        public string key { get; set; }
+        public string item { get; set; }
+        public string id { get; set; }
     }
 }

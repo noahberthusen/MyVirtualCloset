@@ -35,8 +35,8 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
                 var c2 = new tag();
 
                 c2.name = thing;
-                c2.user = user;
-                c2.key = thing + user;
+                c2.item = id;
+                c2.id = thing + id;
 
                 _context.tag.Add(c2);
                 _context.SaveChanges();
