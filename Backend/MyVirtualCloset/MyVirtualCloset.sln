@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyVirtualCloset.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Testing", "MyVirtualCloset.Testing\MyVirtualCloset.Testing.csproj", "{0FB3B869-880F-43CC-87BD-FE49541ADCDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVirtualCloset.Tests", "MyVirtualCloset.Tests\MyVirtualCloset.Tests.csproj", "{A95AAD37-06D9-4899-9DDD-C15E6DB25FF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{0FB3B869-880F-43CC-87BD-FE49541ADCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FB3B869-880F-43CC-87BD-FE49541ADCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FB3B869-880F-43CC-87BD-FE49541ADCDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95AAD37-06D9-4899-9DDD-C15E6DB25FF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95AAD37-06D9-4899-9DDD-C15E6DB25FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95AAD37-06D9-4899-9DDD-C15E6DB25FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95AAD37-06D9-4899-9DDD-C15E6DB25FF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
