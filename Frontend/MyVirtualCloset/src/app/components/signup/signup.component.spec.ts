@@ -33,7 +33,27 @@ describe('SignupComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
+
+  it('form should be invalid', async(() => {
+    component.signupForm.controls['firstName'].setValue('');
+    component.signupForm.controls['lastName'].setValue('');
+    component.signupForm.controls['username'].setValue('');
+    component.signupForm.controls['email'].setValue('');
+    component.signupForm.controls['password'].setValue('');
+    component.signupForm.controls['role'].setValue('');
+    expect(component.signupForm.valid).toBeFalsy();
+  }));
+
+  it('form should be valid', async(() => {
+    component.signupForm.controls['firstName'].setValue('S');
+    component.signupForm.controls['lastName'].setValue('Mitra');
+    component.signupForm.controls['username'].setValue('smitra');
+    component.signupForm.controls['email'].setValue('smitra@iastate.edu');
+    component.signupForm.controls['password'].setValue('password');
+    component.signupForm.controls['role'].setValue('User');
+    expect(component.signupForm.valid).toBeTruthy();
+  }));
 });

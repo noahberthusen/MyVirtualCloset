@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      role:['']    //this should not be a self defined field, but is required to get a token and login the way the system is currently set up
+      role: ['']    //this should not be a self defined field, but is required to get a token and login the way the system is currently set up
     })
   }
 
@@ -55,12 +55,9 @@ export class SignupComponent implements OnInit {
     this.signupService.signup(user)
     .subscribe(
       data => {
-        console.log("inside signup");
         this.router.navigate(['/login']);        
       },
       error => {
-        console.log(error);
-        this.errorService.parseError(error);
         this.toastr.error(this.errorService.parseError(error));
       }
     )
