@@ -13,10 +13,9 @@ export class UploadService {
     console.log("inside uploadImage");
     const formData = new FormData();
     console.log(image);
-    formData.append('image', image);
-    formData.append('tags',"blue");
-    formData.append('name',"shirt");
-    // console.log("gets here"+formData.get('image'));
+    formData.append('file', image);   //must be of type 'file'
+    formData.append('tags',"red");    //must be of type 'tags'
+    formData.append('name',"tshirt");  //must be of type 'name'
     return this.http.post<Image>('https://localhost:44383/api/ClothingItem/add', formData);
   }
 }
