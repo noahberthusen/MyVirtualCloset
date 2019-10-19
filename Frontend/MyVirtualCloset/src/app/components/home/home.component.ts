@@ -15,7 +15,7 @@ import { UploadComponent } from 'src/app/components/upload/upload.component';
 })
 export class HomeComponent implements OnInit {
   encodedImages: string;
-  imageObj;
+  // imageObj;
 
   constructor( private imagesService: ImagesService, private modalService: ModalService, private router: Router,) { }
 
@@ -44,17 +44,20 @@ export class HomeComponent implements OnInit {
     this.modalService.init(BuildOutfitComponent, inputs, {});
   }
 
-  goToUploadComponent(){
-    this.router.navigate(['/upload']); 
+  //the following code is used if this is a modal
+  initAddClothingModal() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
   }
 
-  //the following code is used if this is a modal
-  // initAddClothingModal() {
-  //   let inputs = {
-  //     isMobile: false
-  //   }
-  //   this.modalService.init(UploadComponent, inputs, {});
+  //the following code is used if add clothing is a page instead of modal
+  // goToUploadComponent(){
+  //   this.router.navigate(['/upload']); 
   // }
+
+  
 
 
 }
