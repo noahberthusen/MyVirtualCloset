@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-build-outfit',
@@ -8,14 +10,18 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class BuildOutfitComponent implements OnInit {
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  public close() {
-    this.modalService.destroy();
-  }
+  //used if modal
+  // public close() {
+  //   this.modalService.destroy();
+  // }
  
+  openAddClothingModal(){
+    
+  }
 
 }

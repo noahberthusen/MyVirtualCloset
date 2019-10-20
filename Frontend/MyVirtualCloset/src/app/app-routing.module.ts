@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 
 
 
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'resetpassword',
     component: ResetPasswordComponent
+  },
+  {
+    path: 'buildoutfit',
+    component: BuildOutfitComponent
   },
   {
     path: '**',
