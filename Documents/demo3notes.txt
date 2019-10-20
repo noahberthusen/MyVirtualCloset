@@ -1,0 +1,12 @@
+front end:
+
+- fix spec files in angular (look at updated signup page spec)
+- front end tests
+- finish image post to database (and add tags), show image and click submit to close window
+- view all images in closet 
+- build outfit
+
+flow:
+closet/build -> modal to add photo
+
+notes: before merging run ng test and ng build --prod

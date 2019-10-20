@@ -14,7 +14,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MaterialModule } from  './material';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
+import { UploadComponent } from './components/upload/upload.component';
 import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     SignupComponent,
     ResetPasswordComponent,
-    BuildOutfitComponent
+    BuildOutfitComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
