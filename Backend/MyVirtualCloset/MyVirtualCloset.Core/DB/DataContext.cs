@@ -17,5 +17,6 @@ namespace MyVirtualCloset.Core.DB
         public DbSet<ClothingItem> ClothingItem { get; set;}
         public DbSet<ResetTickets> ResetTickets { get; set; }
         public DbSet<Outfit>  Outfit { get; set; }
+        public DbSet<tag> tag { get; set; }
     }
 }

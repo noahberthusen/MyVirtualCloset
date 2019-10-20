@@ -27,6 +27,39 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             _context.ClothingItem.Add(c1);
             _context.SaveChanges();
+
+            var arr = tags.Split(';');
+
+            foreach(var thing in arr)
+            {
+                var c2 = new tag();
+
+                c2.name = thing;
+                c2.item = id;
+                c2.id = thing + id;
+
+                _context.tag.Add(c2);
+                _context.SaveChanges();
+            }
+
+            
+
+        }
+
+        public List<ClothingItem> searchTags(string tag)
+        {
+            var clothSelected = _context.tag.Where(x => x.name == tag);
+
+            var re = new List<ClothingItem>();
+
+            foreach (var i in clothSelected)
+            {
+                var foundItem = _context.ClothingItem.SingleOrDefault(x => x.id == i.item);
+                re.Add(foundItem);
+            }
+
+            return re;
+           
         }
 
         public List<ClothingItem> viewClothesIdByUser(string user)
