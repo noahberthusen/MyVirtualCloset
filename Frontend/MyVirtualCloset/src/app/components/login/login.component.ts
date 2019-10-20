@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/User';
+import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,9 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -51,6 +55,8 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.errorService.parseError(error);
+          this.toastr.error(this.errorService.parseError(error));
         }
       )
   }
