@@ -10,7 +10,7 @@ import { User } from '../models/User';
     constructor(private http: HttpClient) { }
     
     signup(user: User) {
-      return this.http.post<User>('http://coms-309-ks-7.misc.iastate.edu:8080/api/user/register', user);
+      return this.http.post<User>('https://localhost:44383/api/user/register', user);
     }
   }
   

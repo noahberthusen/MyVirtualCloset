@@ -15,6 +15,7 @@ import { MaterialModule } from  './material';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   entryComponents:[
     BuildOutfitComponent

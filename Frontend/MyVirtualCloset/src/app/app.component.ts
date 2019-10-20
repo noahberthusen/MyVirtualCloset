@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { ModalService } from './services/modal.service';
+import { AuthService } from './services/auth.service';
+
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+
 
 @Component({
   selector: 'app-root',
@@ -8,10 +13,17 @@ import { ModalService } from './services/modal.service';
 })
 export class AppComponent {
   title = 'MyVirtualCloset';
+  faSignIn = faSignInAlt;
+  faSignOut = faSignOutAlt;
+  faPlusCircle = faPlusCircle;
 
-  constructor(private modalService: ModalService) { }
+  constructor(private authService: AuthService) { }
 
-  removeModal() {
-    this.modalService.destroy();
+  currentUser() {
+    return this.authService.currentUserValue;
+  }
+
+  signOut() {
+    this.authService.logout();
   }
 }
