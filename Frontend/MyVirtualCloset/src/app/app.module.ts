@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   entryComponents:[
     BuildOutfitComponent
