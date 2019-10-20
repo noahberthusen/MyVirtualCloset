@@ -18,7 +18,6 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     MaterialModule,
     ToastrModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   entryComponents:[
     BuildOutfitComponent

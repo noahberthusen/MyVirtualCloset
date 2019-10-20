@@ -1,0 +1,22 @@
+.row {
+    height: calc(100% - 64px);
+    display: flex;
+}
+
+.drawers {
+    flex: 30%;
+}
+
+.outfit {
+    flex: 70%;
+}
+
+.submit {
+    position: fixed;
+    bottom: 30px;
+    right: 37px;
+}
+
+.submit > button {
+    margin: 5px;
+}

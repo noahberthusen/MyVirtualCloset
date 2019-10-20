@@ -7,19 +7,19 @@ import { AuthGuard } from './guards/auth.guard';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 
 
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
+    component: FrontComponent
   },
-
   {
-    path: 'front',
-    component: FrontComponent,
+    path: 'build',
+    component: BuildOutfitComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
