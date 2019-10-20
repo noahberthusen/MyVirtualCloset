@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
 
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ClothingItemService } from 'src/app/services/clothing-item.service';
+import { Image } from '../../models/Image';
 
 @Component({
   selector: 'app-build-outfit',
@@ -12,14 +13,24 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
+  clothing: Image[];
 
-  constructor(private modalService: ModalService) { }
+  constructor(private clothingItemService: ClothingItemService) { }
 
   ngOnInit() {
+    this.clothingItemService.viewAllUsersClothes()
+    .subscribe(res => {
+      this.clothing = res;
+      console.log(this.clothing);
+    })
   }
 
-  public close() {
-    this.modalService.destroy();
+  save() {
+
+  }
+
+  discard() {
+
   }
  
 

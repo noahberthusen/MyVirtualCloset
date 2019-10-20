@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from 'src/app/services/upload.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { ImagesService } from 'src/app/services/images.service';
-
 
 class ImageSnippet {
   pending: boolean = false;
@@ -21,7 +19,7 @@ export class UploadComponent {
   imgURL: any;
   confirmed: boolean;
 
-  constructor( private imagesService: ImagesService, private uploadService: UploadService, private modalService: ModalService){}
+  constructor( private uploadService: UploadService, private modalService: ModalService){}
 
   private onSuccess() {
     this.selectedFile.pending = false;

@@ -17,6 +17,7 @@ import { BuildOutfitComponent } from './components/build-outfit/build-outfit.com
 import { UploadComponent } from './components/upload/upload.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MaterialModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
+    NgbModule
   ],
   entryComponents:[
     BuildOutfitComponent
