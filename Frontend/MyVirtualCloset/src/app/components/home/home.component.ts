@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ImagesService } from 'src/app/services/images.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { BuildOutfitComponent } from 'src/app/components/build-outfit/build-outfit.component';
