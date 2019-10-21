@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadComponent } from './upload.component';
 import { MaterialModule } from 'src/app/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UploadComponent', () => {
   let component: UploadComponent;
@@ -11,6 +14,9 @@ describe('UploadComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule
       ],
       declarations: [ UploadComponent ]
     })
