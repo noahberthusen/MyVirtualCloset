@@ -64,5 +64,22 @@ namespace MyVirtualCloset.Api.Controllers
 
             return re;
         }
+
+        [Authorize]
+        [HttpGet("search")]
+        public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)
+        {
+            var re = _clothingService.searchTags(tag);
+            var re2 = new List<ReturnImage>();
+            foreach (var i in re)
+            {
+                var temp = new ReturnImage();
+                temp.name = i.name;
+                temp.tags = i.tags;
+                temp.image = i.image;
+                re2.Add(temp);
+            }
+            return re2;
+        }
     }
 }

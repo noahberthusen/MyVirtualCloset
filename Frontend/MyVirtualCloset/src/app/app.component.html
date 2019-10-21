@@ -1,3 +1,24 @@
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <a mat-button routerLink="/">MyVirtualCloset</a>
+
+        <span class="spacer"></span>
+        
+        <div class="login">
+            <div *ngIf="!currentUser()">
+                <a mat-button routerLink="/login" routerLinkActive="active">Sign in <fa-icon [icon]="faSignIn"></fa-icon></a>
+            </div>
+            <div *ngIf="currentUser()">
+                <a mat-button routerLink="">Add <fa-icon [icon]="faPlusCircle"></fa-icon></a>
+                <a mat-button (click)="signOut()">Sign out <fa-icon [icon]="faSignOut"></fa-icon></a>
+                <!-- will go to profile eventually -->
+                <a mat-button routerLink="">{{ currentUser().firstName }}</a>
+            </div>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
 <router-outlet></router-outlet>
 
 <div id="modal-container" class="hidden"></div>

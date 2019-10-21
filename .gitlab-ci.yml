@@ -25,6 +25,8 @@ dotnet-test:
         - dotnet restore
     script:
         - dotnet test
+    after_script:
+        - sudo docker system prune --volumes -f -a
         
 dotnet-deploy:
     stage: dotnetdeploy
