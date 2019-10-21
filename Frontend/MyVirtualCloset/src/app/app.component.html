@@ -6,13 +6,13 @@
         
         <div class="login">
             <div *ngIf="!currentUser()">
-                <a mat-button routerLink="/login" routerLinkActive="active">Sign in <fa-icon [icon]="faSignIn"></fa-icon></a>
+                <button mat-button routerLink="/login" routerLinkActive="active">Sign in <fa-icon [icon]="faSignIn"></fa-icon></button>
             </div>
             <div *ngIf="currentUser()">
-                <a mat-button routerLink="/build">Add <fa-icon [icon]="faPlusCircle"></fa-icon></a>
-                <a mat-button (click)="signOut()">Sign out <fa-icon [icon]="faSignOut"></fa-icon></a>
+                <button mat-button routerLink="/build">Add <fa-icon [icon]="faPlusCircle"></fa-icon></button>
+                <button mat-button (click)="signOut()">Sign out <fa-icon [icon]="faSignOut"></fa-icon></button>
                 <!-- will go to profile eventually -->
-                <a mat-button routerLink="">{{ currentUser().firstName }}</a>
+                <button mat-button routerLink="">{{ currentUser().firstName }}</button>
             </div>
         </div>
     </mat-toolbar-row>

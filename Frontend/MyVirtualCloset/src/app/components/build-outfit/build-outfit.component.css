@@ -1,6 +1,7 @@
 .row {
     height: calc(100% - 64px);
     display: flex;
+    width: 100%;
 }
 
 .drawers {

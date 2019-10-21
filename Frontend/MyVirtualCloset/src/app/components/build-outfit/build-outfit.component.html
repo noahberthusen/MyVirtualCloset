@@ -8,12 +8,11 @@
               Tops
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+          <carousel>
+            <slide *ngFor="let image of clothing">
+              <img [src]="'data:image/jpg;base64,'+image.image">
+            </slide>
+          </carousel>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -22,7 +21,9 @@
               Bottoms
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <div *ngIf="clothing">
+            <p>{{clothing.length}}</p>
+          </div>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
