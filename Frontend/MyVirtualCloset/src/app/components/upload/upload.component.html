@@ -1,51 +1,69 @@
-<!-- adding tags -->
-<mat-form-field class="example-chip-list">
-  <mat-chip-list #chipList aria-label="Tag selection">
-    <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
-             [removable]="removable" (removed)="remove(tag)">
-      {{tag.name}}
-      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-    </mat-chip>
-    <input placeholder="Enter tags for clothing item"
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="addOnBlur"
-           (matChipInputTokenEnd)="add($event)">
-  </mat-chip-list>
-</mat-form-field>
+<!-- adding name/type of item... may need to change this later -->
+<mat-card>    
+    <mat-card-title>    
+        <strong>Photo Information</strong>   
+    </mat-card-title>    
+    
+    <mat-card-content>    
+        <form class="form" [formGroup]="userInput">    
+            <table class="form-table">   
+              <mat-form-field class="full-width">    
+                  <input matInput formControlName="itemName" placeholder="Clothing Item Name" required>    
+              </mat-form-field>                   
+            </table>    
+        </form>  
+        
+        <!-- adding tags -->
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Tag selection">
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(tag)">
+              {{tag.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Enter tags for clothing item"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field>
 
+        <!-- image selection -->
+        <label class="image-upload-container btn btn-bwm">
+            <label> Select Image </label>
+            <input #imageInput
+                  type="file"
+                  accept="image/*"
+                  (change)="processFile(imageInput)">
+        </label>
 
-
-<!-- image selection and preview -->
-<label class="image-upload-container btn btn-bwm">
-  <span>Select Image</span>
-  <input #imageInput
-         type="file"
-         accept="image/*"
-         (change)="processFile(imageInput)">
-</label>
-
-<div *ngIf="selectedFile" class="img-preview-container">
-  <!-- display preview of image -->
-  <img *ngIf="imgURL" [src]="imgURL">
+        
+        <div *ngIf="selectedFile" class="img-preview-container">
+            <!-- display preview of image -->
+            <img *ngIf="imgURL" [src]="imgURL">
+            
+            <!-- the following divs below are for error handling, but not sure what exactly they are doing-->
+            <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+                [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+            </div>
+          
+            <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+              <div class="img-spinning-circle"></div>
+            </div>
+          
+            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+            <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+        </div>
   
-  <!-- the following divs below are for error handling -->
-  <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
-       [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
-  </div>
+        <!-- submit image to database and close add module -->
+        <div class="example-button-row" (click)="submitImage(imageInput)" (click)="close()">
+          <button mat-raised-button color="accent" *ngIf="imgURL" mat-button>Submit</button>
+        </div>
 
-  <div *ngIf="selectedFile.pending" class="img-loading-overlay">
-    <div class="img-spinning-circle"></div>
-  </div>
+    </mat-card-content>    
+</mat-card>
 
-  <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
-  <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
 
-</div>
-
-<!-- submit image to database and close add module -->
-<div class="example-button-row" (click)="submitImage(imageInput)" (click)="close()">
-  <button *ngIf="imgURL" mat-button>Submit</button>
-</div>
 
 

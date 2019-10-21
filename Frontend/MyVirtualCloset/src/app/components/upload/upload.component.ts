@@ -5,12 +5,17 @@ import { ImagesService } from 'src/app/services/images.service';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Tag } from 'src/app/models/Tag';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 class ImageSnippet {
   pending: boolean = false;
   status: string = 'init';
+
   constructor(public src: string, public file: File) {}
+
 }
+
 
 @Component({
   selector: 'app-upload',
@@ -23,6 +28,10 @@ export class UploadComponent {
   imgURL: any;
   confirmed: boolean;
 
+  //form related
+  userInput: FormGroup;
+  submitted = false;
+
   //chip related
   visible = true;
   selectable = true;
@@ -30,14 +39,18 @@ export class UploadComponent {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: Tag[] = [
-    {name: 'Lemon'},
-    {name: 'Lime'},
-    {name: 'Apple'},
+    {name: 'shirt'},
   ];
+  itemName: string;
 
 
 
-  constructor( private imagesService: ImagesService, private uploadService: UploadService, private modalService: ModalService){}
+
+  constructor(
+    private fb: FormBuilder, 
+    private imagesService: ImagesService, 
+    private uploadService: UploadService, 
+    private modalService: ModalService){}
 
   private onSuccess() {
     this.selectedFile.pending = false;
@@ -51,6 +64,9 @@ export class UploadComponent {
   }
 
   ngOnInit() {
+    this.userInput = this.fb.group({
+      itemName: ['', Validators.required],
+    })
   }
 
   processFile(imageInput: any) {
@@ -71,18 +87,30 @@ export class UploadComponent {
 
   }
 
+  get f(){
+    return this.userInput.controls;
+  }
+
   public submitImage(imageInput: any){
+    console.log("inside submit image");
+
+    //form related
+    this.submitted = true;
+    if(this.userInput.invalid){
+      return;
+    }
+    this.itemName = this.f.itemName.value
+    
     const file: File = imageInput.files[0];
     const reader = new FileReader();
     
     reader.readAsDataURL(file);
-    console.log("submit image");
     reader.addEventListener('load', (event: any) => {
 
       this.selectedFile = new ImageSnippet(event.target.result, file);
       console.log(this.selectedFile.file);
-
-      this.uploadService.uploadImage(this.selectedFile.file).subscribe(
+      
+      this.uploadService.uploadImage(this.selectedFile.file, this.tags, this.itemName).subscribe(
         (res) => {
         
         },
@@ -98,8 +126,8 @@ export class UploadComponent {
   }
 
 
-    //chip related code
-    add(event: MatChipInputEvent): void {
+  //chip related code
+  add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
