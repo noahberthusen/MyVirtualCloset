@@ -10,7 +10,7 @@
           </mat-expansion-panel-header>
           <carousel>
             <slide *ngFor="let image of clothing">
-              <img [src]="'data:image/jpg;base64,'+image.image">
+              <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
           </carousel>
         </mat-expansion-panel>
@@ -37,7 +37,11 @@
     </mat-card>  
   </div>
   <div class="outfit">
-    outfit
+    <h2>outfit</h2>
+    <p><img [src]="'data:image/jpg;base64,'+getTop()"></p>
+    <p><img [src]="'data:image/jpg;base64,'+getBottom()"></p>
+    
+    
   </div>
 </div>
 

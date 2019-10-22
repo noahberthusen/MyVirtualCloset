@@ -14,6 +14,9 @@ export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
   clothing: Image[];
+  currentTop = null;
+  currentBottom = null;
+  currentMisc = null;
 
   constructor(private clothingItemService: ClothingItemService) { }
 
@@ -33,5 +36,23 @@ export class BuildOutfitComponent implements OnInit {
 
   }
  
+  selectTop(picture) {
+    this.currentTop = picture;
+  }
 
+  getTop(){
+    if (this.currentTop != null){
+      return this.currentTop.image;
+    }
+  }
+
+  selectBottom(picture) {
+    this.currentBottom = picture;
+  }
+
+  getBottom(){
+    if (this.currentBottom != null){
+      return this.currentBottom.image;
+    }
+  }
 }
