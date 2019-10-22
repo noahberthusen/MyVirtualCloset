@@ -43,7 +43,19 @@
     </mat-card>  
   </div>
   <div class="outfit">
-    <h2>outfit</h2>
+
+    <mat-card class="outfitCard">
+        <mat-card-title>
+            <strong>Outfit</strong>
+        </mat-card-title>
+        <form [formGroup]="userInput" (ngSubmit)="onSubmit()" class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label for="outfitName">Outfit Name</mat-label>
+                <input matInput required type="text" formControlName="outfitName" class="form-control" />
+            </mat-form-field>
+        </form>
+    </mat-card>
+
     <p><img [src]="'data:image/jpg;base64,'+getTop()"></p>
     <p><img [src]="'data:image/jpg;base64,'+getBottom()"></p>
     <p><img [src]="'data:image/jpg;base64,'+getMisc()"></p>

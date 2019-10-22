@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
 import { Image } from '../../models/Image';
+import { OutfitService } from 'src/app/services/outfit.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalService } from 'src/app/services/modal.service';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
   selector: 'app-build-outfit',
@@ -18,20 +21,49 @@ export class BuildOutfitComponent implements OnInit {
   currentBottom = null;
   currentMisc = null;
   tops: Image[];
+  outfitName: string;
 
-  constructor(private clothingItemService: ClothingItemService) { }
+  userInput: FormGroup;
+  submitted = false;
+
+  constructor(
+    private fb: FormBuilder, 
+    private imagesService: ImagesService, 
+    private clothingItemService: ClothingItemService,
+    private outfitService: OutfitService, 
+    private modalService: ModalService){}
 
   ngOnInit() {
+    this.userInput = this.fb.group({
+      outfitName: ['', Validators.required],
+    });
+    
     this.clothingItemService.viewAllUsersClothes()
     .subscribe(res => {
       this.clothing = res;
       console.log(this.clothing);
       console.log(this.clothing[0].tags);
-    })
+    });
   }
 
-  save() {
+  get f(){
+    return this.userInput.controls;
+  }
 
+  save(name: string) {
+    this.submitted = true;
+    if(this.userInput.invalid){
+      return;
+    }
+    this.outfitName = this.f.outfitName.value;
+
+    this.outfitService.uploadOutfit(this.outfitName).subscribe(
+      (res) => {
+      
+      },
+      (err) => {
+      
+      })
   }
 
   discard() {

@@ -27,3 +27,22 @@ mat-card{
   height: 100%;
   box-sizing: border-box;
 }
+
+.my-form{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto; 
+}
+
+.outfitCard {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-width {
+    width: 100%;
+}
