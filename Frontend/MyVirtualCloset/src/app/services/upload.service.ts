@@ -29,7 +29,7 @@ export class UploadService {
     formData.append('tags', this.tags);       //must be of type 'tags'
     formData.append('name',name);  //must be of type 'name'
 
-    return this.http.post<Image>('https://localhost:44383/api/ClothingItem/add', formData);
+    return this.http.post<Image>('https://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/add', formData);
   }
 
 

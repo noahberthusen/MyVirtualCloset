@@ -37,7 +37,7 @@ export class BuildOutfitComponent implements OnInit {
     this.userInput = this.fb.group({
       outfitName: ['', Validators.required],
     });
-    
+
     this.clothingItemService.viewAllUsersClothes()
     .subscribe(res => {
       this.clothing = res;
@@ -50,7 +50,7 @@ export class BuildOutfitComponent implements OnInit {
     return this.userInput.controls;
   }
 
-  save(name: string) {
+  save() {
     this.submitted = true;
     if(this.userInput.invalid){
       return;
