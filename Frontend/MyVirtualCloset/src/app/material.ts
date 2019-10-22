@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule, MatExpansionModule, MatGridListModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatExpansionModule, MatGridListModule, MatChipsModule
 } from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 
@@ -21,7 +21,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatExpansionModule,
-  MatGridListModule
+  MatGridListModule,
+  MatChipsModule
   ],
   exports: [
   CommonModule,
@@ -36,7 +37,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
    MatProgressSpinnerModule,
    MatAutocompleteModule,
    MatExpansionModule,
-   MatGridListModule
+   MatGridListModule,
+   MatChipsModule
    ],
 })
 export class MaterialModule { }
