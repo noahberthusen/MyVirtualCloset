@@ -31,22 +31,24 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   save() {
-    
+
   }
 
   discard() {
-
+    this.currentBottom = null;
+    this.currentMisc = null;
+    this.currentTop = null;
   }
 
-  chooseTops(){
-    this.clothing.forEach(image => {
-      if (image.tags.includes("green")){
-        this.tops.push(image);
-      }
-    });
-    console.log(this.tops);
-    return this.tops;
-  }
+  // chooseTops(){
+  //   this.clothing.forEach(image => {
+  //     if (image.tags.includes("green")){
+  //       this.tops.push(image);
+  //     }
+  //   });
+  //   console.log(this.tops);
+  //   return this.tops;
+  // }
  
   selectTop(picture) {
     this.currentTop = picture;
