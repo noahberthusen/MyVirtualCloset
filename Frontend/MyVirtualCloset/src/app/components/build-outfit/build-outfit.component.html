@@ -21,9 +21,11 @@
               Bottoms
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div *ngIf="clothing">
-            <p>{{clothing.length}}</p>
-          </div>
+        <carousel>
+            <slide *ngFor="let image of clothing">
+             <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+            </slide>
+        </carousel>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -31,7 +33,11 @@
               Miscellaneous
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <carousel>
+                <slide *ngFor="let image of clothing">
+                 <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+                </slide>
+            </carousel>
         </mat-expansion-panel>
       </mat-accordion>  
     </mat-card>  
@@ -40,6 +46,7 @@
     <h2>outfit</h2>
     <p><img [src]="'data:image/jpg;base64,'+getTop()"></p>
     <p><img [src]="'data:image/jpg;base64,'+getBottom()"></p>
+    <p><img [src]="'data:image/jpg;base64,'+getMisc()"></p>
   </div>
 </div>
 

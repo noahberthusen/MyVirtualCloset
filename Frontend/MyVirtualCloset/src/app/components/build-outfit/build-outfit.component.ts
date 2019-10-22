@@ -55,4 +55,14 @@ export class BuildOutfitComponent implements OnInit {
       return this.currentBottom.image;
     }
   }
+
+  selectMisc(picture) {
+    this.currentMisc = picture;
+  }
+
+  getMisc(){
+    if (this.currentMisc != null){
+      return this.currentMisc.image;
+    }
+  }
 }
