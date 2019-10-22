@@ -17,6 +17,7 @@ export class BuildOutfitComponent implements OnInit {
   currentTop = null;
   currentBottom = null;
   currentMisc = null;
+  tops: Image[];
 
   constructor(private clothingItemService: ClothingItemService) { }
 
@@ -25,15 +26,26 @@ export class BuildOutfitComponent implements OnInit {
     .subscribe(res => {
       this.clothing = res;
       console.log(this.clothing);
+      console.log(this.clothing[0].tags);
     })
   }
 
   save() {
-
+    
   }
 
   discard() {
 
+  }
+
+  chooseTops(){
+    this.clothing.forEach(image => {
+      if (image.tags.includes("green")){
+        this.tops.push(image);
+      }
+    });
+    console.log(this.tops);
+    return this.tops;
   }
  
   selectTop(picture) {

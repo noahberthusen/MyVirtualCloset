@@ -10,7 +10,7 @@
           </mat-expansion-panel-header>
           <carousel>
             <slide *ngFor="let image of clothing">
-              <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+              <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+chooseTops()"></a>
             </slide>
           </carousel>
         </mat-expansion-panel>
