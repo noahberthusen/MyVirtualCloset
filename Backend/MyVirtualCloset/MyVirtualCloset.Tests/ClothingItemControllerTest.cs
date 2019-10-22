@@ -17,29 +17,39 @@ namespace MyVirtualCloset.Tests
     [TestClass]
     public class ClothingItemControllerTest
     {
-        Mock<DbContext> mock;
+        Mock<DataContext> mockContext;
+        Mock<DbSet<ClothingItem>> mockSet;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.mock = new Mock<DbContext>();
+            this.mockSet = new Mock<DbSet<ClothingItem>>();
+            this.mockContext = new Mock<DataContext>();
         }
         [TestMethod]
         public void TestGoodResponse()
 
         {
-            var fakeCustomers = new ClothingItem[]
+            var data = new ClothingItem[]
             {
-                new ClothingItem() ,
-                new ClothingItem()
-            };
-            var test = fakeCustomers.AsQueryable();
+                new ClothingItem
+                {
+                    name = "tshirt",
+                    tags = "shirt;blue;"
+                }
+            }.AsQueryable();
 
 
-            var mockedContext = new Mock<DataContext>();
-            mockedContext.Setup(c => c.ClothingItem.Where(x => x.user == "test")).Returns(test);
+            this.mockSet.As<IQueryable<ClothingItem>>().Setup(m => m.Provider).Returns(data.Provider);
+            this.mockSet.As<IQueryable<ClothingItem>>().Setup(m => m.Expression).Returns(data.Expression);
+            this.mockSet.As<IQueryable<ClothingItem>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            this.mockSet.As<IQueryable<ClothingItem>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
-            var t = new ClothingService(mockedContext.Object);
+
+            this.mockContext.Setup(c => c.ClothingItem).Returns(this.mockSet.Object);
+            var service = new ClothingService(mockContext.Object);
+
+            Assert.AreEqual("tshirt", service.viewClothesIdByUser("guid").First().name);
 
         }
     }
