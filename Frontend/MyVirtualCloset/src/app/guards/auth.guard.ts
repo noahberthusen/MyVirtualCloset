@@ -16,10 +16,8 @@ export class AuthGuard implements CanActivate {
       if (currentUser){
         return true;
       }
-      console.log("inside auth guard");
-      //if not a user, return to login page
       this.router.navigate(
-        ['/front'], { queryParams: { returnUrl: state.url }}  //not sure how the queryParams works??
+        ['/login'], { queryParams: { returnUrl: state.url }}
       );
       return false;
     }

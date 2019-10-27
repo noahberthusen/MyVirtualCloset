@@ -3,7 +3,7 @@ import { User } from '../models/User';
 import { AuthService } from './auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -12,12 +12,14 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       providers: [AuthService],
       imports: [ 
-        HttpClientTestingModule      
+        HttpClientTestingModule,
+        RouterTestingModule
       ]
     })
   
     service = TestBed.get(AuthService);
   });
+
 
   it('should be created', () => {
     const service: AuthService = TestBed.get(AuthService);

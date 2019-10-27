@@ -14,7 +14,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MaterialModule } from  './material';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
+import { UploadComponent } from './components/upload/upload.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
     SignupComponent,
     ResetPasswordComponent,
-    BuildOutfitComponent
+    BuildOutfitComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,9 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CarouselModule.forRoot(),
+    FontAwesomeModule,
   ],
   entryComponents:[
     BuildOutfitComponent
