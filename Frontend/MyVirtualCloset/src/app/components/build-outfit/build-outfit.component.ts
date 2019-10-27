@@ -38,9 +38,13 @@ export class BuildOutfitComponent implements OnInit {
       outfitName: ['', Validators.required],
     });
 
+    
+  console.log("inside build outfit component");
+
     this.clothingItemService.viewAllUsersClothes()
     .subscribe(res => {
       this.clothing = res;
+      console.log("clothing item service used");
       console.log(this.clothing);
       console.log(this.clothing[0].tags);
     });
