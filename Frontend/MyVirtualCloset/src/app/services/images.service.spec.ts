@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ImagesService } from './images.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('ImagesService', () => {
+describe('ImagesService', () => {  
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ HttpClientTestingModule ]
   }));
@@ -12,4 +12,5 @@ describe('ImagesService', () => {
     const service: ImagesService = TestBed.get(ImagesService);
     expect(service).toBeTruthy();
   });
+
 });
