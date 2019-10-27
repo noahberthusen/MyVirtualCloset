@@ -22,8 +22,8 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("create")]
         public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
         {
-            _outfitService.createOutfit(User.Identity.Name, name);
-            return Ok();
+            var re = _outfitService.createOutfit(User.Identity.Name, name);
+            return Ok(re);
         }
 
         [Authorize]

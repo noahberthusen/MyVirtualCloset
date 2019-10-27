@@ -50,12 +50,12 @@ namespace MyVirtualCloset.Api.Controllers
         {
 
             var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
-
-            var temp = new ReturnImage();
+            
             var re = new List<ReturnImage>();
 
             foreach(var i in clothes)
             {
+                var temp = new ReturnImage();
                 temp.name = i.name;
                 temp.tags = i.tags;
                 temp.image = i.image;
