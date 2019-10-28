@@ -13,6 +13,10 @@ using MyVirtualCloset.Core.ProgramUser;
 
 namespace MyVirtualCloset.Api.Controllers
 {
+    /// <summary>
+    /// Controller containing all end points related to authorization and passwords.
+    /// </summary>
+    /// <remarks></remarks>
     [Route("api/auth")]
     [ApiController]
     public class AuthController : Controller
@@ -24,6 +28,12 @@ namespace MyVirtualCloset.Api.Controllers
             this._authService = authService;
         }
 
+        /// <summary>
+        /// Login to gennerate token for user.
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [HttpPost("login")]
         public IActionResult Login([FromBody] User userInfo)
         {
@@ -40,6 +50,11 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Function for testing durning devlopment.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpGet("test")]
         public IActionResult Test()
@@ -48,6 +63,12 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok(id);
         }
 
+        /// <summary>
+        /// Sends user email to change password.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [HttpPost("forgot")]
         public IActionResult ForgotPassword([FromBody] User user)
         {
@@ -63,6 +84,12 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Changes password for user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [HttpPost("reset")]
         public IActionResult ChangePassword([FromBody] User user)
         {

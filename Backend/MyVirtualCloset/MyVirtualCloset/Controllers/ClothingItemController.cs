@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyVirtualCloset.Api.Controllers
 {
+    /// <summary>
+    /// Controller for CRUD operations on clothing items.
+    /// </summary>
+    /// <remarks></remarks>
     [Route("api/ClothingItem")]
     [ApiController]
     public class ClothingItemController : Controller
@@ -22,6 +26,14 @@ namespace MyVirtualCloset.Api.Controllers
             this._clothingService = clothingService;
         }
 
+        /// <summary>
+        /// Adds a new clothing item for the current user to the database.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="tags"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpPost("add")]
         public IActionResult addImage([FromForm(Name = "file")] IFormFile file, [FromForm(Name = "tags")] string tags, [FromForm(Name = "name")] string name)
@@ -30,7 +42,7 @@ namespace MyVirtualCloset.Api.Controllers
             var id = guid.ToString();
             var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
 
-  
+
 
             var bytes = default(byte[]);
             using (var stream = new MemoryStream())
@@ -44,16 +56,20 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns all the clothes that have been added to the database for that spafic user.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewAllUserClothes")]
         public List<ReturnImage> viewAllUserClothes()
         {
-
             var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
-            
+
             var re = new List<ReturnImage>();
 
-            foreach(var i in clothes)
+            foreach (var i in clothes)
             {
                 var temp = new ReturnImage();
                 temp.name = i.name;
@@ -65,6 +81,12 @@ namespace MyVirtualCloset.Api.Controllers
             return re;
         }
 
+        /// <summary>
+        /// Retuns all clothing items from a specific user containing a certin tag.
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpGet("search")]
         public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)

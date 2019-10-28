@@ -8,6 +8,10 @@ using MyVirtualCloset.Core.Outfits;
 
 namespace MyVirtualCloset.Api.Controllers
 {
+    /// <summary>
+    /// Controller for CRUD operations on outfits.
+    /// </summary>
+    /// <remarks></remarks>
     [Route("api/Outfit")]
     [ApiController]
     public class OutfitController : Controller
@@ -18,6 +22,12 @@ namespace MyVirtualCloset.Api.Controllers
             this._outfitService = outfitService;
         }
 
+        /// <summary>
+        /// Creats a blank outfit with a given name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpPost("create")]
         public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
@@ -26,6 +36,13 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok(re);
         }
 
+        /// <summary>
+        /// Adds the given clothing item to the given outfit.
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpPost("addTo")]
         public IActionResult addToOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
@@ -34,6 +51,13 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Removes the given clothing item from the given outfit.
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpPost("removeFrom")]
         public IActionResult removeFromOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
@@ -42,6 +66,12 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Returns all outfits from a specific user.
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewByUser")]
         public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
@@ -50,6 +80,12 @@ namespace MyVirtualCloset.Api.Controllers
             return _outfitService.viewOutfit(outfitId);
         }
 
+
+        /// <summary>
+        /// Returns a specific selected outfit.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewOutfit")]
         public List<List<Outfit>> viewUserOutfits()
