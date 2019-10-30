@@ -33,7 +33,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             _context.SaveChanges();
         }
 
-        public void createOutfit(string user, string name)
+        public Outfit createOutfit(string user, string name)
         {
             var c1 = new Outfit();
 
@@ -48,6 +48,8 @@ namespace MyVirtualCloset.Infrastructure.Outfits
 
             _context.Outfit.Add(c1);
             _context.SaveChanges();
+
+            return c1;
         }
 
         public void removeItemFromOutfit(string outfitId, string itemId)

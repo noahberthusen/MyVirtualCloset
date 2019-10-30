@@ -4,6 +4,10 @@ using MyVirtualCloset.Core.ProgramUser;
 
 namespace MyVirtualCloset.Api.Controllers
 {
+    /// <summary>
+    /// Controller containing all endpoints for the user.
+    /// </summary>
+    /// <remarks></remarks>
     [Route("api/user")]
     [ApiController]
     public class UserController : Controller
@@ -15,6 +19,12 @@ namespace MyVirtualCloset.Api.Controllers
             this._userService = userService;
         }
 
+        /// <summary>
+        /// Used to create a new user in the system.
+        /// </summary>
+        /// <param name="newUser"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
         [HttpPost("register")]
         public IActionResult Register([FromBody] User newUser)
         {
