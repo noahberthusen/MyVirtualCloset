@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using MyVirtualCloset.Core.AppSettings;
 using MyVirtualCloset.Api;
+using MyVirtualCloset.Api.Controllers;
 using MyVirtualCloset.Core.DB;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,6 +62,7 @@ namespace MyVirtualCloset
             });
             services.RegisterServices();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,10 +77,16 @@ namespace MyVirtualCloset
                 app.UseHsts();
             }
 
+            app.UseMiddleware<SignalRMiddleware>();
             app.UseAuthentication();
             app.UseCors("EnableCORS");
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MessageHub>("/hub");
+            });
         }
     }
 }

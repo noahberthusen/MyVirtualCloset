@@ -67,13 +67,13 @@ namespace MyVirtualCloset.Api.Controllers
         }
 
         /// <summary>
-        /// Returns all outfits from a specific user.
+        /// Returns a specific selected outfit.
         /// </summary>
         /// <param name="outfitId"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewByUser")]
+        [HttpGet("viewOutfit")]
         public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
@@ -82,12 +82,12 @@ namespace MyVirtualCloset.Api.Controllers
 
 
         /// <summary>
-        /// Returns a specific selected outfit.
+        /// Returns all outfits from a specific user.
         /// </summary>
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewOutfit")]
+        [HttpGet("viewByUser")]
         public List<List<Outfit>> viewUserOutfits()
         {
             return _outfitService.viewOutfitsByUser(User.Identity.Name);
