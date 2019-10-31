@@ -18,6 +18,7 @@ namespace MyVirtualCloset.Api.Controllers
         {
             string userName = Context.User.Identity.Name;
             string connectionId = Context.ConnectionId;
+            Console.WriteLine(connectionId + " connecting");
 
             var user = Users.GetOrAdd(userName, connectionId);
 
@@ -34,6 +35,7 @@ namespace MyVirtualCloset.Api.Controllers
 
             if (cid != null)
             {
+                Console.WriteLine(cid + " disconnecting");
                 Users.TryRemove(userName, out _);
             }
             return base.OnDisconnectedAsync(exception);

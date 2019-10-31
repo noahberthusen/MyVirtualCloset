@@ -73,7 +73,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewOutfit")]
+        [HttpPost("viewOutfit")]
         public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
