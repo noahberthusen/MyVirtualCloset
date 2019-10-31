@@ -18,8 +18,6 @@ namespace MyVirtualCloset.Api.Controllers
         {
             string userName = Context.User.Identity.Name;
             string connectionId = Context.ConnectionId;
-            Console.WriteLine("Username", userName);
-            Console.WriteLine("cid", connectionId);
 
             var user = Users.GetOrAdd(userName, connectionId);
 
@@ -43,16 +41,12 @@ namespace MyVirtualCloset.Api.Controllers
 
         public void Send(string message, string to)
         {
-            Clients.All.SendAsync("notification", "Hello!");
-            return;
             string cid;
             if (Users.TryGetValue(to, out cid))
             {
+                Console.WriteLine(cid);
                 string sender = Context.User.Identity.Name;
-           
-                Clients.All.SendAsync("notification", "hello!");
-                // actually send message
-                //Clients.Client(cid).SendAsync("hello!");
+                Clients.Client(cid).SendAsync("notification", message);
             }
         }
     }

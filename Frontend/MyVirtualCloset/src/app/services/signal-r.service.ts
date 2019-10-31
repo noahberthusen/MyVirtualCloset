@@ -13,7 +13,7 @@ export class SignalRService {
   public startConnection() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoggedIn = currentUser && currentUser.token;
-    //const isApiUrl = request.url.startsWith(config.apiUrl);
+
     if (isLoggedIn) {
       this.hubConnection = new HubConnectionBuilder()
         .withUrl('https://localhost:44383/hub', {
@@ -32,11 +32,17 @@ export class SignalRService {
   }
 
   public endConnection() {
-
+    if (this.hubConnection) {
+      this.hubConnection
+        .stop()
+        .then(() => console.log('Connection ended'))
+        .catch(err => console.log('Error while ending connection: ' + err));
+    }
   }
 
-  public sendNotification(user: string, message: string) {
-    console.log("here");
-    this.hubConnection.invoke('Send', "noah", "hello!");
+  public sendNotification(message: string, user: string) {
+    // user must be the userId, i.e. 6b90b519-fd2e-4a85-9ef9-123f63feaf89
+    // sends {{ message }} to {{ user }}. Like, comment, follow, etc.
+    this.hubConnection.invoke('Send', message, user);
   }
 }

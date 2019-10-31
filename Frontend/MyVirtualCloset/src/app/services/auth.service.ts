@@ -46,6 +46,7 @@ export class AuthService {
   }
 
   logout() {
+    this.signalRService.endConnection();
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
