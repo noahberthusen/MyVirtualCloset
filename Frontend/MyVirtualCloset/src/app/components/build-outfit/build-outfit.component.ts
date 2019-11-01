@@ -7,6 +7,8 @@ import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ImagesService } from 'src/app/services/images.service';
+import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';
+
 
 @Component({
   selector: 'app-build-outfit',
@@ -55,19 +57,30 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   save() {
-    this.submitted = true;
-    if(this.userInput.invalid){
-      return;
-    }
-    this.outfitName = this.f.outfitName.value;
+    //open confirm outfit modal
+    this.openConfirmOutfitModal();
 
-    this.outfitService.uploadOutfit(this.outfitName).subscribe(
-      (res) => {
+    // this.submitted = true;
+    // if(this.userInput.invalid){
+    //   return;
+    // }
+    // this.outfitName = this.f.outfitName.value;
+
+    // this.outfitService.uploadOutfit(this.outfitName).subscribe(
+    //   (res) => {
       
-      },
-      (err) => {
+    //   },
+    //   (err) => {
       
-      })
+    //   })
+  }
+
+  openConfirmOutfitModal(){
+    console.log("inside open confirm outfit modal");
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(ConfirmOutfitComponent, inputs, {});
   }
 
   discard() {

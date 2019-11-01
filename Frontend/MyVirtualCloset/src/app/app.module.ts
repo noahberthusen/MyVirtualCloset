@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     SignupComponent,
     ResetPasswordComponent,
     BuildOutfitComponent,
-    UploadComponent
+    UploadComponent,
+    ConfirmOutfitComponent
   ],
   imports: [
     BrowserModule,

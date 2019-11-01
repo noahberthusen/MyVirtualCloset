@@ -56,9 +56,9 @@
         </form>
     </mat-card>
 
-    <p><img [src]="'data:image/jpg;base64,'+getTop()"></p>
-    <p><img [src]="'data:image/jpg;base64,'+getBottom()"></p>
-    <p><img [src]="'data:image/jpg;base64,'+getMisc()"></p>
+    <p><img *ngIf = "getTop()" [src]="'data:image/jpg;base64,'+getTop()"></p>
+    <p><img *ngIf = "getBottom()" [src]="'data:image/jpg;base64,'+getBottom()"></p>
+    <p><img *ngIf = "getMisc()" [src]="'data:image/jpg;base64,'+getMisc()"></p>
   </div>
 </div>
 
