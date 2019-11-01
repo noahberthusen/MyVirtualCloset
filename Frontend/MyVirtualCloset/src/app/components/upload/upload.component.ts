@@ -6,14 +6,13 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Tag } from 'src/app/models/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { AppComponent } from 'src/app/app.component';
 
 class ImageSnippet {
   pending: boolean = false;
   status: string = 'init';
 
   constructor(public src: string, public file: File) {}
-
 }
 
 
@@ -27,6 +26,7 @@ export class UploadComponent {
   selectedFile: ImageSnippet;
   imgURL: any;
   confirmed: boolean;
+  modalAlreadyOpen: boolean;
 
   //form related
   userInput: FormGroup;
@@ -42,8 +42,6 @@ export class UploadComponent {
     {name: 'shirt'},
   ];
   itemName: string;
-
-
 
 
   constructor(
@@ -64,6 +62,8 @@ export class UploadComponent {
   }
 
   ngOnInit() {
+    //wip to avoid two modals showing up when add button chosen
+    this.modalAlreadyOpen= true;
     this.userInput = this.fb.group({
       itemName: ['', Validators.required],
     })
@@ -122,6 +122,8 @@ export class UploadComponent {
 
   //closes modal
   public close() {
+    //wip to avoid two modals showing up when add button chosen
+    this.modalAlreadyOpen=false;
     this.modalService.destroy();
   }
 
@@ -149,6 +151,4 @@ export class UploadComponent {
       this.tags.splice(index, 1);
     }
   }
-
-  
 }

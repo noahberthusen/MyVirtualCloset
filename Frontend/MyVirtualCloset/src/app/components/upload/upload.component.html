@@ -1,5 +1,10 @@
 <!-- adding name/type of item... may need to change this later -->
-<mat-card>    
+<mat-card >   <!-- *ngIf= "modalAlreadyOpen" -->
+
+    <button type="button" class="close" aria-label="Close" mat-button (click)="close()">
+        <span aria-hidden="true">X</span>
+    </button>
+
     <mat-card-title>    
         <strong>Photo Information</strong>   
     </mat-card-title>    
