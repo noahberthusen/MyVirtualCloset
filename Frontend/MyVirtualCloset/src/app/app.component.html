@@ -15,6 +15,10 @@
                 <button mat-button routerLink="">{{ currentUser().firstName }}</button>
                 <button mat-button (click)="signOut()">Sign out <fa-icon [icon]="faSignOut"></fa-icon></button>
             </div>
+            <div *ngIf="currentUser()"> 
+                <button mat-button (click)="openSendNotificationModal()">Send Notification</button>
+                <!-- <button mat-button (click)="sendMessage()">Send Notification</button> -->
+            </div>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

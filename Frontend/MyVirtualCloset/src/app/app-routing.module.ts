@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
+import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'upload',
     component: UploadComponent
+  },
+  {
+    path: 'send-notification',
+    component:SendNotificationComponent
   },
   {
     path: '**',
