@@ -88,8 +88,8 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("search")]
-        public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)
+        [HttpPost("search")]
+        public List<ReturnImage> searchByTags([FromBody] string tag)
         {
             var re = _clothingService.searchTags(tag);
             var re2 = new List<ReturnImage>();
