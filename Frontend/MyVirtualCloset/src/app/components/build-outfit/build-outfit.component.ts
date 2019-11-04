@@ -76,15 +76,22 @@ export class BuildOutfitComponent implements OnInit {
     this.currentTop = null;
   }
 
-  // chooseTops(){
-  //   this.clothing.forEach(image => {
-  //     if (image.tags.includes("green")){
-  //       this.tops.push(image);
-  //     }
-  //   });
-  //   console.log(this.tops);
-  //   return this.tops;
-  // }
+  chooseTops(){
+    this.clothingItemService.searchForClothes("top")
+    .subscribe(res => {
+      this.tops = res;
+      console.log("clothing item service used");
+      console.log(this.tops);
+      console.log(this.tops[0].tags);
+    });
+    // this.clothing.forEach(image => {
+    //   if (image.tags.includes("green")){
+    //     this.tops.push(image);
+    //   }
+    // });
+    console.log(this.tops);
+    return this.tops;
+  }
  
   selectTop(picture) {
     this.currentTop = picture;
