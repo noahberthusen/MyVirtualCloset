@@ -63,22 +63,11 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewAllUserClothes")]
-        public List<ReturnImage> viewAllUserClothes()
+        public List<ClothingItem> viewAllUserClothes()
         {
             var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
 
-            var re = new List<ReturnImage>();
-
-            foreach (var i in clothes)
-            {
-                var temp = new ReturnImage();
-                temp.name = i.name;
-                temp.tags = i.tags;
-                temp.image = i.image;
-                re.Add(temp);
-            }
-
-            return re;
+            return clothes;
         }
 
         /// <summary>
@@ -89,19 +78,11 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("search")]
-        public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)
+        public List<ClothingItem> searchByTags([FromForm(Name = "tags")] string tag)
         {
             var re = _clothingService.searchTags(tag);
-            var re2 = new List<ReturnImage>();
-            foreach (var i in re)
-            {
-                var temp = new ReturnImage();
-                temp.name = i.name;
-                temp.tags = i.tags;
-                temp.image = i.image;
-                re2.Add(temp);
-            }
-            return re2;
+
+            return re;
         }
     }
 }
