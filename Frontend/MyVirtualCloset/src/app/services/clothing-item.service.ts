@@ -34,6 +34,7 @@ export class ClothingItemService {
 
   searchForClothes(searchTag: string) {
 
+    console.log("inside of searchForClothes");
     //CURRENTLY SEARCHES BY ONE TAG ONLY
     // this.tag= this.tag+tagsArray[0].name;
     // var i;
@@ -43,6 +44,8 @@ export class ClothingItemService {
 
     return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', searchTag)
     .pipe(map(res => {
+      console.log("made post call to search using " + searchTag);
+      console.log(res);
       let clothing: Image[] = [];
       res.forEach(obj => {
         let image = new Image();

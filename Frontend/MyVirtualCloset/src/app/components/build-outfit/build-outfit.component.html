@@ -9,7 +9,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <carousel>
-            <slide *ngFor="let image of clothing">
+            <slide *ngFor="let image of tops">
               <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
           </carousel>
@@ -22,7 +22,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
         <carousel>
-            <slide *ngFor="let image of clothing">
+            <slide *ngFor="let image of bottoms">
              <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
         </carousel>
@@ -34,7 +34,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <carousel>
-                <slide *ngFor="let image of clothing">
+                <slide *ngFor="let image of misc">
                  <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
                 </slide>
             </carousel>
@@ -56,9 +56,9 @@
         </form>
     </mat-card>
 
-    <p><img [src]="'data:image/jpg;base64,'+getTop()"></p>
-    <p><img [src]="'data:image/jpg;base64,'+getBottom()"></p>
-    <p><img [src]="'data:image/jpg;base64,'+getMisc()"></p>
+    <p *ngIf="currentTop"><img [src]="'data:image/jpg;base64,'+currentTop.image"></p>
+    <p *ngIf="currentBottom"><img [src]="'data:image/jpg;base64,'+currentBottom.image"></p>
+    <p *ngIf="currentMisc"><img [src]="'data:image/jpg;base64,'+currentMisc.image"></p>
   </div>
 </div>
 
