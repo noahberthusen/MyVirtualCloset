@@ -8,7 +8,6 @@ import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { ModalService } from 'src/app/services/modal.service';
 
 
-import { ModalService } from 'src/app/services/modal.service';
 import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 
 //for websocket
