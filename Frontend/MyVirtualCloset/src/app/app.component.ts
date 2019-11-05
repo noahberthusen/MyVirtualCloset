@@ -4,6 +4,9 @@ import { AuthService } from './services/auth.service';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { UploadComponent } from 'src/app/components/upload/upload.component';
+import { ModalService } from 'src/app/services/modal.service';
+
 
 import { ModalService } from 'src/app/services/modal.service';
 import { SendNotificationComponent } from './components/send-notification/send-notification.component';
@@ -50,6 +53,17 @@ export class AppComponent {
       isMobile: false
     }
     this.modalService.init(SendNotificationComponent, inputs, {});
+}
+
+  //the following code is used if this is a modal
+  initAddClothingModal() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
+  }
+
+  public closeModal(){
   }
 
   signOut() {

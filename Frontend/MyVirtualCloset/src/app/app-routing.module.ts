@@ -38,6 +38,11 @@ const routes: Routes = [
     path: 'upload',
     component: UploadComponent
   },
+  //this component was for testing
+  // {
+  //   path: 'home',
+  //   component: HomeComponent
+  // },
   {
     path: 'send-notification',
     component:SendNotificationComponent

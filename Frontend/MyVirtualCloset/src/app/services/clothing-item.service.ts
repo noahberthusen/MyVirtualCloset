@@ -12,16 +12,22 @@ export class ClothingItemService {
   constructor(private http: HttpClient) { }
 
   viewAllUsersClothes() {
+    console.log("inside view all users clothes function");
+    let clothing: Image[] = [];
     return this.http.get<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
-      let clothing: Image[] = [];
+      //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
         let image = new Image();
         image.name = obj.name;
         image.tags = obj.tags;
         image.image = obj.image;
+        console.log(image);
         clothing.push(image);
       });
+      // console.log(res.length);
+      // console.log(res[20]);
+      // clothing.push(res[20]);
       return clothing;
     }));
   }
