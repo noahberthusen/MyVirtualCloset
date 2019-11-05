@@ -88,7 +88,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("search")]
+        [HttpPost("search")]
         public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)
         {
             var re = _clothingService.searchTags(tag);
@@ -102,6 +102,13 @@ namespace MyVirtualCloset.Api.Controllers
                 re2.Add(temp);
             }
             return re2;
+        }
+
+        [Authorize]
+        [HttpPost("getById")]
+        public IActionResult getById([FromBody] string id)
+        {
+            return Ok(_clothingService.getClothingItem(id));
         }
     }
 }

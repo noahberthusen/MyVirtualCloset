@@ -46,6 +46,12 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
         }
 
+        public ClothingItem getClothingItem(string id)
+        {
+            var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == id);
+            return clothSelected;
+        }
+
         public List<ClothingItem> searchTags(string tag)
         {
             var clothSelected = _context.tag.Where(x => x.name == tag);
@@ -68,5 +74,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             return clothSelected.ToList();
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
+import { SignalRService } from './signal-r.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient,
-      private router: Router) {
+      private router: Router,
+      private signalRService: SignalRService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -29,6 +31,7 @@ export class AuthService {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          this.signalRService.startConnection();
         }
         return user;
       }));
@@ -43,6 +46,7 @@ export class AuthService {
   }
 
   logout() {
+    this.signalRService.endConnection();
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);

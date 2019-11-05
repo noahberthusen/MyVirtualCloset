@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -13,7 +14,8 @@ describe('AuthService', () => {
       providers: [AuthService],
       imports: [ 
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ToastrModule.forRoot()
       ]
     })
   

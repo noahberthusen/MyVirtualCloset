@@ -43,7 +43,7 @@ export class ClothingItemService {
 
     formData.append('tags', this.tags);
 
-    // return this.http.get<Image[]>('https://localhost:44383/api/ClothingItem/search', formData)
+    // return this.http.get<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     // .pipe(map(res => {
     //   let clothing: Image[] = [];
     //   res.forEach(obj => {
