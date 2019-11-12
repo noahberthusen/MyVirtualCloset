@@ -103,6 +103,7 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   initAddClothingModalMisc() {
+    console.log("inside misc upload");
     let inputs = {
       isMobile: false
     }

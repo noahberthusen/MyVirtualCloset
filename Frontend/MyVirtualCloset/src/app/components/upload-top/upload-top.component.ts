@@ -18,8 +18,8 @@ class ImageSnippet {
 
 @Component({
   selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  templateUrl: './upload-top.component.html',
+  styleUrls: ['./upload-top.component.css']
 })
 export class UploadTopComponent {
   encodedImage: string;
@@ -39,7 +39,7 @@ export class UploadTopComponent {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: Tag[] = [
-    {name: 'shirt'},
+    {name: 'top'},
   ];
   itemName: string;
 

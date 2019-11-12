@@ -18,8 +18,8 @@ class ImageSnippet {
 
 @Component({
   selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  templateUrl: './upload-misc.component.html',
+  styleUrls: ['./upload-misc.component.css']
 })
 export class UploadMiscComponent {
   encodedImage: string;
@@ -39,7 +39,7 @@ export class UploadMiscComponent {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: Tag[] = [
-    {name: 'shirt'},
+    {name: 'misc'},
   ];
   itemName: string;
 
