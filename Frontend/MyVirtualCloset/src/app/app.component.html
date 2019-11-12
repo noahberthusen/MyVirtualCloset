@@ -9,6 +9,7 @@
                 <button mat-button routerLink="/login" routerLinkActive="active">Sign in <fa-icon [icon]="faSignIn"></fa-icon></button>
             </div>
             <div *ngIf="currentUser()">
+                <button mat-button><a target="_blank" href="../assets/VSdoc/index2.html">Docs</a></button>
                 <button mat-button routerLink="/build">Builder</button>
                 <button mat-button (click)="initAddClothingModal()">Add <fa-icon [icon]="faPlusCircle"></fa-icon></button>
                 <!-- will go to profile eventually -->
