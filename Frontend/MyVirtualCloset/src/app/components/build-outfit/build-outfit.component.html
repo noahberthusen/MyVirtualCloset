@@ -13,6 +13,8 @@
               <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
           </carousel>
+          <button mat-button (click)="initAddClothingModalTop()">Upload New Item </button>
+
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -26,6 +28,7 @@
              <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
         </carousel>
+        <button mat-button (click)="initAddClothingModalBottom()">Upload New Item </button>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -37,7 +40,8 @@
                 <slide *ngFor="let image of clothing">
                  <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
                 </slide>
-            </carousel>
+          </carousel>
+          <button mat-button (click)="initAddClothingModalMisc()">Upload New Item </button>
         </mat-expansion-panel>
       </mat-accordion>  
     </mat-card>  

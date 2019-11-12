@@ -20,6 +20,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { SendNotificationComponent } from './components/send-notification/send-notification.component';
+import { UploadTopComponent } from './components/upload-top/upload-top.component';
+import { UploadBottomComponent } from './components/upload-bottom/upload-bottom.component';
+import { UploadMiscComponent } from './components/upload-misc/upload-misc.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { SendNotificationComponent } from './components/send-notification/send-n
     ResetPasswordComponent,
     BuildOutfitComponent,
     UploadComponent,
-    SendNotificationComponent
+    SendNotificationComponent,
+    UploadTopComponent,
+    UploadBottomComponent,
+    UploadMiscComponent
   ],
   imports: [
     BrowserModule,

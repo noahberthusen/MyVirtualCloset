@@ -7,6 +7,11 @@ import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ImagesService } from 'src/app/services/images.service';
+import { UploadComponent } from 'src/app/components/upload/upload.component';
+import { UploadTopComponent } from '../upload-top/upload-top.component';
+import { UploadBottomComponent } from '../upload-bottom/upload-bottom.component';
+import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
+
 
 @Component({
   selector: 'app-build-outfit',
@@ -74,6 +79,35 @@ export class BuildOutfitComponent implements OnInit {
     this.currentBottom = null;
     this.currentMisc = null;
     this.currentTop = null;
+  }
+
+  initAddClothingModal() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
+  }
+
+  initAddClothingModalTop() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadTopComponent, inputs, {});
+  }
+
+  initAddClothingModalBottom() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadBottomComponent, inputs, {});
+  }
+
+  initAddClothingModalMisc() {
+    console.log("inside misc upload");
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadMiscComponent, inputs, {});
   }
 
   // chooseTops(){
