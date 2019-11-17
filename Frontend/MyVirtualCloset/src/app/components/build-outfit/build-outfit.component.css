@@ -46,3 +46,18 @@ mat-card{
 .full-width {
     width: 100%;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.top-item {
+    margin-top: 10%;
+}
+
+.upload {
+    float: right;
+    margin-top: 15px;
+}

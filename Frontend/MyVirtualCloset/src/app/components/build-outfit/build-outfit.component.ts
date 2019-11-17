@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
 import { Image } from '../../models/Image';
 import { OutfitService } from 'src/app/services/outfit.service';
@@ -21,11 +22,13 @@ import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
 export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
-  clothing: Image[];
+  faArrowCircleUp = faArrowCircleUp;
   currentTop = null;
   currentBottom = null;
   currentMisc = null;
   tops: Image[];
+  bottoms: Image[];
+  misc: Image[];
   outfitName: string;
 
   userInput: FormGroup;
@@ -46,12 +49,28 @@ export class BuildOutfitComponent implements OnInit {
     
   console.log("inside build outfit component");
 
-    this.clothingItemService.viewAllUsersClothes()
+    this.clothingItemService.searchForClothes("top")
     .subscribe(res => {
-      this.clothing = res;
-      console.log("clothing item service used");
-      console.log(this.clothing);
-      console.log(this.clothing[0].tags);
+      this.tops = res;
+      console.log("top received");
+      console.log(this.tops);
+      console.log(this.tops[0].tags);
+    });
+
+    this.clothingItemService.searchForClothes("bottom")
+    .subscribe(res1 => {
+      this.bottoms = res1;
+      console.log("bottom received");
+      console.log(this.bottoms);
+      console.log(this.bottoms[0].tags);
+    });
+
+    this.clothingItemService.searchForClothes("misc")
+    .subscribe(res2 => {
+      this.misc = res2;
+      console.log("misc received");
+      console.log(this.misc);
+      console.log(this.misc[0].tags);
     });
   }
 
@@ -110,43 +129,17 @@ export class BuildOutfitComponent implements OnInit {
     this.modalService.init(UploadMiscComponent, inputs, {});
   }
 
-  // chooseTops(){
-  //   this.clothing.forEach(image => {
-  //     if (image.tags.includes("green")){
-  //       this.tops.push(image);
-  //     }
-  //   });
-  //   console.log(this.tops);
-  //   return this.tops;
-  // }
  
   selectTop(picture) {
     this.currentTop = picture;
-  }
-
-  getTop(){
-    if (this.currentTop != null){
-      return this.currentTop.image;
-    }
   }
 
   selectBottom(picture) {
     this.currentBottom = picture;
   }
 
-  getBottom(){
-    if (this.currentBottom != null){
-      return this.currentBottom.image;
-    }
-  }
-
   selectMisc(picture) {
     this.currentMisc = picture;
   }
 
-  getMisc(){
-    if (this.currentMisc != null){
-      return this.currentMisc.image;
-    }
-  }
 }
