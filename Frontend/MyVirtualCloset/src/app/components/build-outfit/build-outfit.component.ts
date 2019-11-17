@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ImagesService } from 'src/app/services/images.service';
 import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';
+import { OutfitDataService } from 'src/app/services/outfit-data.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class BuildOutfitComponent implements OnInit {
   currentMisc = null;
   tops: Image[];
   outfitName: string;
+  outfitItems: Image[];
 
   userInput: FormGroup;
   submitted = false;
@@ -33,7 +35,9 @@ export class BuildOutfitComponent implements OnInit {
     private imagesService: ImagesService, 
     private clothingItemService: ClothingItemService,
     private outfitService: OutfitService, 
-    private modalService: ModalService){}
+    private modalService: ModalService,
+    private outfitDataService: OutfitDataService
+  ){}
 
   ngOnInit() {
     this.userInput = this.fb.group({
@@ -41,14 +45,14 @@ export class BuildOutfitComponent implements OnInit {
     });
 
     
-  console.log("inside build outfit component");
+    console.log("inside build outfit component");
 
     this.clothingItemService.viewAllUsersClothes()
     .subscribe(res => {
       this.clothing = res;
-      console.log("clothing item service used");
-      console.log(this.clothing);
-      console.log(this.clothing[0].tags);
+      // console.log("clothing item service used");
+      // console.log(this.clothing);
+      // console.log(this.clothing[0].tags);
     });
   }
 
@@ -57,6 +61,9 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   save() {
+    this.outfitItems = [this.getTop(),this.getBottom(), this.getMisc()]; 
+    this.outfitDataService.updateOutfitData(this.outfitItems);
+    
     //open confirm outfit modal
     this.openConfirmOutfitModal();
 

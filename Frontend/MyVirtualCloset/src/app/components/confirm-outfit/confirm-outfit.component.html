@@ -1,1 +1,45 @@
-<p>confirm-outfit works!</p>
+<!-- adding name/type of item... may need to change this later -->
+<mat-card >   <!-- *ngIf= "modalAlreadyOpen" -->
+
+    <mat-card-title>    
+        <strong>Create Outfit</strong>   
+    </mat-card-title>    
+    
+    <mat-card-content>    
+        <form class="form" [formGroup]="userInput">    
+            <table class="form-table">   
+              <mat-form-field class="full-width">    
+                  <input matInput formControlName="itemName" placeholder="Outfit Name" required>    
+              </mat-form-field>                   
+            </table>    
+        </form>  
+        
+        <!-- adding tags -->
+        <!-- <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Tag selection">
+            <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                    [removable]="removable" (removed)="removeTag(tag)">
+              {{tag.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Enter tags for outfit"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field> -->
+        
+        <button type="button" class="submitOutfit" aria-label="Submit" mat-button (click)="submitOutfit()">
+            <span aria-hidden="true">Submit</span>
+        </button>
+        <button type="button" class="close" aria-label="Close" mat-button (click)="close()">
+            <span aria-hidden="true">Cancel</span>
+        </button>
+
+    </mat-card-content>    
+</mat-card>
+
+
+
+
