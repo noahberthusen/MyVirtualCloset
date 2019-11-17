@@ -14,7 +14,7 @@ export class ClothingItemService {
   viewAllUsersClothes() {
     console.log("inside view all users clothes function");
     let clothing: Image[] = [];
-    return this.http.get<Image[]>('https://localhost:44383/api/ClothingItem/viewAllUserClothes')
+    return this.http.get<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
       //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
@@ -41,7 +41,7 @@ export class ClothingItemService {
 
     formData.append('tags', this.tags);
 
-    return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', formData)
+    return this.http.post<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     .pipe(map(res => {
       console.log("made post call to search using a tag");
       console.log(res);
