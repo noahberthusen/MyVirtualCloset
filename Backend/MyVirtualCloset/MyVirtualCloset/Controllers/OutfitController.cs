@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.Outfits;
@@ -63,6 +61,15 @@ namespace MyVirtualCloset.Api.Controllers
         public IActionResult removeFromOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
         {
             _outfitService.removeItemFromOutfit(outfitId, itemId);
+            return Ok();
+        }
+
+
+        [Authorize]
+        [HttpPost("deleteOutfit")]
+        public IActionResult deleteOutfit([FromForm(Name = "outfitId")] String outfitId)
+        {
+            _outfitService.deleteOutfit(outfitId);
             return Ok();
         }
 

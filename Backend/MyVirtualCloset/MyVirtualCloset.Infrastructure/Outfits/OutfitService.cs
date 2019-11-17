@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MyVirtualCloset.Core.DB;
 using MyVirtualCloset.Core.Outfits;
 
@@ -50,6 +49,17 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             _context.SaveChanges();
 
             return c1;
+        }
+
+        public void deleteOutfit(string outfitId)
+        {
+            var clothSelected = _context.Outfit.Where(x => x.Id == outfitId);
+
+            foreach (var i in clothSelected)
+            {
+                _context.Outfit.Remove(i);
+            }
+            _context.SaveChanges();
         }
 
         public void removeItemFromOutfit(string outfitId, string itemId)
