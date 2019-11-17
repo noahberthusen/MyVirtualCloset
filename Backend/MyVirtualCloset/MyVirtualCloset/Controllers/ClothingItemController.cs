@@ -63,22 +63,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewAllUserClothes")]
-        public List<ReturnImage> viewAllUserClothes()
+        public IActionResult viewAllUserClothes()
         {
-            var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
-
-            var re = new List<ReturnImage>();
-
-            foreach (var i in clothes)
-            {
-                var temp = new ReturnImage();
-                temp.name = i.name;
-                temp.tags = i.tags;
-                temp.image = i.image;
-                re.Add(temp);
-            }
-
-            return re;
+            return Ok(_clothingService.viewClothesIdByUser(User.Identity.Name));
         }
 
         /// <summary>
@@ -89,26 +76,34 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("search")]
-        public List<ReturnImage> searchByTags([FromForm(Name = "tags")] string tag)
+        public IActionResult searchByTags([FromForm(Name = "tags")] string tag)
         {
-            var re = _clothingService.searchTags(tag);
-            var re2 = new List<ReturnImage>();
-            foreach (var i in re)
-            {
-                var temp = new ReturnImage();
-                temp.name = i.name;
-                temp.tags = i.tags;
-                temp.image = i.image;
-                re2.Add(temp);
-            }
-            return re2;
+            return Ok(_clothingService.searchTags(tag)); ;
         }
 
+        /// <summary>
+        /// Returns information about clothingItem with id 'id'
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("getById")]
         public IActionResult getById([FromBody] string id)
         {
             return Ok(_clothingService.getClothingItem(id));
+        }
+
+        /// <summary>
+        /// Deletes a clothing item with id 'id' from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("deleteItem")]
+        public IActionResult deleteItem([FromForm(Name = "id")] string id)
+        {
+            _clothingService.deleteItem(id);
+            return Ok();
         }
     }
 }
