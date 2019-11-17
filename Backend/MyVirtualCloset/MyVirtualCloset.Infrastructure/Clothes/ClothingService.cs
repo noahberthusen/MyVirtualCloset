@@ -75,7 +75,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             return clothSelected.ToList();
         }
 
-        public void deleatItem(string id)
+        public void deleteItem(string id)
         {
             var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == id);
 

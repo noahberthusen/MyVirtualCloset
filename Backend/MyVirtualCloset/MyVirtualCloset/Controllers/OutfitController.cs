@@ -30,8 +30,7 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("create")]
         public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
         {
-            var re = _outfitService.createOutfit(User.Identity.Name, name);
-            return Ok(re);
+            return Ok(_outfitService.createOutfit(User.Identity.Name, name));
         }
 
         /// <summary>
@@ -64,7 +63,11 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Removes base outfit and all clothing items from outfit
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("deleteOutfit")]
         public IActionResult deleteOutfit([FromForm(Name = "outfitId")] String outfitId)
@@ -81,10 +84,10 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("viewOutfit")]
-        public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
+        public IActionResult viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
-            return _outfitService.viewOutfit(outfitId);
+            return Ok(_outfitService.viewOutfit(outfitId));
         }
 
 
@@ -95,9 +98,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewByUser")]
-        public List<List<Outfit>> viewUserOutfits()
+        public IActionResult viewUserOutfits()
         {
-            return _outfitService.viewOutfitsByUser(User.Identity.Name);
+            return Ok(_outfitService.viewOutfitsByUser(User.Identity.Name));
         }
     }
 }
