@@ -9,5 +9,6 @@ namespace MyVirtualCloset.Core.Clothes
         List<ClothingItem> viewClothesIdByUser(string user);
         List<ClothingItem> searchTags(string tag);
         ClothingItem getClothingItem(string id);
+        void deleatItem(string id);
     }
 }
