@@ -76,6 +76,6 @@ angular-deploy:
         - cd Frontend/MyVirtualCloset
         - npm install
     script:
-        - sudo rm /var/www/html/assets -rf *
+        - sudo rm -rf /var/www/html/
         - ng build --prod
         - sudo mv ./dist/MyVirtualCloset/* /var/www/html/
