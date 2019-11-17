@@ -60,9 +60,9 @@
         </form>
     </mat-card>
 
-    <p *ngIf="currentTop"><img [src]="'data:image/jpg;base64,'+currentTop.image"></p>
-    <p *ngIf="currentBottom"><img [src]="'data:image/jpg;base64,'+currentBottom.image"></p>
-    <p *ngIf="currentMisc"><img [src]="'data:image/jpg;base64,'+currentMisc.image"></p>
+    <p *ngIf="currentTop"><img [src]="'data:image/jpg;base64,'+currentTop.image" class="center top-item"></p>
+    <p *ngIf="currentBottom"><img [src]="'data:image/jpg;base64,'+currentBottom.image" class="center"></p>
+    <p *ngIf="currentMisc"><img [src]="'data:image/jpg;base64,'+currentMisc.image" class="center"></p>
   </div>
 </div>
 
