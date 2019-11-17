@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
 import { Image } from '../../models/Image';
 import { OutfitService } from 'src/app/services/outfit.service';
@@ -21,6 +22,7 @@ import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
 export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
+  faArrowCircleUp = faArrowCircleUp;
   currentTop = null;
   currentBottom = null;
   currentMisc = null;

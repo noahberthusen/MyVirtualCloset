@@ -56,3 +56,8 @@ mat-card{
 .top-item {
     margin-top: 10%;
 }
+
+.upload {
+    float: right;
+    margin-top: 15px;
+}

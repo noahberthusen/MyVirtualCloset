@@ -13,7 +13,7 @@
               <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
           </carousel>
-          <button mat-button (click)="initAddClothingModalTop()">Upload New Item </button>
+          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalTop()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
 
         </mat-expansion-panel>
 
@@ -28,7 +28,7 @@
              <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
             </slide>
         </carousel>
-        <button mat-button (click)="initAddClothingModalBottom()">Upload New Item </button>
+        <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -41,25 +41,12 @@
                  <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
                 </slide>
           </carousel>
-          <button mat-button (click)="initAddClothingModalMisc()">Upload New Item </button>
+          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
       </mat-accordion>  
     </mat-card>  
   </div>
   <div class="outfit">
-
-    <mat-card class="outfitCard">
-        <mat-card-title>
-            <strong>Outfit</strong>
-        </mat-card-title>
-        <form [formGroup]="userInput" class="my-form">
-            <mat-form-field class="full-width">
-                <mat-label for="outfitName">Outfit Name</mat-label>
-                <input matInput required type="text" formControlName="outfitName" class="form-control" />
-            </mat-form-field>
-        </form>
-    </mat-card>
-
     <p *ngIf="currentTop"><img [src]="'data:image/jpg;base64,'+currentTop.image" class="center top-item"></p>
     <p *ngIf="currentBottom"><img [src]="'data:image/jpg;base64,'+currentBottom.image" class="center"></p>
     <p *ngIf="currentMisc"><img [src]="'data:image/jpg;base64,'+currentMisc.image" class="center"></p>
