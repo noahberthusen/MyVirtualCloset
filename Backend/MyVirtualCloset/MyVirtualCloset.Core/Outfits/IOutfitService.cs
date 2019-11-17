@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MyVirtualCloset.Core.Outfits
 {
@@ -12,6 +10,7 @@ namespace MyVirtualCloset.Core.Outfits
         void removeItemFromOutfit(string outfitId, string itemId);
         List<List<Outfit>> viewOutfitsByUser(string user);
         List<Outfit> viewOutfit(string outfitId);
+        void deleteOutfit(string outfitId);
 
     }
 }

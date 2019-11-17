@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.Outfits;
@@ -32,8 +30,7 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("create")]
         public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
         {
-            var re = _outfitService.createOutfit(User.Identity.Name, name);
-            return Ok(re);
+            return Ok(_outfitService.createOutfit(User.Identity.Name, name));
         }
 
         /// <summary>
@@ -67,6 +64,19 @@ namespace MyVirtualCloset.Api.Controllers
         }
 
         /// <summary>
+        /// Removes base outfit and all clothing items from outfit
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("deleteOutfit")]
+        public IActionResult deleteOutfit([FromForm(Name = "outfitId")] String outfitId)
+        {
+            _outfitService.deleteOutfit(outfitId);
+            return Ok();
+        }
+
+        /// <summary>
         /// Returns a specific selected outfit.
         /// </summary>
         /// <param name="outfitId"></param>
@@ -74,10 +84,10 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("viewOutfit")]
-        public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
+        public IActionResult viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
-            return _outfitService.viewOutfit(outfitId);
+            return Ok(_outfitService.viewOutfit(outfitId));
         }
 
 
@@ -88,9 +98,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewByUser")]
-        public List<List<Outfit>> viewUserOutfits()
+        public IActionResult viewUserOutfits()
         {
-            return _outfitService.viewOutfitsByUser(User.Identity.Name);
+            return Ok(_outfitService.viewOutfitsByUser(User.Identity.Name));
         }
     }
 }
