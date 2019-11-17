@@ -7,6 +7,11 @@ import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ImagesService } from 'src/app/services/images.service';
+import { UploadComponent } from 'src/app/components/upload/upload.component';
+import { UploadTopComponent } from '../upload-top/upload-top.component';
+import { UploadBottomComponent } from '../upload-bottom/upload-bottom.component';
+import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
+
 
 @Component({
   selector: 'app-build-outfit',
@@ -93,22 +98,35 @@ export class BuildOutfitComponent implements OnInit {
     this.currentTop = null;
   }
 
-  chooseTops(){
-    this.clothingItemService.searchForClothes("top")
-    .subscribe(res => {
-      this.tops = res;
-      console.log("clothing item service used");
-      console.log(this.tops);
-      console.log(this.tops[0].tags);
-    });
-    // this.clothing.forEach(image => {
-    //   if (image.tags.includes("green")){
-    //     this.tops.push(image);
-    //   }
-    // });
-    console.log(this.tops);
-    return this.tops;
+  initAddClothingModal() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
   }
+
+  initAddClothingModalTop() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadTopComponent, inputs, {});
+  }
+
+  initAddClothingModalBottom() {
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadBottomComponent, inputs, {});
+  }
+
+  initAddClothingModalMisc() {
+    console.log("inside misc upload");
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadMiscComponent, inputs, {});
+  }
+
  
   selectTop(picture) {
     this.currentTop = picture;

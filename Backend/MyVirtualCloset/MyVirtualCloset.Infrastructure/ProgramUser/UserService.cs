@@ -36,5 +36,11 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             return newUser;
         }
+
+        public string GetUserById(string userId)
+        {
+            var user = _context.User.SingleOrDefault(x => x.Id == userId);
+            return user.Username;
+        }
     }
 }

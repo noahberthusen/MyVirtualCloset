@@ -8,6 +8,10 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
+import { SendNotificationComponent } from './components/send-notification/send-notification.component';
+import { UploadTopComponent } from './components/upload-top/upload-top.component';
+import { UploadBottomComponent } from './components/upload-bottom/upload-bottom.component';
+import { UploadMiscComponent } from './components/upload-misc/upload-misc.component';
 
 
 
@@ -42,6 +46,22 @@ const routes: Routes = [
   //   path: 'home',
   //   component: HomeComponent
   // },
+  {
+    path: 'send-notification',
+    component:SendNotificationComponent
+  },
+  {
+    path: 'upload-top',
+    component: UploadTopComponent
+  },
+  {
+    path: 'upload-bottom',
+    component: UploadBottomComponent
+  },
+  {
+    path: 'upload-misc',
+    component: UploadMiscComponent
+  },
   {
     path: '**',
     redirectTo: '',

@@ -8,7 +8,7 @@ import { Tag } from 'src/app/models/Tag';
   providedIn: 'root'
 })
 export class ClothingItemService {
-  tag: Tag;
+  tags: string;
   constructor(private http: HttpClient) { }
 
   viewAllUsersClothes() {
@@ -32,28 +32,28 @@ export class ClothingItemService {
     }));
   }
 
-  searchForClothes(searchTag: string) {
+  searchForClothes(myTag: string) {
 
     console.log("inside of searchForClothes");
-    //CURRENTLY SEARCHES BY ONE TAG ONLY
-    // this.tag= this.tag+tagsArray[0].name;
-    // var i;
-    // for(i =1; i<tagsArray.length;i++){
-    //   this.tag= this.tag+";"+tagsArray[i].name;
-    // }
+    const formData = new FormData();
 
-    this.tag.name = searchTag;
-    return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', this.tag)
+    this.tags= myTag;
+
+    formData.append('tags', this.tags);
+
+    return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', formData)
     .pipe(map(res => {
-      console.log("made post call to search using " + searchTag);
+      console.log("made post call to search using a tag");
       console.log(res);
       let clothing: Image[] = [];
       res.forEach(obj => {
         let image = new Image();
-        image.name = obj.name;
-        image.tags = obj.tags;
-        image.image = obj.image;
-        clothing.push(image);
+        if (obj != null){
+          image.name = obj.name;
+          image.tags = obj.tags;
+          image.image = obj.image;
+          clothing.push(image);
+        }
       });
       return clothing;
     }));

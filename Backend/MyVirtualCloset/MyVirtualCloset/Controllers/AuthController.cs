@@ -51,7 +51,7 @@ namespace MyVirtualCloset.Api.Controllers
         }
 
         /// <summary>
-        /// Function for testing durning devlopment.
+        /// Function for testing during devlopment.
         /// </summary>
         /// <returns></returns>
         /// <remarks></remarks>

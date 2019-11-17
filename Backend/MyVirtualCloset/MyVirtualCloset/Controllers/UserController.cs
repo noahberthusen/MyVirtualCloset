@@ -41,6 +41,17 @@ namespace MyVirtualCloset.Api.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Returns the username associated with a userId.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost("get")]
+        public IActionResult GetUserById([FromBody] string userId)
+        {
+            return Ok(_userService.GetUserById(userId));
+        }
+
 
     }
 }
