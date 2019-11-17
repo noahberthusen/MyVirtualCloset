@@ -8,7 +8,7 @@ import { Tag } from 'src/app/models/Tag';
   providedIn: 'root'
 })
 export class ClothingItemService {
-  tag: string;
+  tag: Tag;
   constructor(private http: HttpClient) { }
 
   viewAllUsersClothes() {
@@ -42,7 +42,8 @@ export class ClothingItemService {
     //   this.tag= this.tag+";"+tagsArray[i].name;
     // }
 
-    return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', searchTag)
+    this.tag.name = searchTag;
+    return this.http.post<Image[]>('https://localhost:44383/api/ClothingItem/search', this.tag)
     .pipe(map(res => {
       console.log("made post call to search using " + searchTag);
       console.log(res);

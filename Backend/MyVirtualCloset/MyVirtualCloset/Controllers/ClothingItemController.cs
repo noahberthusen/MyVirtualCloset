@@ -89,9 +89,10 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("search")]
-        public List<ReturnImage> searchByTags([FromBody] string tag)
+        public List<ReturnImage> searchByTags([FromBody] tag value)
         {
-            var re = _clothingService.searchTags(tag);
+            string myTag = value.name;
+            var re = _clothingService.searchTags(myTag);
             var re2 = new List<ReturnImage>();
             foreach (var i in re)
             {
