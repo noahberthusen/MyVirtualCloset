@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyVirtualCloset.Core.Outfits
+﻿namespace MyVirtualCloset.Core.Outfits
 {
     public class Outfit
     {
@@ -10,6 +6,9 @@ namespace MyVirtualCloset.Core.Outfits
         public string ItemID { get; set; }
         public string User { get; set; }
         public string Name { get; set; }
-        public string Key { get; set; }
+        public string PKey { get; set; }
+        public string Description { get; set; }
+        public string Tags { get; set; }
+        public bool Private { get; set; }
     }
 }

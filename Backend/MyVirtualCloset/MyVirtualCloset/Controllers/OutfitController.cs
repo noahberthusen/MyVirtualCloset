@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.Outfits;
@@ -30,10 +28,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("create")]
-        public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
+        public IActionResult CreateOutfit([FromBody] Outfit outfit)
         {
-            var re = _outfitService.createOutfit(User.Identity.Name, name);
-            return Ok(re);
+            return Ok(_outfitService.createOutfit(User.Identity.Name, outfit));
         }
 
         /// <summary>
@@ -67,6 +64,19 @@ namespace MyVirtualCloset.Api.Controllers
         }
 
         /// <summary>
+        /// Removes base outfit and all clothing items from outfit
+        /// </summary>
+        /// <param name="outfitId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("deleteOutfit")]
+        public IActionResult deleteOutfit([FromForm(Name = "outfitId")] String outfitId)
+        {
+            _outfitService.deleteOutfit(outfitId);
+            return Ok();
+        }
+
+        /// <summary>
         /// Returns a specific selected outfit.
         /// </summary>
         /// <param name="outfitId"></param>
@@ -74,23 +84,35 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("viewOutfit")]
-        public List<Outfit> viewOutfits([FromForm(Name = "outfitId")] String outfitId)
+        public IActionResult viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
 
-            return _outfitService.viewOutfit(outfitId);
+            return Ok(_outfitService.viewOutfit(outfitId));
         }
 
 
         /// <summary>
-        /// Returns all outfits from a specific user.
+        /// Returns all outfits from a specific user. Should only be used when accessing your own profile
         /// </summary>
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewByUser")]
-        public List<List<Outfit>> viewUserOutfits()
+        [HttpPost("viewByUser")]
+        public IActionResult viewUserOutfits([FromBody] string user)
         {
-            return _outfitService.viewOutfitsByUser(User.Identity.Name);
+            return Ok(_outfitService.viewOutfitsByUser(user));
+        }
+
+        /// <summary>
+        /// Returns all outfits that are public. Should be used when viewing profiles other than the current user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("viewPublicByUser")]
+        public IActionResult viewPublicUserOutfits([FromBody] string user)
+        {
+            return Ok(_outfitService.viewPublicOutfitsByUser(user));
         }
     }
 }

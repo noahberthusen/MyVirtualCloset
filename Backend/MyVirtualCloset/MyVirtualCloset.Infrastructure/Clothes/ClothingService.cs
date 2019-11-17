@@ -52,7 +52,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             return clothSelected;
         }
 
-        public List<ClothingItem> searchTags(string tag)
+        public List<ClothingItem> searchTags(string tag, string user)
         {
             var clothSelected = _context.tag.Where(x => x.name == tag);
 
@@ -60,7 +60,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 
             foreach (var i in clothSelected)
             {
-                var foundItem = _context.ClothingItem.SingleOrDefault(x => x.id == i.item);
+                var foundItem = _context.ClothingItem.SingleOrDefault(x => x.id == i.item && x.user == user);
                 re.Add(foundItem);
             }
 
@@ -75,7 +75,7 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             return clothSelected.ToList();
         }
 
-        public void deleatItem(string id)
+        public void deleteItem(string id)
         {
             var clothSelected = _context.ClothingItem.SingleOrDefault(x => x.id == id);
 

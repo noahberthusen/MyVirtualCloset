@@ -63,10 +63,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpGet("viewAllUserClothes")]
-        public List<ClothingItem> viewAllUserClothes()
+        public IActionResult viewAllUserClothes()
         {
-            var clothes = _clothingService.viewClothesIdByUser(User.Identity.Name);
-            return clothes;
+            return Ok(_clothingService.viewClothesIdByUser(User.Identity.Name));
         }
 
         /// <summary>
@@ -77,24 +76,33 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("search")]
-        public List<ClothingItem> searchByTags([FromForm(Name = "tags")] string tag)
+        public IActionResult searchByTags([FromForm(Name = "tags")] string tag)
         {
-            var re = _clothingService.searchTags(tag);
-            return re;
+            return Ok(_clothingService.searchTags(tag, User.Identity.Name));
         }
 
+        /// <summary>
+        /// Returns information about clothingItem with id 'id'
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
-        [HttpGet("getById")]
+        [HttpPost("getById")]
         public IActionResult getById([FromBody] string id)
         {
             return Ok(_clothingService.getClothingItem(id));
         }
 
+        /// <summary>
+        /// Deletes a clothing item with id 'id' from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("deleteItem")]
         public IActionResult deleteItem([FromForm(Name = "id")] string id)
         {
-            _clothingService.deleatItem(id);
+            _clothingService.deleteItem(id);
             return Ok();
         }
     }
