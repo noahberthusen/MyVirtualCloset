@@ -28,9 +28,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("create")]
-        public IActionResult CreateOutfit([FromForm(Name = "name")] String name)
+        public IActionResult CreateOutfit([FromBody] Outfit outfit)
         {
-            return Ok(_outfitService.createOutfit(User.Identity.Name, name));
+            return Ok(_outfitService.createOutfit(User.Identity.Name, outfit));
         }
 
         /// <summary>
@@ -92,15 +92,27 @@ namespace MyVirtualCloset.Api.Controllers
 
 
         /// <summary>
-        /// Returns all outfits from a specific user.
+        /// Returns all outfits from a specific user. Should only be used when accessing your own profile
         /// </summary>
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewByUser")]
-        public IActionResult viewUserOutfits()
+        [HttpPost("viewByUser")]
+        public IActionResult viewUserOutfits([FromBody] string user)
         {
-            return Ok(_outfitService.viewOutfitsByUser(User.Identity.Name));
+            return Ok(_outfitService.viewOutfitsByUser(user));
+        }
+
+        /// <summary>
+        /// Returns all outfits that are public. Should be used when viewing profiles other than the current user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("viewPublicByUser")]
+        public IActionResult viewPublicUserOutfits([FromBody] string user)
+        {
+            return Ok(_outfitService.viewPublicOutfitsByUser(user));
         }
     }
 }
