@@ -1,0 +1,33 @@
+<mat-card>    
+    <button mat-button (click)="close()">x</button>
+    <mat-card-title>    
+        <strong>Send Notification</strong>   
+    </mat-card-title>    
+    
+    <mat-card-content>    
+        <form class="form" [formGroup]="signupForm">    
+            <table class="form-table">     
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="full-width">    
+                            <input matInput type="username" formControlName="username" placeholder="Username (userID)" required> 
+                        </mat-form-field>    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="full-width">    
+                            <input matInput formControlName="message" placeholder="Message" required>    
+                        </mat-form-field>  
+                    </td>    
+                </tr>   
+                <tr>    
+                    <td colspan="2" class="content-center">    
+                        <!-- websocket WIP -->
+                        <button mat-raised-button color="accent" (click)="sendMessage()" [disabled]="signupForm.invalid">Send</button>    
+                    </td>    
+                </tr>    
+            </table>    
+        </form>    
+    </mat-card-content>    
+</mat-card> 

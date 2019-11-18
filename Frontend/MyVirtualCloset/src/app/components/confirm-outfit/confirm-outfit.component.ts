@@ -97,7 +97,8 @@ export class ConfirmOutfitComponent implements OnInit {
     //initialize outfit
     this.outfit.name= this.outfitName;
     //create outfit in database
-    this.outfitId = this.uploadOutfitService.createOutfit(this.outfit);
+    // this.outfitId = 
+    this.uploadOutfitService.createOutfit(this.outfit);
 
     //add top to database
     this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[0].id);

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DynamicHelp xmlns="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xsi:schemaLocation="http://msdn.microsoft.com/vsdata/xsd/vsdh.xsd">	
+   <LINKGROUP ID="MyVirtualCloset.Api" Title="MyVirtualCloset.Api Reference Help" Priority="2100">
+      <GLYPH Expanded="vs:/ctxhelp_show.gif" Collapsed="vs:/ctxhelp_hide.gif"/>
+   </LINKGROUP>
+
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000001.html" LinkGroup="MyVirtualCloset.Api">AuthController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController.AuthController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000002.html" LinkGroup="MyVirtualCloset.Api">AuthController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController.ChangePassword" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000006.html" LinkGroup="MyVirtualCloset.Api">ChangePassword Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.ClothingItemController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000007.html" LinkGroup="MyVirtualCloset.Api">ClothingItemController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.ClothingItemController.ClothingItemController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000008.html" LinkGroup="MyVirtualCloset.Api">ClothingItemController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Startup.Configuration" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001F.html" LinkGroup="MyVirtualCloset.Api">Configuration Property</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Startup.Configure" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000021.html" LinkGroup="MyVirtualCloset.Api">Configure Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Startup.ConfigureServices" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000020.html" LinkGroup="MyVirtualCloset.Api">ConfigureServices Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.CreateOutfit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000E.html" LinkGroup="MyVirtualCloset.Api">CreateOutfit Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Program.CreateWebHostBuilder" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000019.html" LinkGroup="MyVirtualCloset.Api">CreateWebHostBuilder Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController.ForgotPassword" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000005.html" LinkGroup="MyVirtualCloset.Api">ForgotPassword Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController.Login" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000003.html" LinkGroup="MyVirtualCloset.Api">Login Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Program.Main" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000018.html" LinkGroup="MyVirtualCloset.Api">Main Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000016.html" LinkGroup="MyVirtualCloset.Api">MyVirtualCloset Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001A.html" LinkGroup="MyVirtualCloset.Api">MyVirtualCloset.Api Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api Reference" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000022.html" LinkGroup="MyVirtualCloset.Api">MyVirtualCloset.Api Reference</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000000.html" LinkGroup="MyVirtualCloset.Api">MyVirtualCloset.Api.Controllers Namespace</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000C.html" LinkGroup="MyVirtualCloset.Api">OutfitController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.OutfitController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000D.html" LinkGroup="MyVirtualCloset.Api">OutfitController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Program" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000017.html" LinkGroup="MyVirtualCloset.Api">Program Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.UserController.Register" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000015.html" LinkGroup="MyVirtualCloset.Api">Register Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.ServiceExtensions.RegisterServices" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001C.html" LinkGroup="MyVirtualCloset.Api">RegisterServices Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.ServiceExtensions" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001B.html" LinkGroup="MyVirtualCloset.Api">ServiceExtensions Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Startup" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001D.html" LinkGroup="MyVirtualCloset.Api">Startup Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Startup.Startup" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000001E.html" LinkGroup="MyVirtualCloset.Api">Startup Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.AuthController.Test" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000004.html" LinkGroup="MyVirtualCloset.Api">Test Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.UserController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000013.html" LinkGroup="MyVirtualCloset.Api">UserController Class</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.UserController.UserController" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000014.html" LinkGroup="MyVirtualCloset.Api">UserController Constructor</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.ClothingItemController.addImage" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000009.html" LinkGroup="MyVirtualCloset.Api">addImage Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.addToOutfit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000F.html" LinkGroup="MyVirtualCloset.Api">addToOutfit Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.removeFromOutfit" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000010.html" LinkGroup="MyVirtualCloset.Api">removeFromOutfit Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.ClothingItemController.searchByTags" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000B.html" LinkGroup="MyVirtualCloset.Api">searchByTags Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.ClothingItemController.viewAllUserClothes" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_000000000000000A.html" LinkGroup="MyVirtualCloset.Api">viewAllUserClothes Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.viewOutfits" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000011.html" LinkGroup="MyVirtualCloset.Api">viewOutfits Method</LItem>
+      </Links>
+   </Context>
+   
+
+   <Context>
+      <Keywords>
+         <KItem Name="MyVirtualCloset.Api.Controllers.OutfitController.viewUserOutfits" />
+      </Keywords>
+      <Links>
+         <LItem URL="ms-its:MyVirtualCloset.Api.chm::/topic_0000000000000012.html" LinkGroup="MyVirtualCloset.Api">viewUserOutfits Method</LItem>
+      </Links>
+   </Context>
+   
+
+</DynamicHelp>
+
