@@ -21,6 +21,7 @@ export class ClothingItemService {
         image.name = obj.name;
         image.tags = obj.tags;
         image.image = obj.image;
+        image.id = obj.id;
         console.log(image);
         clothing.push(image);
       });
@@ -51,10 +52,26 @@ export class ClothingItemService {
           image.name = obj.name;
           image.tags = obj.tags;
           image.image = obj.image;
+          image.id = obj.id;
           clothing.push(image);
         }
       });
       return clothing;
+    }));
+  }
+
+  searchClothingItemId(myId: string) {
+    const formData = new FormData();
+    formData.append('id', myId);
+
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/getById', formData)
+    .pipe(map(res => {
+      let cloth = new ClothingItem();
+      cloth.name = res.name;
+      cloth.tags = res.tags;
+      cloth.id = res.id;
+      cloth.image = res.image;
+      return cloth;
     }));
   }
 }

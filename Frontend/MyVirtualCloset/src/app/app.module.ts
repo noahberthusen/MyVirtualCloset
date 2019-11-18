@@ -24,6 +24,7 @@ import { SendNotificationComponent } from './components/send-notification/send-n
 import { UploadTopComponent } from './components/upload-top/upload-top.component';
 import { UploadBottomComponent } from './components/upload-bottom/upload-bottom.component';
 import { UploadMiscComponent } from './components/upload-misc/upload-misc.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UploadMiscComponent } from './components/upload-misc/upload-misc.compon
     SendNotificationComponent,
     UploadTopComponent,
     UploadBottomComponent,
-    UploadMiscComponent
+    UploadMiscComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

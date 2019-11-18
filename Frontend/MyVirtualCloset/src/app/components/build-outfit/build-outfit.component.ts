@@ -3,6 +3,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
+import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';

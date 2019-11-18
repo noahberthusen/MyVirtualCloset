@@ -3,5 +3,4 @@ export class ClothingItem {
     tags: string;
     image: string; //array of bytes
     id: string;
-    user: string;
 }
