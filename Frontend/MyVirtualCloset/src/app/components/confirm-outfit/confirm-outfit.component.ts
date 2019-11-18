@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Image } from '../../models/Image';
+import { ClothingItem } from '../../models/ClothingItem';
 import { Tag } from 'src/app/models/Tag';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
-
+import { UploadOutfitService } from 'src/app/services/upload-outfit.service';
+import { Outfit } from 'src/app/models/Outfit';
 
 
 @Component({
@@ -33,12 +34,16 @@ export class ConfirmOutfitComponent implements OnInit {
   itemName: string;
 
   //saving outfit related
-  outfitItems:Image[];
+  outfitItems:ClothingItem[];
+  outfitName: string;
+  outfit: Outfit;
+  outfitId: string;
 
   constructor(
     private fb: FormBuilder, 
     private modalService: ModalService,
-    private outfitDataService: OutfitDataService
+    private outfitDataService: OutfitDataService,
+    private uploadOutfitService: UploadOutfitService
   ) { }
 
   ngOnInit() {
@@ -47,6 +52,7 @@ export class ConfirmOutfitComponent implements OnInit {
       itemName: ['', Validators.required],
     })
     this.outfitDataService.currentOutfitData.subscribe(outfitItems =>this.outfitItems = outfitItems);
+    this.outfitDataService.currentOutfitName.subscribe(outfitName =>this.outfitName = outfitName);
     console.log("updated outfit");
   }
 
@@ -88,9 +94,19 @@ export class ConfirmOutfitComponent implements OnInit {
   public submitOutfit(){
     console.log("inside submit outfit");
 
-    // TODO: api/Outfit/create
-    // TODO: api/Outfit/addTo
-    
+    //initialize outfit
+    this.outfit.name= this.outfitName;
+    //create outfit in database
+    this.outfitId = this.uploadOutfitService.createOutfit(this.outfit);
+
+    //add top to database
+    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[0].id);
+    //add bottom to database
+    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[1].id);
+    //add misc to database
+    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[2].id);
+
+
     //form related
     this.submitted = true;
     if(this.userInput.invalid){

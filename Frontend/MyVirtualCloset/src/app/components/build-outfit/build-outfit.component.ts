@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
-import { Image } from '../../models/Image';
 import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { ImagesService } from 'src/app/services/images.service';
 import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
+import { ClothingItem } from 'src/app/models/ClothingItem';
 
 
 @Component({
@@ -19,13 +19,13 @@ import { OutfitDataService } from 'src/app/services/outfit-data.service';
 export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
-  clothing: Image[];
+  clothing: ClothingItem[];
   currentTop = null;
   currentBottom = null;
   currentMisc = null;
-  tops: Image[];
+  tops: ClothingItem[];
   outfitName: string;
-  outfitItems: Image[];
+  outfitItems: ClothingItem[];
 
   userInput: FormGroup;
   submitted = false;
@@ -50,9 +50,6 @@ export class BuildOutfitComponent implements OnInit {
     this.clothingItemService.viewAllUsersClothes()
     .subscribe(res => {
       this.clothing = res;
-      // console.log("clothing item service used");
-      // console.log(this.clothing);
-      // console.log(this.clothing[0].tags);
     });
   }
 
@@ -61,8 +58,9 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   save() {
+    //TODO: confirm this work
     this.outfitItems = [this.getTop(),this.getBottom(), this.getMisc()]; 
-    this.outfitDataService.updateOutfitData(this.outfitItems);
+    this.outfitDataService.updateOutfitData(this.outfitName, this.outfitItems);
     
     //open confirm outfit modal
     this.openConfirmOutfitModal();
@@ -95,16 +93,6 @@ export class BuildOutfitComponent implements OnInit {
     this.currentMisc = null;
     this.currentTop = null;
   }
-
-  // chooseTops(){
-  //   this.clothing.forEach(image => {
-  //     if (image.tags.includes("green")){
-  //       this.tops.push(image);
-  //     }
-  //   });
-  //   console.log(this.tops);
-  //   return this.tops;
-  // }
  
   selectTop(picture) {
     this.currentTop = picture;

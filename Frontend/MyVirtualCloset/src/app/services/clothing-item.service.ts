@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Image } from '../models/Image';
 import { Tag } from 'src/app/models/Tag';
+import { ClothingItem } from 'src/app/models/ClothingItem';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class ClothingItemService {
 
   viewAllUsersClothes() {
     console.log("inside view all users clothes function");
-    let clothing: Image[] = [];
-    return this.http.get<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
+    let clothing: ClothingItem[] = [];
+    return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
       //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
-        let image = new Image();
+        let image = new ClothingItem();
         image.name = obj.name;
         image.tags = obj.tags;
         image.image = obj.image;
@@ -43,11 +43,11 @@ export class ClothingItemService {
 
     formData.append('tags', this.tags);
 
-    // return this.http.get<Image[]>('https://localhost:44383/api/ClothingItem/search', formData)
+    // return this.http.get<ClothingItem[]>('https://localhost:44383/api/ClothingItem/search', formData)
     // .pipe(map(res => {
-    //   let clothing: Image[] = [];
+    //   let clothing: ClothingItem[] = [];
     //   res.forEach(obj => {
-    //     let image = new Image();
+    //     let image = new ClothingItem();
     //     image.name = obj.name;
     //     image.tags = obj.tags;
     //     image.image = obj.image;
