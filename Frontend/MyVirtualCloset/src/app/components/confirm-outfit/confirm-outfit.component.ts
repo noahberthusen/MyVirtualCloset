@@ -115,7 +115,7 @@ export class ConfirmOutfitComponent implements OnInit {
     });
 
     //add items
-    this.addToOutfit(outfit);
+    // this.addToOutfit(outfit);
 
 
 
