@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyVirtualCloset.Core.Clothes
 {
@@ -7,7 +8,7 @@ namespace MyVirtualCloset.Core.Clothes
 
         void addClothes(string path, string tags, string name, string user, byte[] image);
         List<ClothingItem> viewClothesIdByUser(string user);
-        List<ClothingItem> searchTags(string tag, string user);
+        Task<List<ClothingItem>> searchTags(string tag, string user);
         ClothingItem getClothingItem(string id);
         void deleteItem(string id);
     }
