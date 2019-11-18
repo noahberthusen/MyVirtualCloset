@@ -44,19 +44,9 @@ export class ClothingItemService {
 
     return this.http.post<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     .pipe(map(res => {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-      console.log("made post call to search using a tag");
-      console.log(res);
-      let clothing: Image[] = [];
-=======
       console.log('i hate this')
       console.log(res);
       let clothing: ClothingItem[] = [];
->>>>>>> Stashed changes
-=======
-      let clothing: ClothingItem[] = [];
->>>>>>> 2f991f9df372274cef932b05761f88a2e39f1b95
       res.forEach(obj => {
         let image = new ClothingItem();
         if (obj != null){

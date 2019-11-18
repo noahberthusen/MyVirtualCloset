@@ -23,10 +23,6 @@ export class ProfileComponent implements OnInit {
     this.outfitService.viewAllUsersOutfits()
     .subscribe((res: any[][]) => {
       res.forEach((outfitArr: Outfit[]) => {
-<<<<<<< HEAD
-        console.log(outfitArr)
-=======
->>>>>>> 2f991f9df372274cef932b05761f88a2e39f1b95
         this.buildCard(outfitArr);
         this.outfits.push(outfitArr);
       });
@@ -34,39 +30,15 @@ export class ProfileComponent implements OnInit {
   }
 
   buildCard(outfit: Outfit[]) {
-<<<<<<< HEAD
-    console.log("in bbuild card");
-    console.log(outfit)
-    let base;
-=======
->>>>>>> 2f991f9df372274cef932b05761f88a2e39f1b95
     let tasks = [];
     outfit.forEach((item: Outfit) => {
       if (item.itemID != 'Base') {
         tasks.push(this.clothingItemService.searchClothingItemId(item.itemID));
-<<<<<<< HEAD
-      } else {
-        base = item;
-      }
-    })
-    forkJoin(tasks)
-    .subscribe((res: ClothingItem[]) => {
-      // build card here using res and outfit
-      let top;
-      let bottom;
-      let misc;
-      this.cards.push({
-        title: base.name,
-        description: base.description,
-
-      })
-=======
       }
     })
     forkJoin(tasks)
     .subscribe(res => {
       // build card here using res and outfit
->>>>>>> 2f991f9df372274cef932b05761f88a2e39f1b95
       console.log(res);
     })
   }
