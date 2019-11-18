@@ -22,10 +22,12 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             c1.Id = outfitId;
             c1.ItemID = itemId;
 
-            var existingOutfit = _context.Outfit.SingleOrDefault(x => x.Id == c1.Id);
+            var existingOutfit = _context.Outfit.FirstOrDefault(x => x.Id == c1.Id);
 
             c1.User = existingOutfit.User;
             c1.Name = existingOutfit.Name;
+            c1.Description = existingOutfit.Description;
+            c1.Tags = existingOutfit.Tags;
             c1.PKey = c1.Id + c1.ItemID;
             c1.Private = existingOutfit.Private;
 

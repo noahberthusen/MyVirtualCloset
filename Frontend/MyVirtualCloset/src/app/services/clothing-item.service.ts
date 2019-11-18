@@ -33,28 +33,30 @@ export class ClothingItemService {
     }));
   }
 
-  searchForClothes(tagsArray: Tag[]) {
+  searchForClothes(myTag: string) {
+
+    console.log("inside of searchForClothes");
     const formData = new FormData();
 
-    this.tags= this.tags+tagsArray[0].name;
-    var i;
-    for(i =1; i<tagsArray.length;i++){
-      this.tags= this.tags+";"+tagsArray[i].name;
-    }
+    this.tags= myTag;
 
     formData.append('tags', this.tags);
 
-    // return this.http.get<Image[]>('https://localhost:44383/api/ClothingItem/search', formData)
-    // .pipe(map(res => {
-    //   let clothing: Image[] = [];
-    //   res.forEach(obj => {
-    //     let image = new Image();
-    //     image.name = obj.name;
-    //     image.tags = obj.tags;
-    //     image.image = obj.image;
-    //     clothing.push(image);
-    //   });
-    //   return clothing;
-    // }));
+    return this.http.post<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
+    .pipe(map(res => {
+      console.log("made post call to search using a tag");
+      console.log(res);
+      let clothing: ClothingItem[] = [];
+      res.forEach(obj => {
+        let image = new ClothingItem();
+        if (obj != null){
+          image.name = obj.name;
+          image.tags = obj.tags;
+          image.image = obj.image;
+          clothing.push(image);
+        }
+      });
+      return clothing;
+    }));
   }
 }

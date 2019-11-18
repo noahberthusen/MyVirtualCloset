@@ -78,7 +78,7 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("search")]
         public IActionResult searchByTags([FromForm(Name = "tags")] string tag)
         {
-            return Ok(_clothingService.searchTags(tag)); ;
+            return Ok(_clothingService.searchTags(tag, User.Identity.Name));
         }
 
         /// <summary>
