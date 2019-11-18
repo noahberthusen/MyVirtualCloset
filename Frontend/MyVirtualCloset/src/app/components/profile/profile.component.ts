@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Outfit } from 'src/app/models/Outfit';
 import { OutfitService } from 'src/app/services/outfit.service';
+import { ClothingItem } from 'src/app/models/ClothingItem';
+import { ClothingItemService } from 'src/app/services/clothing-item.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -9,36 +12,50 @@ import { OutfitService } from 'src/app/services/outfit.service';
 })
 export class ProfileComponent implements OnInit {
 
-  outfits: Outfit[] = [];
+  outfits: Outfit[][] = [];
   cards: any[] = [];
   constructor(
-    private outfitService: OutfitService
+    private outfitService: OutfitService,
+    private clothingItemService: ClothingItemService
   ) { }
 
   ngOnInit() {
-    console.log("inside of profile component ngoninit");
     this.outfitService.viewAllUsersOutfits()
-    .subscribe(res => {
-      // this.outfits = res;
-      // console.log("clothing item service used");
-      // console.log(this.outfits);
-      // console.log(this.outfits[0].tags);
+    .subscribe((res: any[][]) => {
+      res.forEach((outfitArr: Outfit[]) => {
+        this.buildCard(outfitArr);
+        this.outfits.push(outfitArr);
+      });
     });
   }
 
-  foo() {
-    this.outfits.forEach((outfit) => {
-      this.cards.push({
-        title: outfit.name,
-        description: outfit.description,
-        buttontext: 'b',
-        img: 'm',
-        top:{
-          
-        }
-      })
-    });
+  buildCard(outfit: Outfit[]) {
+    let tasks = [];
+    outfit.forEach((item: Outfit) => {
+      if (item.itemID != 'Base') {
+        tasks.push(this.clothingItemService.searchClothingItemId(item.itemID));
+      }
+    })
+    forkJoin(tasks)
+    .subscribe(res => {
+      // build card here using res and outfit
+      console.log(res);
+    })
   }
+
+  // foo() {
+  //   this.outfits.forEach((outfit) => {
+  //     this.cards.push({
+  //       title: outfit.name,
+  //       description: outfit.description,
+  //       // buttontext: 'b',
+  //       img: 'm',
+  //       top:{
+          
+  //       }
+  //     })
+  //   });
+  // }
   // cards = [
   //   {
   //     title: this.outfits[this.i].name,

@@ -14,7 +14,7 @@ export class ClothingItemService {
   viewAllUsersClothes() {
     console.log("inside view all users clothes function");
     let clothing: ClothingItem[] = [];
-    return this.http.get<ClothingItem[]>('https://localhost:44383/api/ClothingItem/viewAllUserClothes')
+    return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
       //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
@@ -44,8 +44,6 @@ export class ClothingItemService {
 
     return this.http.post<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     .pipe(map(res => {
-      console.log("made post call to search using a tag");
-      console.log(res);
       let clothing: ClothingItem[] = [];
       res.forEach(obj => {
         let image = new ClothingItem();
@@ -53,10 +51,26 @@ export class ClothingItemService {
           image.name = obj.name;
           image.tags = obj.tags;
           image.image = obj.image;
+          image.id = obj.id;
           clothing.push(image);
         }
       });
       return clothing;
+    }));
+  }
+
+  searchClothingItemId(myId: string) {
+    const formData = new FormData();
+    formData.append('id', myId);
+
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/getById', formData)
+    .pipe(map(res => {
+      let cloth = new ClothingItem();
+      cloth.name = res.name;
+      cloth.tags = res.tags;
+      cloth.id = res.id;
+      cloth.image = res.image;
+      return cloth;
     }));
   }
 }
