@@ -3,7 +3,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
-import { Image } from '../../models/Image';
+import { ClothingItem } from '../../models/ClothingItem';
 import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
@@ -22,13 +22,14 @@ import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
 export class BuildOutfitComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
-  faArrowCircleUp = faArrowCircleUp;
+  clothing: ClothingItem[];
   currentTop = null;
   currentBottom = null;
   currentMisc = null;
-  tops: Image[];
-  bottoms: Image[];
-  misc: Image[];
+  faArrowCircleUp = faArrowCircleUp;
+  tops: ClothingItem[];
+  bottoms: ClothingItem[];
+  misc: ClothingItem[];
   outfitName: string;
 
   userInput: FormGroup;

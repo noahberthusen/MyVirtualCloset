@@ -22,10 +22,12 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             c1.Id = outfitId;
             c1.ItemID = itemId;
 
-            var existingOutfit = _context.Outfit.SingleOrDefault(x => x.Id == c1.Id);
+            var existingOutfit = _context.Outfit.FirstOrDefault(x => x.Id == c1.Id);
 
             c1.User = existingOutfit.User;
             c1.Name = existingOutfit.Name;
+            c1.Description = existingOutfit.Description;
+            c1.Tags = existingOutfit.Tags;
             c1.PKey = c1.Id + c1.ItemID;
             c1.Private = existingOutfit.Private;
 
@@ -82,7 +84,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
         {
             var outfits = _context.Outfit.Where(x => x.User == user);
             var groups = outfits.GroupBy(x => x.Id);
-
+        
             List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();
             foreach (var group in groups)
             {
@@ -93,7 +95,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
 
         public List<List<Outfit>> viewPublicOutfitsByUser(string user)
         {
-            var outfits = _context.Outfit.Where(x => x.User == user && !x.Private);
+            var outfits = _context.Outfit.Where(x => x.User == user && x.Private == 1);
             var groups = outfits.GroupBy(x => x.Id);
 
             List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();

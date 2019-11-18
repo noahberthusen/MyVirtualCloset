@@ -89,7 +89,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost("getById")]
-        public IActionResult getById([FromBody] string id)
+        public IActionResult getById([FromForm(Name = "id")] string id)
         {
             return Ok(_clothingService.getClothingItem(id));
         }

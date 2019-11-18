@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Image } from '../models/Image';
+import { ClothingItem } from '../models/ClothingItem';
 import { Tag } from 'src/app/models/Tag';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class UploadService {
   tags: string;
   constructor(private http: HttpClient) {}
 
-  public uploadImage(image: File, tagsArray: Tag[], name:string): Observable<Image> {
+  public uploadImage(image: File, tagsArray: Tag[], name:string): Observable<ClothingItem> {
     console.log("inside uploadImage");
 
     this.tags="";
@@ -29,7 +29,7 @@ export class UploadService {
     formData.append('tags', this.tags);       //must be of type 'tags'
     formData.append('name',name);  //must be of type 'name'
 
-    return this.http.post<Image>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/add', formData);
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/add', formData);
   }
 
 
