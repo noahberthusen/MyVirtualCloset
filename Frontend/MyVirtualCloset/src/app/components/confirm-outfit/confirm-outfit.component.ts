@@ -104,21 +104,25 @@ export class ConfirmOutfitComponent implements OnInit {
     //initialize outfit
     outfit.name = this.f.outfitName.value;
     
-    //TODO: not working, res and reject never used; create outfit in database and then use outfitId returned in the next function
-    // this.createOutfit(outfit).then(res => this.addToOutfit(outfit));
-    // this.createOutfit(outfit);
 
+
+    
+    //create outfit
     this.uploadOutfitService.createOutfit(outfit)
     .subscribe(res => {
       outfit = res;
       console.log("outfit created");
     });
 
+    //add items
+    this.addToOutfit(outfit);
+
+
+
 
     //updates outfit name in outfit data service if needed for future features
     this.outfitDataService.updateName(outfit.name);
 
-  
     //form related
     this.submitted = true;
     if(this.userInput.invalid){
@@ -127,24 +131,31 @@ export class ConfirmOutfitComponent implements OnInit {
   }
 
 
-//   public createOutfit(outfit: Outfit) {
-//     // return new Promise((resolve, reject) => {
-//       console.log('create outfit by adding name');
-//       //TODO: what is the type of the return?
-//       //TODO: input as form data
-//       this.uploadOutfitService.createOutfit(outfit)
-//     //   resolve();
-//     // });
-// }
+  public createOutfit(outfit: Outfit) {
+    return new Promise((resolve, reject) => {
+      console.log('create outfit by adding name');
+      this.uploadOutfitService.createOutfit(outfit)
+      .subscribe(res => {
+        outfit = res;
+        console.log("outfit created");
+      });
+      resolve();
+    });
+  }
 
-//   public addToOutfit(outfit: Outfit) {
-//    console.log('add items');
-//     //add top to database
-//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id);
-//     //add bottom to database
-//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id);
-//     //add misc to database
-//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id);
-// }
+  public addToOutfit(outfit: Outfit) {
+   console.log('add items');
+    //add top to database
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+    .subscribe(res => {});
+
+    //add bottom to database
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id)    
+    .subscribe(res => {});
+
+    //add misc to database
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
+    .subscribe(res => {});
+  }
   
 }

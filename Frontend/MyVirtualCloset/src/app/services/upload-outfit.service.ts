@@ -42,8 +42,22 @@ export class UploadOutfitService {
   //TODO: not sure if input param to post needs to be an array
   addToOutfit(outfitId: string, itemId: string){
     console.log("inside add to outfit");
-    this.tempArr = [outfitId, itemId]
-    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/addTo', this.tempArr);
+
+    const formData = new FormData();
+    formData.append(outfitId, itemId);
+
+    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/addTo', formData)
+    .pipe(map(res => {
+      console.log("adding and posting new item to outfit");
+      console.log(res);
+      let outfit: Outfit;
+      outfit.id = res.id;
+      outfit.itemID = res.itemID;
+      outfit.user = res.user;
+      outfit.name=res.name;
+      outfit.pKey=res.pKey;
+      //TODO: add more fields
+    }));
   }
 }
 
