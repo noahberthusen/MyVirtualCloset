@@ -82,7 +82,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
         {
             var outfits = _context.Outfit.Where(x => x.User == user);
             var groups = outfits.GroupBy(x => x.Id);
-
+        
             List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();
             foreach (var group in groups)
             {
@@ -93,7 +93,7 @@ namespace MyVirtualCloset.Infrastructure.Outfits
 
         public List<List<Outfit>> viewPublicOutfitsByUser(string user)
         {
-            var outfits = _context.Outfit.Where(x => x.User == user && !x.Private);
+            var outfits = _context.Outfit.Where(x => x.User == user && x.Private == 1);
             var groups = outfits.GroupBy(x => x.Id);
 
             List<List<Outfit>> groupedUserOutfits = new List<List<Outfit>>();

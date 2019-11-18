@@ -2,28 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Image } from '../models/Image';
+import { ClothingItem } from '../models/ClothingItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
 
-  private currentImageSubject: BehaviorSubject<Image>;
-  public currentImage: Observable<Image>;
+  private currentImageSubject: BehaviorSubject<ClothingItem>;
+  public currentImage: Observable<ClothingItem>;
 
   constructor(private http: HttpClient) {
-    this.currentImageSubject = new BehaviorSubject<Image>(JSON.parse(localStorage.getItem('currentImage')));
+    this.currentImageSubject = new BehaviorSubject<ClothingItem>(JSON.parse(localStorage.getItem('currentImage')));
     this.currentImage = this.currentImageSubject.asObservable();
   }
 
-  public get currentImageValue(): Image {
+  public get currentImageValue(): ClothingItem {
     return this.currentImageSubject.value;
   }
 
   displayImages() {
     console.log("inside clothing service");
-    return this.http.get<Image>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
+    return this.http.get<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
       .pipe(map(images => {
         console.log("inside http get request");
         console.log(images);  
