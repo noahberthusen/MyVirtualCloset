@@ -8,7 +8,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
 import { UploadOutfitService } from 'src/app/services/upload-outfit.service';
 import { Outfit } from 'src/app/models/Outfit';
-
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-confirm-outfit',
@@ -104,22 +104,21 @@ export class ConfirmOutfitComponent implements OnInit {
     //initialize outfit
     outfit.name = this.f.outfitName.value;
     
-    //create outfit in database
-    this.uploadOutfitService.createOutfit(outfit);
+    //TODO: not working, res and reject never used; create outfit in database and then use outfitId returned in the next function
+    // this.createOutfit(outfit).then(res => this.addToOutfit(outfit));
+    // this.createOutfit(outfit);
+
+    this.uploadOutfitService.createOutfit(outfit)
+    .subscribe(res => {
+      outfit = res;
+      console.log("outfit created");
+    });
 
 
-    console.log("created outfit");
-    //TODO: this.outfitId = 
+    //updates outfit name in outfit data service if needed for future features
+    this.outfitDataService.updateName(outfit.name);
 
-    //TODO: add items to outfit
-    // //add top to database
-    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[0].id);
-    // //add bottom to database
-    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[1].id);
-    // //add misc to database
-    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[2].id);
-
-
+  
     //form related
     this.submitted = true;
     if(this.userInput.invalid){
@@ -128,6 +127,24 @@ export class ConfirmOutfitComponent implements OnInit {
   }
 
 
- 
+//   public createOutfit(outfit: Outfit) {
+//     // return new Promise((resolve, reject) => {
+//       console.log('create outfit by adding name');
+//       //TODO: what is the type of the return?
+//       //TODO: input as form data
+//       this.uploadOutfitService.createOutfit(outfit)
+//     //   resolve();
+//     // });
+// }
 
+//   public addToOutfit(outfit: Outfit) {
+//    console.log('add items');
+//     //add top to database
+//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id);
+//     //add bottom to database
+//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id);
+//     //add misc to database
+//     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id);
+// }
+  
 }

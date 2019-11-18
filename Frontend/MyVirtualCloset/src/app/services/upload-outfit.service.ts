@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Outfit } from 'src/app/models/Outfit';
 // import { ClothingItem } from '../models/ClothingItem';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,14 @@ export class UploadOutfitService {
   
   createOutfit(outfit: Outfit) {
     console.log("inside create outfit");
-    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/create', outfit);
+    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/create', outfit)
+    .pipe(map(res => {
+      console.log("posting new outfit with name");
+      console.log(res);
+      let outfit: Outfit;
+      outfit.name=res.name;
+      return outfit;
+    }));
   }
 
   //TODO: not sure if input param to post needs to be an array

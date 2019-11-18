@@ -1,7 +1,10 @@
 export class Outfit {
     id: string;
-    itemId: string;
+    itemID: string;
     user: string;
     name: string;
-    key: string;
+    pKey: string;
+    description: string;
+    tags: string;
+    private: boolean;
 }

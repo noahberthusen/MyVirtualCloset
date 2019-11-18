@@ -18,11 +18,15 @@ export class OutfitDataService {
 
   constructor() { }
 
-  updateOutfitData(outfitName: string, outfitItems: ClothingItem[]){
+  updateOutfitData(outfitItems: ClothingItem[]){
+    console.log("inside update outfit of outfit data service");
+    this.outfitDataSource.next(outfitItems);
+  }
+
+  updateName(outfitName: string){
     console.log("inside update outfit of outfit data service");
 
     this.outfitNameSource.next(outfitName);
-    this.outfitDataSource.next(outfitItems);
   }
 
   public get currentItemsValue(): ClothingItem[] {

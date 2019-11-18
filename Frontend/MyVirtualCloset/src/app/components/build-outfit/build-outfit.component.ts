@@ -90,7 +90,7 @@ export class BuildOutfitComponent implements OnInit {
     // this.outfitName = this.f.outfitName.value;
     
     this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
-    this.outfitDataService.updateOutfitData(null, this.outfitItems);
+    this.outfitDataService.updateOutfitData(this.outfitItems);
 
 
     //open confirm outfit modal
