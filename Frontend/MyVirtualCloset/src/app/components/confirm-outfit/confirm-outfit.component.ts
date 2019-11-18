@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClothingItem } from '../../models/ClothingItem';
@@ -36,7 +36,6 @@ export class ConfirmOutfitComponent implements OnInit {
   //saving outfit related
   outfitItems:ClothingItem[];
   outfitName: string;
-  outfit: Outfit;
   outfitId: string;
 
   constructor(
@@ -54,6 +53,7 @@ export class ConfirmOutfitComponent implements OnInit {
 
     })
     this.outfitDataService.currentOutfitData.subscribe(outfitItems =>this.outfitItems = outfitItems);
+    //doesnt initially have a name till submitted by user in this modal
     this.outfitDataService.currentOutfitName.subscribe(outfitName =>this.outfitName = outfitName);
     console.log("updated outfit");
   }
@@ -96,13 +96,20 @@ export class ConfirmOutfitComponent implements OnInit {
   public submitOutfit(){
     console.log("inside submit outfit");
 
-    //TODO: outfit name undefined because not getting value from form
+    if(this.userInput.invalid){
+      return;
+    }
+
+    let outfit = new Outfit();
     //initialize outfit
-    // this.outfit.name = this.f.outfitName.value;
-    console.log("name is: " + this.f.outfitName.value);
+    outfit.name = this.f.outfitName.value;
+    
     //create outfit in database
-    // this.outfitId = 
-    this.uploadOutfitService.createOutfit(this.outfit);
+    this.uploadOutfitService.createOutfit(outfit);
+
+
+    console.log("created outfit");
+    //TODO: this.outfitId = 
 
     //TODO: add items to outfit
     // //add top to database

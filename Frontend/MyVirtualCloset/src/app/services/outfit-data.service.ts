@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ClothingItem } from '../models/ClothingItem';
 
+//used for getting image data from build outfit component to confirm outfit component
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +20,7 @@ export class OutfitDataService {
 
   updateOutfitData(outfitName: string, outfitItems: ClothingItem[]){
     console.log("inside update outfit of outfit data service");
-    
+
     this.outfitNameSource.next(outfitName);
     this.outfitDataSource.next(outfitItems);
   }
