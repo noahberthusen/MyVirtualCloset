@@ -9,6 +9,6 @@
         public string PKey { get; set; }
         public string Description { get; set; }
         public string Tags { get; set; }
-        public bool Private { get; set; }
+        public int Private { get; set; }
     }
 }

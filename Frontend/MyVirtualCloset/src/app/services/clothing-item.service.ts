@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Image } from '../models/Image';
+import { ClothingItem } from '../models/ClothingItem';
 import { Tag } from 'src/app/models/Tag';
 
 @Injectable({
@@ -13,15 +13,16 @@ export class ClothingItemService {
 
   viewAllUsersClothes() {
     console.log("inside view all users clothes function");
-    let clothing: Image[] = [];
-    return this.http.get<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
+    let clothing: ClothingItem[] = [];
+    return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
       //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
-        let image = new Image();
+        let image = new ClothingItem();
         image.name = obj.name;
         image.tags = obj.tags;
         image.image = obj.image;
+        image.id = obj.id;
         console.log(image);
         clothing.push(image);
       });
@@ -41,21 +42,35 @@ export class ClothingItemService {
 
     formData.append('tags', this.tags);
 
-    return this.http.post<Image[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
+    return this.http.post<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     .pipe(map(res => {
-      console.log("made post call to search using a tag");
-      console.log(res);
-      let clothing: Image[] = [];
+      let clothing: ClothingItem[] = [];
       res.forEach(obj => {
-        let image = new Image();
+        let image = new ClothingItem();
         if (obj != null){
           image.name = obj.name;
           image.tags = obj.tags;
           image.image = obj.image;
+          image.id = obj.id;
           clothing.push(image);
         }
       });
       return clothing;
+    }));
+  }
+
+  searchClothingItemId(myId: string) {
+    const formData = new FormData();
+    formData.append('id', myId);
+
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/getById', formData)
+    .pipe(map(res => {
+      let cloth = new ClothingItem();
+      cloth.name = res.name;
+      cloth.tags = res.tags;
+      cloth.id = res.id;
+      cloth.image = res.image;
+      return cloth;
     }));
   }
 }
