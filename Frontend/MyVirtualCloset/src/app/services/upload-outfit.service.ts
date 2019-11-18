@@ -15,6 +15,7 @@ export class UploadOutfitService {
 
   private currentImagesSubject: BehaviorSubject<ClothingItem[]>;
   public currentImages: Observable<ClothingItem[]>;
+  private tempArr: string[];
   
   constructor(
       private http: HttpClient,
@@ -25,16 +26,16 @@ export class UploadOutfitService {
     this.currentImages = this.currentImagesSubject.asObservable();
   }
   
-  //TODO: test post
   createOutfit(outfit: Outfit) {
     console.log("inside create outfit");
     return this.http.post<Outfit>('http://localhost/api/Outfit/create', outfit);
   }
 
-  //TODO:test post
+  //TODO: not sure if input param to post needs to be an array
   addToOutfit(outfitId: string, itemId: string){
     console.log("inside add to outfit");
-    return this.http.post<Outfit>('http://localhost/api/Outfit/addTo', outfitId, itemId);
+    this.tempArr = [outfitId, itemId]
+    return this.http.post<Outfit>('http://localhost/api/Outfit/addTo', this.tempArr);
   }
 }
 

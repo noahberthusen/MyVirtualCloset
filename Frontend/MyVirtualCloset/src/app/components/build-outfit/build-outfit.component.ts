@@ -3,10 +3,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
-import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
-import { ImagesService } from 'src/app/services/images.service';
 import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
 import { ClothingItem } from 'src/app/models/ClothingItem';
@@ -42,17 +40,15 @@ export class BuildOutfitComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private imagesService: ImagesService, 
     private clothingItemService: ClothingItemService,
-    private outfitService: OutfitService, 
     private modalService: ModalService,
     private outfitDataService: OutfitDataService
   ){}
 
   ngOnInit() {
-    this.userInput = this.fb.group({
-      outfitName: ['', Validators.required],
-    });
+    // this.userInput = this.fb.group({
+    //   outfitName: ['', Validators.required],
+    // });
 
     
     console.log("inside build outfit component");
@@ -83,31 +79,22 @@ export class BuildOutfitComponent implements OnInit {
 
   }
 
-  get f(){
-    return this.userInput.controls;
-  }
+  // get f(){
+  //   return this.userInput.controls;
+  // }
 
   save() {
-    //TODO: confirm this work
-    this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
-    this.outfitDataService.updateOutfitData(this.outfitName, this.outfitItems);
+    console.log("inside save of build outfit");
     
+    // console.log("outfitname: " +this.f.outfitName.value);
+    // this.outfitName = this.f.outfitName.value;
+    
+    this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
+    this.outfitDataService.updateOutfitData(null, this.outfitItems);
+
+
     //open confirm outfit modal
     this.openConfirmOutfitModal();
-
-    // this.submitted = true;
-    // if(this.userInput.invalid){
-    //   return;
-    // }
-    // this.outfitName = this.f.outfitName.value;
-
-    // this.outfitService.uploadOutfit(this.outfitName).subscribe(
-    //   (res) => {
-      
-    //   },
-    //   (err) => {
-      
-    //   })
   }
 
   openConfirmOutfitModal(){

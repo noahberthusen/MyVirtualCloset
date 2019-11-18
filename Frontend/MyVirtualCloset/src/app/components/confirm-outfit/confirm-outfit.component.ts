@@ -31,7 +31,7 @@ export class ConfirmOutfitComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  itemName: string;
+  // itemName: string;
 
   //saving outfit related
   outfitItems:ClothingItem[];
@@ -49,7 +49,9 @@ export class ConfirmOutfitComponent implements OnInit {
   ngOnInit() {
     console.log("inside confirm outfit component");
     this.userInput = this.fb.group({
-      itemName: ['', Validators.required],
+      // itemName: ['', Validators.required],
+      outfitName: ['', Validators.required],
+
     })
     this.outfitDataService.currentOutfitData.subscribe(outfitItems =>this.outfitItems = outfitItems);
     this.outfitDataService.currentOutfitName.subscribe(outfitName =>this.outfitName = outfitName);
@@ -94,18 +96,21 @@ export class ConfirmOutfitComponent implements OnInit {
   public submitOutfit(){
     console.log("inside submit outfit");
 
+    //TODO: outfit name undefined because not getting value from form
     //initialize outfit
-    this.outfit.name= this.outfitName;
+    // this.outfit.name = this.f.outfitName.value;
+    console.log("name is: " + this.f.outfitName.value);
     //create outfit in database
     // this.outfitId = 
     this.uploadOutfitService.createOutfit(this.outfit);
 
-    //add top to database
-    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[0].id);
-    //add bottom to database
-    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[1].id);
-    //add misc to database
-    this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[2].id);
+    //TODO: add items to outfit
+    // //add top to database
+    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[0].id);
+    // //add bottom to database
+    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[1].id);
+    // //add misc to database
+    // this.uploadOutfitService.addToOutfit(this.outfitId, this.outfitItems[2].id);
 
 
     //form related

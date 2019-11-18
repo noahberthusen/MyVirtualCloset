@@ -1,12 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadOutfitService } from './upload-outfit.service';
 
-describe('UploadOutfitService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+// describe('UploadOutfitService', () => {
+//   let component: UploadOutfitService;
+//   let fixture: ComponentFixture<UploadOutfitService>;
 
-  it('should be created', () => {
-    const service: UploadOutfitService = TestBed.get(UploadOutfitService);
-    expect(service).toBeTruthy();
-  });
-});
+//   beforeEach(() => 
+//     TestBed.configureTestingModule({
+//       declarations: [ UploadOutfitService ]
+//     }));
+
+//   it('should be created', () => {
+//     const service: UploadOutfitService = TestBed.get(UploadOutfitService);
+//     expect(service).toBeTruthy();
+//   });
+// });
