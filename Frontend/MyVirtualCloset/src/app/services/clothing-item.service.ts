@@ -34,8 +34,6 @@ export class ClothingItemService {
   }
 
   searchForClothes(myTag: string) {
-
-    console.log("inside of searchForClothes");
     const formData = new FormData();
 
     this.tags= myTag;
