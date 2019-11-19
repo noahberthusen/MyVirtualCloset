@@ -1,3 +1,8 @@
 .example-chip-list {
     width: 100%;
   }
+
+.sizing {
+  display: block;
+  height: 300px !important;
+}

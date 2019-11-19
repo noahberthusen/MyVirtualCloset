@@ -51,31 +51,19 @@ export class BuildOutfitComponent implements OnInit {
     //   outfitName: ['', Validators.required],
     // });
 
-    
-    console.log("inside build outfit component");
-
     this.clothingItemService.searchForClothes("top")
     .subscribe(res => {
       this.tops = res;
-      console.log("top received");
-      console.log(this.tops);
-      console.log(this.tops[0].tags);
     });
 
     this.clothingItemService.searchForClothes("bottom")
     .subscribe(res1 => {
       this.bottoms = res1;
-      console.log("bottom received");
-      console.log(this.bottoms);
-      console.log(this.bottoms[0].tags);
     });
 
     this.clothingItemService.searchForClothes("misc")
     .subscribe(res2 => {
       this.misc = res2;
-      console.log("misc received");
-      console.log(this.misc);
-      console.log(this.misc[0].tags);
     });
 
   }
@@ -134,7 +122,6 @@ export class BuildOutfitComponent implements OnInit {
   }
 
   initAddClothingModalMisc() {
-    console.log("inside misc upload");
     let inputs = {
       isMobile: false
     }

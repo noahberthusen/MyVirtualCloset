@@ -10,7 +10,7 @@
           </mat-expansion-panel-header>
           <carousel>
             <slide *ngFor="let image of tops">
-              <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+              <a (click)="selectTop(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
             </slide>
           </carousel>
           <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalTop()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
@@ -25,7 +25,7 @@
           </mat-expansion-panel-header>
         <carousel>
             <slide *ngFor="let image of bottoms">
-             <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+             <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
             </slide>
         </carousel>
         <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
@@ -38,7 +38,7 @@
           </mat-expansion-panel-header>
           <carousel>
                 <slide *ngFor="let image of misc">
-                 <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image"></a>
+                 <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
                 </slide>
           </carousel>
           <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
