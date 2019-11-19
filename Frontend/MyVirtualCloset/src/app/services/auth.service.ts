@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   login(user: User) {
+    console.log("inside auth service");
     return this.http.post<User>('http://coms-309-ks-7.misc.iastate.edu:8080/api/auth/login', user)
       .pipe(map(user => {
         if (user && user.token) {

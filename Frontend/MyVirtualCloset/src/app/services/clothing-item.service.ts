@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { ClothingItem } from '../models/ClothingItem';
 import { Tag } from 'src/app/models/Tag';
+import { ClothingItem } from 'src/app/models/ClothingItem';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class ClothingItemService {
     let clothing: ClothingItem[] = [];
     return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
-      //TODO: the array of images coming in is all of the same image.. confirm that endpoint returns correctly
       res.forEach(obj => {
         let image = new ClothingItem();
         image.name = obj.name;
