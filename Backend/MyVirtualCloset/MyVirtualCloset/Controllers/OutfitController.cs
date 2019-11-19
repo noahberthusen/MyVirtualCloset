@@ -97,10 +97,10 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         /// <remarks></remarks>
         [Authorize]
-        [HttpGet("viewByUser")]
-        public IActionResult viewUserOutfits()
+        [HttpPost("viewByUser")]
+        public IActionResult viewUserOutfits([FromBody] string user)
         {
-            return Ok(_outfitService.viewOutfitsByUser(User.Identity.Name));
+            return Ok(_outfitService.viewOutfitsByUser(user));
         }
 
         /// <summary>
