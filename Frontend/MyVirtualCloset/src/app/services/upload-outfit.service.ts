@@ -24,7 +24,7 @@ export class UploadOutfitService {
   createOutfit(outfit: Outfit) {
     console.log("inside create outfit");
 
-    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/create', outfit)
+    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', outfit)
     .pipe(map(res => {
       console.log("posting new outfit with name");
       let outfit = new Outfit();
