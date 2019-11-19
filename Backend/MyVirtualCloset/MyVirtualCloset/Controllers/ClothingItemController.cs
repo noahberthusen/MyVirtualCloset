@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using MyVirtualCloset.Core.Clothes;
 using System;
@@ -17,12 +16,10 @@ namespace MyVirtualCloset.Api.Controllers
     [ApiController]
     public class ClothingItemController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IClothingService _clothingService;
 
-        public ClothingItemController(IHostingEnvironment environment, IClothingService clothingService)
+        public ClothingItemController(IClothingService clothingService)
         {
-            this._hostingEnvironment = environment;
             this._clothingService = clothingService;
         }
 
@@ -40,9 +37,6 @@ namespace MyVirtualCloset.Api.Controllers
         {
             Guid guid = Guid.NewGuid();
             var id = guid.ToString();
-            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
-
-
 
             var bytes = default(byte[]);
             using (var stream = new MemoryStream())
