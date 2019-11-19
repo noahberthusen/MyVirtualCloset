@@ -12,6 +12,7 @@ import { Outfit } from '../models/Outfit';
 export class OutfitService {
   constructor(private http: HttpClient) {}
 
+  //TODO: remove this? not being used?
   public uploadOutfit(name:string): Observable<ClothingItem> {
     console.log("inside uploadOutfit");
   

@@ -8,7 +8,6 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
 import { UploadOutfitService } from 'src/app/services/upload-outfit.service';
 import { Outfit } from 'src/app/models/Outfit';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-confirm-outfit',
@@ -22,7 +21,7 @@ export class ConfirmOutfitComponent implements OnInit {
   submitted = false;
 
   tags: Tag[] = [
-    {name: 'stylish'},
+    // {name: 'stylish'},
   ];
 
   //chip related
@@ -31,12 +30,14 @@ export class ConfirmOutfitComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  // itemName: string;
+  strTags: string;
 
   //saving outfit related
   outfitItems:ClothingItem[];
   outfitName: string;
   outfitId: string;
+  outfit: Outfit;
+  created: boolean;
 
   constructor(
     private fb: FormBuilder, 
@@ -48,14 +49,15 @@ export class ConfirmOutfitComponent implements OnInit {
   ngOnInit() {
     console.log("inside confirm outfit component");
     this.userInput = this.fb.group({
-      // itemName: ['', Validators.required],
       outfitName: ['', Validators.required],
-
+      description: ['', Validators.required],
+      // private: ['', Validators.required]
     })
     this.outfitDataService.currentOutfitData.subscribe(outfitItems =>this.outfitItems = outfitItems);
     //doesnt initially have a name till submitted by user in this modal
     this.outfitDataService.currentOutfitName.subscribe(outfitName =>this.outfitName = outfitName);
     console.log("updated outfit");
+    this.created=false;
   }
 
   //closes modal
@@ -93,35 +95,61 @@ export class ConfirmOutfitComponent implements OnInit {
     return this.userInput.controls;
   }
 
-  public submitOutfit(){
-    console.log("inside submit outfit");
+  public submitDetails(){
+    console.log("inside submit name");
 
     if(this.userInput.invalid){
+      console.log("invalid input");
       return;
     }
 
-    let outfit = new Outfit();
+    this.outfit = new Outfit();
     //initialize outfit
-    outfit.name = this.f.outfitName.value;
-    
+    this.outfit.name = this.f.outfitName.value;
+    this.outfit.description = this.f.description.value;
 
+    //put tag items of array into a single string
+    this.strTags="";
+    this.strTags= this.strTags+this.tags[0].name;
+    var i;
+    for(i =1; i<this.tags.length;i++){
+      this.strTags= this.strTags+";"+this.tags[i].name;
+    }
+    this.outfit.tags=this.strTags;
 
-    
-    //create outfit
-    this.uploadOutfitService.createOutfit(outfit)
+    //TODO for demo 5: this.outfit.private = this.f.private.value;
+
+    this.createOutfit(this.outfit);
+
+    //used to determine whether confirm items button should appear
+    this.created=true;
+
+    //form related
+    this.submitted = true;
+    if(this.userInput.invalid){
+      return;
+    }
+  }
+
+  public submitItems(){
+    console.log("inside submit items");
+    let outfit = new Outfit();
+    outfit = this.uploadOutfitService.getOutfit();
+
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
     .subscribe(res => {
-      outfit = res;
-      console.log("outfit created");
+      console.log("top added to outfit");
     });
 
-    //add items
-    // this.addToOutfit(outfit);
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id)
+    .subscribe(res => {
+      console.log("bottom added to outfit");
+    });
 
-
-
-
-    //updates outfit name in outfit data service if needed for future features
-    this.outfitDataService.updateName(outfit.name);
+    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
+    .subscribe(res => {
+      console.log("misc added to outfit");
+    });
 
     //form related
     this.submitted = true;
@@ -132,30 +160,83 @@ export class ConfirmOutfitComponent implements OnInit {
 
 
   public createOutfit(outfit: Outfit) {
-    return new Promise((resolve, reject) => {
-      console.log('create outfit by adding name');
+    return new Promise(resolve => {
       this.uploadOutfitService.createOutfit(outfit)
       .subscribe(res => {
-        outfit = res;
         console.log("outfit created");
       });
       resolve();
     });
   }
-
-  public addToOutfit(outfit: Outfit) {
-   console.log('add items');
-    //add top to database
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
-    .subscribe(res => {});
-
-    //add bottom to database
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id)    
-    .subscribe(res => {});
-
-    //add misc to database
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
-    .subscribe(res => {});
-  }
   
 }
+
+
+
+
+
+//old code
+
+
+    // this.testingAsync(outfit);
+
+    //TODO: need to add in a wait?
+    //add items
+    // this.createOutfit(outfit).then(
+    //   value => {
+    //             this.addToOutfit(outfit)
+    //             }
+    // );
+    // this.addToOutfit(outfit);
+
+
+
+    // concat(
+    //   of(
+    //     this.uploadOutfitService.createOutfit(outfit)
+    //   ),
+    //   of(
+    //     this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+    //   )
+
+    // ).subscribe(res=> {
+    //   console.log("created outfit and added one item");
+    // });
+
+
+    // this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+    // .subscribe(res => {});
+
+
+
+
+    
+//TODO: make another function with separate button to submit
+  // this.addToOutfit(outfit);
+
+
+
+  // async testingAsync(outfit:Outfit){
+  //   const value = <number> await this.createOutfit(outfit);
+  //   console.log("async: " +value);
+
+  // }
+
+
+
+  // public addToOutfit(outfit: Outfit) {
+  //  console.log('add items');
+  //   //add top to database
+  //   this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+  //   .subscribe(res => {});
+
+  //   //add bottom to database
+  //   this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id)    
+  //   .subscribe(res => {});
+
+  //   //add misc to database
+  //   this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
+  //   .subscribe(res => {});
+    
+  //   return;
+  // }

@@ -12,51 +12,52 @@ import { map } from 'rxjs/operators';
 })
 export class UploadOutfitService {
 
-
-  // private currentImagesSubject: BehaviorSubject<ClothingItem[]>;
-  // public currentImages: Observable<ClothingItem[]>;
-  private tempArr: string[];
+  outfit: Outfit;
   
   constructor(
       private http: HttpClient,
-      // private router: Router
   ) 
   {
     console.log("inside constructor of upload outfit service");
-    // this.currentImagesSubject = new BehaviorSubject<ClothingItem[]>(JSON.parse(localStorage.getItem('currentImages')));
-    // this.currentImages = this.currentImagesSubject.asObservable();
   }
   
   createOutfit(outfit: Outfit) {
     console.log("inside create outfit");
-    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/create', outfit)
+
+    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/create', outfit)
     .pipe(map(res => {
       console.log("posting new outfit with name");
-      console.log(res);
-      let outfit: Outfit;
+      let outfit = new Outfit();
+      outfit.id=res.id;
       outfit.name=res.name;
+      outfit.description = res.description;
+      outfit.tags = res.tags;
+      this.saveOutfit(outfit);
       return outfit;
     }));
   }
 
-  //TODO: not sure if input param to post needs to be an array
+
+  saveOutfit(outfit: Outfit){
+    this.outfit = outfit;
+  }
+
+  getOutfit(){
+    return this.outfit;
+  }
+
   addToOutfit(outfitId: string, itemId: string){
     console.log("inside add to outfit");
 
     const formData = new FormData();
-    formData.append(outfitId, itemId);
+    formData.append("outfitId", outfitId);
+    formData.append("itemId", itemId);
 
-    return this.http.post<Outfit>('http://localhost:44383/api/Outfit/addTo', formData)
+
+    //TODO: post isnt working
+    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/addTo', formData)
     .pipe(map(res => {
-      console.log("adding and posting new item to outfit");
-      console.log(res);
-      let outfit: Outfit;
-      outfit.id = res.id;
-      outfit.itemID = res.itemID;
-      outfit.user = res.user;
-      outfit.name=res.name;
-      outfit.pKey=res.pKey;
-      //TODO: add more fields
+      console.log("adding new item to outfit");
     }));
   }
 }
