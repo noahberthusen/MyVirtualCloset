@@ -55,7 +55,7 @@ export class UploadOutfitService {
 
 
     //TODO: post isnt working
-    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/addTo', formData)
+    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/addTo', formData)
     .pipe(map(res => {
       console.log("adding new item to outfit");
     }));
