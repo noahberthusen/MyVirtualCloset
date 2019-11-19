@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     .subscribe((res: any[][]) => {
       // console.log(res.length);
       res.forEach((outfitArr: Outfit[]) => {
+        console.log(outfitArr)
         this.buildCard(outfitArr);
         this.outfits.push(outfitArr);
       });

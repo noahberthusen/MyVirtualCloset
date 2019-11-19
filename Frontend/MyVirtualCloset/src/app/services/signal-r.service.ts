@@ -16,7 +16,7 @@ export class SignalRService {
 
     if (isLoggedIn) {
       this.hubConnection = new HubConnectionBuilder()
-        .withUrl('https://localhost:44383/hub', {
+        .withUrl('http://coms-309-ks-7.misc.iastate.edu:8080/hub', {
           accessTokenFactory: () => currentUser.token
         })
         .build();
