@@ -23,7 +23,8 @@ export class OutfitService {
   }
 
   viewAllUsersOutfits() {
-    return this.http.get<any[][]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/viewByUser');
+    console.log('in view all outfit');
+    return this.http.get<any[][]>('https://localhost:44383/api/Outfit/viewByUser');
   }
 
 }

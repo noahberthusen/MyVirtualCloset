@@ -41,8 +41,6 @@ export class ClothingItemService {
 
     return this.http.post<ClothingItem[]>('https://localhost:44383/api/ClothingItem/search', formData)
     .pipe(map(res => {
-      console.log('i hate this')
-      console.log(res);
       let clothing: ClothingItem[] = [];
       res.forEach(obj => {
         let image = new ClothingItem();
