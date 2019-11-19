@@ -30,7 +30,19 @@ describe('UploadBottomComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async(() => {
     expect(component).toBeTruthy();
-  });
+  }));
+
+  it('form should be invalid', async(() => {
+    component.userInput.controls['itemName'].setValue('');
+    expect(component.userInput.valid).toBeFalsy();
+  }));
+
+  it('form should be valid', async(() => {
+    component.userInput.controls['itemName'].setValue('blueShirt');
+    expect(component.userInput.valid).toBeTruthy();
+  }));
+
+
 });

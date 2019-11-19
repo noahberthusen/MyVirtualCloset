@@ -6,6 +6,7 @@ using MyVirtualCloset.Core.Clothes;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace MyVirtualCloset.Api.Controllers
 {
@@ -76,9 +77,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <remarks></remarks>
         [Authorize]
         [HttpPost("search")]
-        public IActionResult searchByTags([FromForm(Name = "tags")] string tag)
+        public async Task<IActionResult> searchByTags([FromForm(Name = "tags")] string tag)
         {
-            return Ok(_clothingService.searchTags(tag, User.Identity.Name));
+            return Ok(await _clothingService.searchTags(tag, User.Identity.Name));
         }
 
         /// <summary>

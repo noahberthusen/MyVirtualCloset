@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MyVirtualCloset.Core.Clothes;
 using MyVirtualCloset.Core.DB;
 
@@ -52,15 +54,15 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             return clothSelected;
         }
 
-        public List<ClothingItem> searchTags(string tag, string user)
+        public async Task<List<ClothingItem>> searchTags(string tag, string user)
         {
-            var clothSelected = _context.tag.Where(x => x.name == tag);
+            var clothSelected = await _context.tag.Where(x => x.name == tag).ToListAsync();
 
             var re = new List<ClothingItem>();
 
             foreach (var i in clothSelected)
             {
-                var foundItem = _context.ClothingItem.SingleOrDefault(x => x.id == i.item && x.user == user);
+                var foundItem = await _context.ClothingItem.SingleOrDefaultAsync(x => x.id == i.item && x.user == user);
                 re.Add(foundItem);
             }
 

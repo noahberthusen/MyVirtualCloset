@@ -33,7 +33,8 @@ namespace MyVirtualCloset
 
             // db context
             services.AddDbContext<DataContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                ,ServiceLifetime.Transient);
 
             services.AddAuthentication(x =>
             {

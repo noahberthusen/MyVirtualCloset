@@ -26,7 +26,7 @@ export class AuthService {
 
   login(user: User) {
     console.log("inside auth service");
-    return this.http.post<User>('http://coms-309-ks-7.misc.iastate.edu:8080/api/auth/login', user)
+    return this.http.post<User>('https://localhost:44383/api/auth/login', user)
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -38,11 +38,11 @@ export class AuthService {
   }
 
   forgotPassword(user: User) {
-    return this.http.post<any>('http://coms-309-ks-7.misc.iastate.edu:8080/api/auth/forgot', user);
+    return this.http.post<any>('https://localhost:44383/api/auth/forgot', user);
   }
 
   changePassword(user: User) {
-    return this.http.post<any>('http://coms-309-ks-7.misc.iastate.edu:8080/api/auth/reset', user);
+    return this.http.post<any>('https://localhost:44383/api/auth/reset', user);
   }
 
   logout() {

@@ -6,7 +6,6 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Tag } from 'src/app/models/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppComponent } from 'src/app/app.component';
 
 class ImageSnippet {
   pending: boolean = false;

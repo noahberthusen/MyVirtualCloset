@@ -12,13 +12,14 @@ import { Outfit } from '../models/Outfit';
 export class OutfitService {
   constructor(private http: HttpClient) {}
 
+  //TODO: remove this? not being used?
   public uploadOutfit(name:string): Observable<ClothingItem> {
     console.log("inside uploadOutfit");
   
     const formData = new FormData();
     formData.append('name',name);  //must be of type 'name'
   
-    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', formData);
+    return this.http.post<ClothingItem>('https://localhost:44383/api/Outfit/create', formData);
   }
 
   viewAllUsersOutfits() {
