@@ -1,25 +1,21 @@
 <div class="container">
+  <h5>{{ currentUser().firstName }} {{ currentUser().lastName }}</h5>
     <div class="row">
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
         <mat-card>
-          <!-- <mat-card-img [src]="card.img" alt="Card image cap">
-          </mdb-card-img> -->
-            <mat-card-title>
+            <mat-card-title class="title-text">
                 <h4>{{card.title}}</h4>
             </mat-card-title>
 
-<<<<<<< HEAD
-            <!-- <a><img [src]="card.top"></a>
-            <a><img [src]="card.bobttom"></a>
-            <a><img [src]="card.misc"></a> -->
+            <p *ngIf="card.top"><img [src]="'data:image/jpg;base64,'+card.top" class="images"></p>
+            <p *ngIf="card.bottom"><img [src]="'data:image/jpg;base64,'+card.bottom" class="images"></p>
+            <p *ngIf="card.misc"><img [src]="'data:image/jpg;base64,'+card.misc" class="images"></p>
 
-=======
->>>>>>> 2f991f9df372274cef932b05761f88a2e39f1b95
-            <mat-card-content>
+            <mat-card-content class="desc">
                 {{card.description}}
             </mat-card-content>
 
-            <button mat-button color="primary">{{card.buttonText}}</button>
+            <!-- <button mat-button color="primary">{{card.buttonText}}</button> -->
         </mat-card>
       </div>
     </div>
