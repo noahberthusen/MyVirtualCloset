@@ -18,12 +18,10 @@ namespace MyVirtualCloset.Api.Controllers
     [ApiController]
     public class ClothingItemController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IClothingService _clothingService;
 
-        public ClothingItemController(IHostingEnvironment environment, IClothingService clothingService)
+        public ClothingItemController(IClothingService clothingService)
         {
-            this._hostingEnvironment = environment;
             this._clothingService = clothingService;
         }
 
@@ -41,24 +39,26 @@ namespace MyVirtualCloset.Api.Controllers
         {
             Guid guid = Guid.NewGuid();
             var id = guid.ToString();
-            var filePath = Path.Combine(_hostingEnvironment.ContentRootPath, id);
 
-
-
-            var bytes = default(byte[]);
-            using (var stream = new MemoryStream())
+            try
             {
-                file.CopyTo(stream);
-                bytes = stream.ToArray();
+                var bytes = default(byte[]);
+                using (var stream = new MemoryStream())
+                {
+                    file.CopyTo(stream);
+                    bytes = stream.ToArray();
+                }
+
+                _clothingService.addClothes(id, tags, name, User.Identity.Name, bytes);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
             }
-
-            _clothingService.addClothes(id, tags, name, User.Identity.Name, bytes);
-
             return Ok();
         }
 
         /// <summary>
-        /// Returns all the clothes that have been added to the database for that spafic user.
+        /// Returns all the clothes that have been added to the database for that specific user.
         /// </summary>
         /// <returns></returns>
         /// <remarks></remarks>
@@ -66,11 +66,19 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpGet("viewAllUserClothes")]
         public IActionResult viewAllUserClothes()
         {
-            return Ok(_clothingService.viewClothesIdByUser(User.Identity.Name));
+            List<ClothingItem> clothing = new List<ClothingItem>();
+            try
+            {
+                clothing = _clothingService.viewClothesIdByUser(User.Identity.Name);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(clothing);
         }
 
         /// <summary>
-        /// Retuns all clothing items from a specific user containing a certin tag.
+        /// Returns all clothing items from a specific user containing a certain tag.
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
@@ -79,7 +87,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("search")]
         public async Task<IActionResult> searchByTags([FromForm(Name = "tags")] string tag)
         {
-            return Ok(await _clothingService.searchTags(tag, User.Identity.Name));
+            List<ClothingItem> clothing = new List<ClothingItem>();
+            try
+            {
+                clothing = await _clothingService.searchTags(tag, User.Identity.Name);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(clothing);
         }
 
         /// <summary>

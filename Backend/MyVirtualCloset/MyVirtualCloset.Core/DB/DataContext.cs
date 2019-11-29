@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyVirtualCloset.Core.ProgramUser;
 using MyVirtualCloset.Core.Clothes;
-
 using MyVirtualCloset.Core.Outfits;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using MyVirtualCloset.Core.Auth;
+using MyVirtualCloset.Core.Companions;
 
 namespace MyVirtualCloset.Core.DB
 {
@@ -18,5 +15,6 @@ namespace MyVirtualCloset.Core.DB
         public DbSet<ResetTickets> ResetTickets { get; set; }
         public DbSet<Outfit>  Outfit { get; set; }
         public DbSet<tag> tag { get; set; }
+        public DbSet<Companion> Companion { get; set; }
     }
 }
