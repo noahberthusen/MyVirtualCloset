@@ -21,6 +21,10 @@ namespace MyVirtualCloset.Infrastructure.Companions
 
         public void addCompanion(string user, string newFriend)
         {
+            var existing = _context.Companion.SingleOrDefault(x => x.Follower == user && x.Following == newFriend);
+            if (existing != null)
+                throw new Exception("Already friends with this user");
+
             var c1 = new Companion();
             c1.Follower = user;
             c1.Following = newFriend;

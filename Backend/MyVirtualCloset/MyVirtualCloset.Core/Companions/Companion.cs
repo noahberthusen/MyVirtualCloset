@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyVirtualCloset.Core.Companions
 {
@@ -6,6 +7,7 @@ namespace MyVirtualCloset.Core.Companions
     {
         public string Follower { get; set; }
         public string Following { get; set; }
+        [Key]
         public string PKey { get; set; }
     }
 }
