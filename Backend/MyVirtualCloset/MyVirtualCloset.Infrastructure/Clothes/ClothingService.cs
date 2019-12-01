@@ -9,7 +9,6 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
 {
      public class ClothingService : IClothingService
     {
-
         private readonly DataContext _context;
 
         public ClothingService(DataContext context)
@@ -43,9 +42,6 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
                 _context.tag.Add(c2);
                 _context.SaveChanges();
             }
-
-            
-
         }
 
         public ClothingItem getClothingItem(string id)
