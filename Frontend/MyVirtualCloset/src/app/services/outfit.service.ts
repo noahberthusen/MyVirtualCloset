@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,9 +14,7 @@ export class OutfitService {
   outfit: Outfit;
   
   constructor(
-      private http: HttpClient,
-  ) 
-  {
+      private http: HttpClient, ){
     console.log("inside constructor of upload outfit service");
   }
   
@@ -37,7 +34,6 @@ export class OutfitService {
     }));
   }
 
-
   saveOutfit(outfit: Outfit){
     this.outfit = outfit;
   }
@@ -53,7 +49,6 @@ export class OutfitService {
     formData.append("outfitId", outfitId);
     formData.append("itemId", itemId);
 
-
     //TODO: post isnt working
     return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/addTo', formData)
     .pipe(map(res => {
@@ -65,7 +60,7 @@ export class OutfitService {
     console.log("inside uploadOutfit");
   
     const formData = new FormData();
-    formData.append('name',name);  //must be of type 'name'
+    formData.append('name', name);  //must be of type 'name'
   
     return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', formData);
   }
@@ -74,7 +69,6 @@ export class OutfitService {
     console.log('in view all outfit');
     return this.http.get<any[][]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/viewByUser');
   }
-
 
 }
 
