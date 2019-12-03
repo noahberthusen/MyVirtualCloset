@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyVirtualCloset.Core.Outfits
 {
@@ -12,6 +13,6 @@ namespace MyVirtualCloset.Core.Outfits
         List<List<Outfit>> viewPublicOutfitsByUser(string user);
         List<Outfit> viewOutfit(string outfitId);
         void deleteOutfit(string outfitId);
-
+        Task<List<List<Outfit>>> viewFollowingOutfits(string user);
     }
 }

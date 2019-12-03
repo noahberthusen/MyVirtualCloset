@@ -107,7 +107,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("getById")]
         public IActionResult getById([FromForm(Name = "id")] string id)
         {
-            return Ok(_clothingService.getClothingItem(id));
+            ClothingItem clothingItem = new ClothingItem();
+            try
+            {
+                clothingItem = _clothingService.getClothingItem(id);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(clothingItem);
         }
 
         /// <summary>
@@ -119,7 +127,13 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("deleteItem")]
         public IActionResult deleteItem([FromForm(Name = "id")] string id)
         {
-            _clothingService.deleteItem(id);
+            try
+            {
+                _clothingService.deleteItem(id);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
             return Ok();
         }
     }

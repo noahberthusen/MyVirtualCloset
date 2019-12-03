@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.Outfits;
@@ -30,7 +31,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("create")]
         public IActionResult CreateOutfit([FromBody] Outfit outfit)
         {
-            return Ok(_outfitService.createOutfit(User.Identity.Name, outfit));
+            Outfit newOutfit = new Outfit();
+            try
+            {
+                newOutfit = _outfitService.createOutfit(User.Identity.Name, outfit);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(newOutfit);
         }
 
         /// <summary>
@@ -44,7 +53,13 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("addTo")]
         public IActionResult addToOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
         {
-            _outfitService.addItemToOutfit(outfitId, itemId);
+            try
+            {
+                _outfitService.addItemToOutfit(outfitId, itemId);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
             return Ok();
         }
 
@@ -59,7 +74,13 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("removeFrom")]
         public IActionResult removeFromOutfit([FromForm(Name = "outfitId")] String outfitId, [FromForm(Name = "itemId")] String itemId)
         {
-            _outfitService.removeItemFromOutfit(outfitId, itemId);
+            try
+            {
+                _outfitService.removeItemFromOutfit(outfitId, itemId);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
             return Ok();
         }
 
@@ -72,7 +93,13 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("deleteOutfit")]
         public IActionResult deleteOutfit([FromForm(Name = "outfitId")] String outfitId)
         {
-            _outfitService.deleteOutfit(outfitId);
+            try
+            {
+                _outfitService.deleteOutfit(outfitId);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
             return Ok();
         }
 
@@ -86,8 +113,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("viewOutfit")]
         public IActionResult viewOutfits([FromForm(Name = "outfitId")] String outfitId)
         {
-
-            return Ok(_outfitService.viewOutfit(outfitId));
+            List<Outfit> outfit = new List<Outfit>();
+            try
+            {
+                outfit = _outfitService.viewOutfit(outfitId);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(outfit);
         }
 
 
@@ -100,7 +134,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpGet("viewByUser")]
         public IActionResult viewUserOutfits()
         {
-            return Ok(_outfitService.viewOutfitsByUser(User.Identity.Name));
+            List<List<Outfit>> outfits = new List<List<Outfit>>();
+            try
+            {
+                outfits = _outfitService.viewOutfitsByUser(User.Identity.Name);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(outfits);
         }
 
         /// <summary>
@@ -109,10 +151,37 @@ namespace MyVirtualCloset.Api.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet("viewPublicByUser")]
+        [HttpPost("viewPublicByUser")]
         public IActionResult viewPublicUserOutfits([FromBody] string user)
         {
-            return Ok(_outfitService.viewPublicOutfitsByUser(user));
+            List<List<Outfit>> outfits = new List<List<Outfit>>();
+            try
+            {
+                outfits = _outfitService.viewPublicOutfitsByUser(user);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(outfits);
+        }
+
+        /// <summary>
+        /// Returns list of all outfits that should be displayed in the user's feed
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("viewFeed")]
+        public async Task<IActionResult> viewFollowingOutfits()
+        {
+            List<List<Outfit>> feed = new List<List<Outfit>>();
+            try
+            {
+                feed = await _outfitService.viewFollowingOutfits(User.Identity.Name);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(feed);
         }
     }
 }

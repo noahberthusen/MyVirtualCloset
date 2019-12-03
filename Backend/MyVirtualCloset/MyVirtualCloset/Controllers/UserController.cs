@@ -49,7 +49,15 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("get")]
         public IActionResult GetUserById([FromBody] string userId)
         {
-            return Ok(_userService.GetUserById(userId));
+            string user;
+            try
+            {
+                user = _userService.GetUserById(userId);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(user);
         }
 
 
