@@ -1,4 +1,6 @@
-﻿namespace MyVirtualCloset.Core.Outfits
+﻿using System;
+
+namespace MyVirtualCloset.Core.Outfits
 {
     public class Outfit
     {
@@ -10,5 +12,6 @@
         public string Description { get; set; }
         public string Tags { get; set; }
         public int Private { get; set; }
+        public DateTime Date { get; set; }
     }
 }

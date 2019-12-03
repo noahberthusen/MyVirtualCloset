@@ -24,6 +24,8 @@ namespace MyVirtualCloset.Infrastructure.Companions
             var existing = _context.Companion.SingleOrDefault(x => x.Follower == user && x.Following == newFriend);
             if (existing != null)
                 throw new Exception("Already friends with this user");
+            if (user == newFriend)
+                throw new Exception("Cannot be friends with yourself");
 
             var c1 = new Companion();
             c1.Follower = user;

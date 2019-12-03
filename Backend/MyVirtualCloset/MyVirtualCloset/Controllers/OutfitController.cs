@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyVirtualCloset.Core.Outfits;
@@ -109,10 +110,29 @@ namespace MyVirtualCloset.Api.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet("viewPublicByUser")]
+        [HttpPost("viewPublicByUser")]
         public IActionResult viewPublicUserOutfits([FromBody] string user)
         {
             return Ok(_outfitService.viewPublicOutfitsByUser(user));
+        }
+
+        /// <summary>
+        /// Returns list of all outfits that should be displayed in the user's feed
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("viewFeed")]
+        public async Task<IActionResult> viewFollowingOutfits()
+        {
+            List<List<Outfit>> feed = new List<List<Outfit>>();
+            try
+            {
+                feed = await _outfitService.viewFollowingOutfits(User.Identity.Name);
+            } catch (Exception e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
+            return Ok(feed);
         }
     }
 }
