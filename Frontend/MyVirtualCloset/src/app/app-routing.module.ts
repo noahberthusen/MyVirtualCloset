@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FrontComponent } from './components/front/front.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -10,9 +9,6 @@ import { UploadComponent } from './components/upload/upload.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
 import { SendNotificationComponent } from './components/send-notification/send-notification.component';
-import { UploadTopComponent } from './components/upload-top/upload-top.component';
-import { UploadBottomComponent } from './components/upload-bottom/upload-bottom.component';
-import { UploadMiscComponent } from './components/upload-misc/upload-misc.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
@@ -47,26 +43,13 @@ const routes: Routes = [
     path: 'confirm-outfit',
     component: ConfirmOutfitComponent
   },
-  //this component was for testing
-  // {
-  //   path: 'home',
-  //   component: HomeComponent
-  // },
   {
     path: 'send-notification',
     component:SendNotificationComponent
   },
   {
-    path: 'upload-top',
-    component: UploadTopComponent
-  },
-  {
-    path: 'upload-bottom',
-    component: UploadBottomComponent
-  },
-  {
-    path: 'upload-misc',
-    component: UploadMiscComponent
+    path: 'upload',
+    component: UploadComponent
   },
   {
     path: 'profile',
