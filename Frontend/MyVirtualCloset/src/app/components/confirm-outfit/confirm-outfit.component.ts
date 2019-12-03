@@ -6,7 +6,7 @@ import { Tag } from 'src/app/models/Tag';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
-import { UploadOutfitService } from 'src/app/services/upload-outfit.service';
+import { OutfitService } from 'src/app/services/outfit.service';
 import { Outfit } from 'src/app/models/Outfit';
 
 @Component({
@@ -43,7 +43,7 @@ export class ConfirmOutfitComponent implements OnInit {
     private fb: FormBuilder, 
     private modalService: ModalService,
     private outfitDataService: OutfitDataService,
-    private uploadOutfitService: UploadOutfitService
+    private outfitService: OutfitService
   ) { }
 
   ngOnInit() {
@@ -134,19 +134,19 @@ export class ConfirmOutfitComponent implements OnInit {
   public submitItems(){
     console.log("inside submit items");
     let outfit = new Outfit();
-    outfit = this.uploadOutfitService.getOutfit();
+    outfit = this.outfitService.getOutfit();
 
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+    this.outfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
     .subscribe(res => {
       console.log("top added to outfit");
     });
 
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[1].id)
+    this.outfitService.addToOutfit(outfit.id, this.outfitItems[1].id)
     .subscribe(res => {
       console.log("bottom added to outfit");
     });
 
-    this.uploadOutfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
+    this.outfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
     .subscribe(res => {
       console.log("misc added to outfit");
     });
@@ -161,7 +161,7 @@ export class ConfirmOutfitComponent implements OnInit {
 
   public createOutfit(outfit: Outfit) {
     return new Promise(resolve => {
-      this.uploadOutfitService.createOutfit(outfit)
+      this.outfitService.createOutfit(outfit)
       .subscribe(res => {
         console.log("outfit created");
       });
