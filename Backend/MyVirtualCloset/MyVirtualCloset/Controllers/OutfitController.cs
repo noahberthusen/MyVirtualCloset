@@ -183,5 +183,27 @@ namespace MyVirtualCloset.Api.Controllers
             }
             return Ok(feed);
         }
+
+        [Authorize]
+        [HttpPost("likeOutfit")]
+        public IActionResult getLikesList([FromForm(Name = "key")] string key)
+        {
+            _outfitService.likeOutfit(key);
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("getLikes")]
+        public likes getLikes([FromForm(Name = "key")] string key)
+        {
+            return _outfitService.getsLikes(key);
+        }
+
+        [Authorize]
+        [HttpPost("getLikesList")]
+        public List<likes> getLikesList([FromBody] List<List<Outfit>> outfits)
+        {
+            return _outfitService.getLikesList(outfits);
+        }
     }
 }

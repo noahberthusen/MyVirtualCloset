@@ -14,5 +14,8 @@ namespace MyVirtualCloset.Core.Outfits
         List<Outfit> viewOutfit(string outfitId);
         void deleteOutfit(string outfitId);
         Task<List<List<Outfit>>> viewFollowingOutfits(string user);
+        likes getsLikes(string PKEY);
+        likes likeOutfit(string PKEY);
+        List<likes> getLikesList(List<List<Outfit>> outfits);
     }
 }

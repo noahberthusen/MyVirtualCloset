@@ -61,6 +61,14 @@ namespace MyVirtualCloset.Infrastructure.Outfits
             _context.Outfit.Add(c1);
             _context.SaveChanges();
 
+            var newLike = new likes();
+
+            newLike.PKey = c1.Id;
+            newLike.likesNum = 0;
+
+            _context.likes.Add(newLike);
+            _context.SaveChanges();
+
             return c1;
         }
 
@@ -139,6 +147,37 @@ namespace MyVirtualCloset.Infrastructure.Outfits
                 }
             }
             return outfits;
+        }
+
+        public likes getsLikes(string PKEY)
+        {
+            var likeNum = _context.likes.SingleOrDefault(x => x.PKey == PKEY);
+
+            return likeNum;
+        }
+
+        public likes likeOutfit(string PKEY)
+        {
+            var likeNum = _context.likes.SingleOrDefault(x => x.PKey == PKEY);
+
+            likeNum.likesNum++;
+            _context.Update(likeNum);
+            _context.SaveChanges();
+
+            return likeNum;
+        }
+
+        public List<likes> getLikesList(List<List<Outfit>> outfits)
+        {
+            List<likes> likesList = new List<likes>();
+
+            foreach (var outfit in outfits)
+            {
+                String id = outfit.First().Id;
+                var likeNum = _context.likes.SingleOrDefault(x => x.PKey == id);
+                likesList.Add(likeNum);
+            }
+            return likesList;
         }
     }
 }
