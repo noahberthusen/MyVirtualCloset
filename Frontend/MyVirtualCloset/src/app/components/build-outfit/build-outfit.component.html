@@ -2,6 +2,7 @@
   <div class="drawers">
     <mat-card>
       <mat-accordion [multi]="false">
+
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -14,7 +15,6 @@
             </slide>
           </carousel>
           <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalTop()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
-
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -23,13 +23,14 @@
               Bottoms
             </mat-panel-title>
           </mat-expansion-panel-header>
-        <carousel>
-            <slide *ngFor="let image of bottoms">
-             <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
-            </slide>
-        </carousel>
-        <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
+          <carousel>
+              <slide *ngFor="let image of bottoms">
+              <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
+              </slide>
+          </carousel>
+          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
+
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -43,6 +44,7 @@
           </carousel>
           <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
+
       </mat-accordion>  
     </mat-card>  
   </div>

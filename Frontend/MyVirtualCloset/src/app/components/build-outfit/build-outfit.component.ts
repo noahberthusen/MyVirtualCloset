@@ -10,9 +10,7 @@ import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confir
 import { OutfitDataService } from 'src/app/services/outfit-data.service';
 import { ClothingItem } from 'src/app/models/ClothingItem';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
-import { UploadTopComponent } from '../upload-top/upload-top.component';
-import { UploadBottomComponent } from '../upload-bottom/upload-bottom.component';
-import { UploadMiscComponent } from '../upload-misc/upload-misc.component';
+import { ArticleTypeService } from 'src/app/services/article-type.service';
 
 
 @Component({
@@ -27,6 +25,11 @@ export class BuildOutfitComponent implements OnInit {
   currentTop = null;
   currentBottom = null;
   currentMisc = null;
+
+  //for combining upload components
+  top = "top";
+  bottom = "bottom";
+  miscellaneous = "misc";
 
   faArrowCircleUp = faArrowCircleUp;
 
@@ -43,7 +46,8 @@ export class BuildOutfitComponent implements OnInit {
     private fb: FormBuilder, 
     private clothingItemService: ClothingItemService,
     private modalService: ModalService,
-    private outfitDataService: OutfitDataService
+    private outfitDataService: OutfitDataService,
+    private articleTypeService: ArticleTypeService
   ){}
 
   ngOnInit() {
@@ -81,7 +85,6 @@ export class BuildOutfitComponent implements OnInit {
     this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
     this.outfitDataService.updateOutfitData(this.outfitItems);
 
-
     //open confirm outfit modal
     this.openConfirmOutfitModal();
   }
@@ -100,35 +103,32 @@ export class BuildOutfitComponent implements OnInit {
     this.currentTop = null;
   }
 
-  initAddClothingModal() {
+
+  initAddClothingModalTop() {
+    this.articleTypeService.updateArticleType("top");
+    console.log("updated article type to top");
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
+  }
+  initAddClothingModalBottom() {
+    this.articleTypeService.updateArticleType("bottom");
+    console.log("updated article type");
+    let inputs = {
+      isMobile: false
+    }
+    this.modalService.init(UploadComponent, inputs, {});
+  }
+  initAddClothingModalMisc() {
+    this.articleTypeService.updateArticleType("misc");
     let inputs = {
       isMobile: false
     }
     this.modalService.init(UploadComponent, inputs, {});
   }
 
-  initAddClothingModalTop() {
-    let inputs = {
-      isMobile: false
-    }
-    this.modalService.init(UploadTopComponent, inputs, {});
-  }
 
-  initAddClothingModalBottom() {
-    let inputs = {
-      isMobile: false
-    }
-    this.modalService.init(UploadBottomComponent, inputs, {});
-  }
-
-  initAddClothingModalMisc() {
-    let inputs = {
-      isMobile: false
-    }
-    this.modalService.init(UploadMiscComponent, inputs, {});
-  }
-
- 
   selectTop(picture) {
     this.currentTop = picture;
   }

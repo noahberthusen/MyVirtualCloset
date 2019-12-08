@@ -172,4 +172,3 @@ export class ConfirmOutfitComponent implements OnInit {
 }
 
 
-

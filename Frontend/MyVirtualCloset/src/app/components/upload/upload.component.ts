@@ -6,6 +6,8 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { Tag } from 'src/app/models/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { AppComponent } from 'src/app/app.component';
+import { ArticleTypeService } from 'src/app/services/article-type.service';
 
 class ImageSnippet {
   pending: boolean = false;
@@ -20,7 +22,15 @@ class ImageSnippet {
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent {
+export class UploadComponent implements OnInit{
+  constructor(
+    private fb: FormBuilder, 
+    private imagesService: ImagesService, 
+    private uploadService: UploadService, 
+    private modalService: ModalService,
+    private articleService: ArticleTypeService
+  ){}
+ 
   encodedImage: string;
   selectedFile: ImageSnippet;
   imgURL: any;
@@ -37,17 +47,10 @@ export class UploadComponent {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: Tag[] = [
-    {name: 'shirt'},
-  ];
   itemName: string;
+  articleType: string;
+  tags: Tag[];
 
-
-  constructor(
-    private fb: FormBuilder, 
-    private imagesService: ImagesService, 
-    private uploadService: UploadService, 
-    private modalService: ModalService){}
 
   private onSuccess() {
     this.selectedFile.pending = false;
@@ -61,11 +64,14 @@ export class UploadComponent {
   }
 
   ngOnInit() {
-    //wip to avoid two modals showing up when add button chosen
-    this.modalAlreadyOpen= true;
     this.userInput = this.fb.group({
       itemName: ['', Validators.required],
     })
+    this.articleService.currentArticleType.subscribe(articleType =>this.articleType = articleType);
+    console.log("inside nginit of upload bottom: " + this.articleType);
+    this.tags = [
+      {name: this.articleType},
+    ];
   }
 
   processFile(imageInput: any) {
