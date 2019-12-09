@@ -22,6 +22,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MaterialModule,
     ToastrModule.forRoot(),
     CarouselModule.forRoot(),
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   entryComponents:[
     BuildOutfitComponent

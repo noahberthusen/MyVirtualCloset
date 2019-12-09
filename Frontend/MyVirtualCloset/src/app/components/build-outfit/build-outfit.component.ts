@@ -6,11 +6,18 @@ import { ClothingItemService } from 'src/app/services/clothing-item.service';
 import { OutfitService } from 'src/app/services/outfit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
-import { ConfirmOutfitComponent } from 'src/app/components/confirm-outfit/confirm-outfit.component';
-import { OutfitDataService } from 'src/app/services/outfit-data.service';
 import { ClothingItem } from 'src/app/models/ClothingItem';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { ArticleTypeService } from 'src/app/services/article-type.service';
+import { ToastrService } from 'ngx-toastr';
+
+
+
+//confirm outfit related
+import { Outfit } from 'src/app/models/Outfit';
+import { Tag } from 'src/app/models/Tag';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 
 @Component({
@@ -40,21 +47,43 @@ export class BuildOutfitComponent implements OnInit {
   outfitItems: ClothingItem[];
 
   userInput: FormGroup;
-  submitted = false;
+  
+
+  //confirm outfit related
+
+  tags: Tag[] = [
+    // {name: 'stylish'},
+  ];
+
+  //chip related
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  strTags: string;
+
+  //saving outfit related
+  outfitItemsConfirmOutfit:ClothingItem[];
+  outfitNameConfirmOutfit: string;
+  outfitId: string;
+  outfit: Outfit;
+  created: boolean;
 
   constructor(
     private fb: FormBuilder, 
     private clothingItemService: ClothingItemService,
     private modalService: ModalService,
-    private outfitDataService: OutfitDataService,
-    private articleTypeService: ArticleTypeService
+    private articleTypeService: ArticleTypeService,
+    //confirm outfit related
+    private fbConfirmOutfit: FormBuilder, 
+    private outfitService: OutfitService,
+    private toastr: ToastrService,
   ){}
 
-  ngOnInit() {
-    // this.userInput = this.fb.group({
-    //   outfitName: ['', Validators.required],
-    // });
+  
 
+  ngOnInit() {
     this.clothingItemService.searchForClothes("top")
     .subscribe(res => {
       this.tops = res;
@@ -70,6 +99,16 @@ export class BuildOutfitComponent implements OnInit {
       this.misc = res2;
     });
 
+    // outfit details related
+    console.log("inside confirm outfit component");
+    this.userInput = this.fbConfirmOutfit.group({
+      outfitName: ['', Validators.required],
+      description: ['', Validators.required],
+      // private: ['', Validators.required]
+    })
+    console.log("updated outfit");
+    this.created=false;
+
   }
 
   // get f(){
@@ -77,32 +116,33 @@ export class BuildOutfitComponent implements OnInit {
   // }
 
   save() {
-    console.log("inside save of build outfit");
-    
-    // console.log("outfitname: " +this.f.outfitName.value);
-    // this.outfitName = this.f.outfitName.value;
-    
-    this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
-    this.outfitDataService.updateOutfitData(this.outfitItems);
 
-    //open confirm outfit modal
-    this.openConfirmOutfitModal();
-  }
-
-  openConfirmOutfitModal(){
-    console.log("inside open confirm outfit modal");
-    let inputs = {
-      isMobile: false
-    }
-    this.modalService.init(ConfirmOutfitComponent, inputs, {});
+    this.submitDetails(()=> 
+      this.createOutfit(()=> 
+        this.submitItems(()=> 
+          this.discard()
+        )
+      )
+    );
+  
   }
 
   discard() {
+    console.log("inside discard");
     this.currentBottom = null;
     this.currentMisc = null;
     this.currentTop = null;
-  }
 
+    //outfit details
+    //name and description
+    this.userInput.reset();
+    //tags
+    const length = this.tags.length;
+    var index;
+    for (index = length; index>=0; index--) {
+      this.tags.splice(index, 1);
+    }
+  }
 
   initAddClothingModalTop() {
     this.articleTypeService.updateArticleType("top");
@@ -128,7 +168,6 @@ export class BuildOutfitComponent implements OnInit {
     this.modalService.init(UploadComponent, inputs, {});
   }
 
-
   selectTop(picture) {
     this.currentTop = picture;
   }
@@ -141,4 +180,107 @@ export class BuildOutfitComponent implements OnInit {
     this.currentMisc = picture;
   }
 
-}
+
+  //confirm outfit related
+
+  removeTag(tags: Tag): void {
+    const index = this.tags.indexOf(tags);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+  //chip related code
+   add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our tags
+    if ((value || '').trim()) {
+        this.tags.push({name: value.trim()
+      });
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  get f(){
+    return this.userInput.controls;
+  }
+
+  public submitDetails(callBackFunction){
+    setTimeout(() => {
+      console.log("inside submit name");
+      if(this.userInput.invalid){
+        this.toastr.error('Invalid outfit details');
+        console.log("invalid input");
+      return;
+      }
+
+      this.outfit = new Outfit();
+      //initialize outfit
+      this.outfit.name = this.f.outfitName.value;
+      this.outfit.description = this.f.description.value;
+      this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
+      // this.outfit.private = this.f.private.value;
+
+      //put tag items of array into a single string
+      this.strTags="";
+      this.strTags= this.strTags+this.tags[0].name;
+      var i;
+      for(i =1; i<this.tags.length;i++){
+        this.strTags= this.strTags+";"+this.tags[i].name;
+      }
+      this.outfit.tags=this.strTags;
+
+        callBackFunction();
+    }, 1000);
+
+  }
+
+  public createOutfit(callBackFunction){
+    setTimeout(() => {
+      console.log("inside create outfit");
+    
+      return new Promise(resolve => {
+        this.outfitService.createOutfit(this.outfit)
+        .subscribe(res => {
+          console.log("outfit created");
+          callBackFunction();
+        });
+        resolve();
+      });
+    }, 1000);       
+
+  }
+
+  public submitItems(callBackFunction){
+    setTimeout(() => {
+      console.log("inside submit items");
+      let outfit = new Outfit();
+      outfit = this.outfitService.getOutfit();
+      console.log(outfit.id);
+
+      this.outfitService.addToOutfit(outfit.id, this.outfitItems[0].id)
+      .subscribe(res => {
+        console.log("top added to outfit");
+      });
+
+      this.outfitService.addToOutfit(outfit.id, this.outfitItems[1].id)
+      .subscribe(res => {
+        console.log("bottom added to outfit");
+      });
+
+      this.outfitService.addToOutfit(outfit.id, this.outfitItems[2].id)
+      .subscribe(res => {
+        console.log("misc added to outfit");
+      });
+      this.toastr.success('Outfit added!');
+      callBackFunction();
+    }, 1000);    
+  }
+
+ }

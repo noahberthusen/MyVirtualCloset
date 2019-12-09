@@ -28,7 +28,7 @@
               <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
               </slide>
           </carousel>
-          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
+          <button mat-raised-button color="primary" class="upload"  (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -44,9 +44,67 @@
           </carousel>
           <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
-
       </mat-accordion>  
-    </mat-card>  
+
+      <mat-accordion>
+        
+        <mat-expansion-panel [disabled]="true" [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Outfit Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        
+        <mat-card-content>    
+            <form class="form" [formGroup]="userInput">    
+                <table class="form-table">   
+                  <mat-form-field class="full-width">    
+                      <input matInput formControlName="outfitName" placeholder="Outfit Name" required>    
+                  </mat-form-field>                   
+                </table>    
+            </form>  
+    
+            <form class="form" [formGroup]="userInput">    
+                <table class="form-table">   
+                  <mat-form-field class="full-width">    
+                      <input matInput formControlName="description" placeholder="Outfit Description" required>    
+                  </mat-form-field>                   
+                </table>    
+            </form> 
+
+            <!-- TODO: private toggle -->
+            <!-- <form class="form" [formGroup]="userInput">    
+              <table class="form-table">   
+                <mat-form-field class="full-width">    
+                </mat-form-field>                   
+              </table>    
+          </form>  -->
+          <mat-slide-toggle>Private Post</mat-slide-toggle>  
+          <div></div>
+            
+            <!-- adding tags -->
+            <mat-form-field class="example-chip-list">
+              <mat-chip-list #chipList aria-label="Tag selection">
+                <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                        [removable]="removable" (removed)="removeTag(tag)">
+                  {{tag.name}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Enter tags for outfit"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
+            </mat-form-field>
+                       
+          </mat-card-content> 
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+    
+    
+
   </div>
   <div class="outfit">
     <p *ngIf="currentTop"><img [src]="'data:image/jpg;base64,'+currentTop.image" class="center top-item"></p>
@@ -59,3 +117,6 @@
   <button mat-fab aria-label color="warn" (click)="discard()"><fa-icon [icon]="faTimes" size="2x"></fa-icon></button>
   <button mat-fab aria-label (click)="save()"><fa-icon [icon]="faCheck" size="2x"></fa-icon></button>
 </div>
+
+
+

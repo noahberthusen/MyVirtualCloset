@@ -31,7 +31,7 @@ export class OutfitService {
     }));
   }
 
-  saveOutfit(outfit: Outfit){
+saveOutfit(outfit: Outfit){
     this.outfit = outfit;
   }
 
@@ -45,7 +45,6 @@ export class OutfitService {
     formData.append("outfitId", outfitId);
     formData.append("itemId", itemId);
 
-    //TODO: post isnt working
     return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/addTo', formData)
     .pipe(map(res => {
       console.log("adding new item to outfit");
