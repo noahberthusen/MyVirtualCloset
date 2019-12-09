@@ -28,7 +28,7 @@
               <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
               </slide>
           </carousel>
-          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
+          <button mat-raised-button color="primary" class="upload" *ngIf = "!openModal" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -42,7 +42,7 @@
                  <a (click)="selectMisc(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
                 </slide>
           </carousel>
-          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
+          <button mat-raised-button color="primary" class="upload" *ngIf = "!openModal" (click)="initAddClothingModalMisc()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
       </mat-accordion>  
 
@@ -71,6 +71,8 @@
                   </mat-form-field>                   
                 </table>    
             </form> 
+
+
             
             <!-- adding tags -->
             <mat-form-field class="example-chip-list">
@@ -116,3 +118,8 @@
   <button mat-fab aria-label color="warn" (click)="discard()"><fa-icon [icon]="faTimes" size="2x"></fa-icon></button>
   <button mat-fab aria-label (click)="save()"><fa-icon [icon]="faCheck" size="2x"></fa-icon></button>
 </div>
+
+
+
+<!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
+<!-- <mat-checkbox  >Check me!</mat-checkbox> -->

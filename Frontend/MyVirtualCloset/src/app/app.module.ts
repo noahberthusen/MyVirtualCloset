@@ -44,7 +44,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     MaterialModule,
     ToastrModule.forRoot(),
     CarouselModule.forRoot(),
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   entryComponents:[
     BuildOutfitComponent

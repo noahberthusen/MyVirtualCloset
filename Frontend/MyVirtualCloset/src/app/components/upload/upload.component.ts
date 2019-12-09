@@ -8,6 +8,8 @@ import { Tag } from 'src/app/models/Tag';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { AppComponent } from 'src/app/app.component';
 import { ArticleTypeService } from 'src/app/services/article-type.service';
+import { Observable } from 'rxjs';
+
 
 class ImageSnippet {
   pending: boolean = false;
@@ -35,11 +37,9 @@ export class UploadComponent implements OnInit{
   selectedFile: ImageSnippet;
   imgURL: any;
   confirmed: boolean;
-  modalAlreadyOpen: boolean;
 
   //form related
   userInput: FormGroup;
-  submitted = false;
 
   //chip related
   visible = true;
@@ -100,7 +100,6 @@ export class UploadComponent implements OnInit{
     console.log("inside submit image");
 
     //form related
-    this.submitted = true;
     if(this.userInput.invalid){
       return;
     }
@@ -128,7 +127,6 @@ export class UploadComponent implements OnInit{
   //closes modal
   public close() {
     //wip to avoid two modals showing up when add button chosen
-    this.modalAlreadyOpen=false;
     this.modalService.destroy();
   }
 
