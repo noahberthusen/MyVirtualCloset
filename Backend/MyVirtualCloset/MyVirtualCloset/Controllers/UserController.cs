@@ -49,7 +49,7 @@ namespace MyVirtualCloset.Api.Controllers
         [HttpPost("get")]
         public IActionResult GetUserById([FromForm(Name = "id")] string userId)
         {
-            string user;
+            User user;
             try
             {
                 user = _userService.GetUserById(userId);

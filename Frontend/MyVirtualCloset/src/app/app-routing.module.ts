@@ -8,7 +8,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { UploadComponent } from './components/upload/upload.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
 import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
-import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -49,11 +48,6 @@ const routes: Routes = [
   {
     path: 'confirm-outfit',
     component: ConfirmOutfitComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'send-notification',
-    component:SendNotificationComponent,
     canActivate: [AuthGuard]
   },
   {

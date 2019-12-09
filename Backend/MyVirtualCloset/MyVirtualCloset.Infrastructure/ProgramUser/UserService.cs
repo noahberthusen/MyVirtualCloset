@@ -37,12 +37,16 @@ namespace MyVirtualCloset.Infrastructure.ProgramUser
             return newUser;
         }
 
-        public string GetUserById(string userId)
+        public User GetUserById(string userId)
         {
             var user = _context.User.SingleOrDefault(x => x.Id == userId);
             if (user == null)
                 throw new Exception("User " + userId + " does not exist");
-            return user.Username;
+
+            var user1 = new User();
+            user1.Username = user.Username;
+            user1.Id = user.Id;
+            return user1;
         }
     }
 }

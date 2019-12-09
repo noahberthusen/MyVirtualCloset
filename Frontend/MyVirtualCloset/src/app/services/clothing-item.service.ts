@@ -13,7 +13,7 @@ export class ClothingItemService {
 
   viewAllUsersClothes() {
     let clothing: ClothingItem[] = [];
-    return this.http.get<ClothingItem[]>('https://localhost:44383/api/ClothingItem/viewAllUserClothes')
+    return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
       res.forEach(obj => {
         let image = new ClothingItem();
@@ -34,7 +34,7 @@ export class ClothingItemService {
 
     formData.append('tags', this.tags);
 
-    return this.http.post<ClothingItem[]>('https://localhost:44383/api/ClothingItem/search', formData)
+    return this.http.post<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/search', formData)
     .pipe(map(res => {
       let clothing: ClothingItem[] = [];
       res.forEach(obj => {
@@ -55,7 +55,7 @@ export class ClothingItemService {
     const formData = new FormData();
     formData.append('id', myId);
 
-    return this.http.post<ClothingItem>('https://localhost:44383/api/ClothingItem/getById', formData)
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/getById', formData)
     .pipe(map(res => {
       let cloth = new ClothingItem();
       cloth.name = res.name;

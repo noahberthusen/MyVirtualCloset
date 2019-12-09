@@ -4,7 +4,8 @@
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
         <mat-card>
             <mat-card-title class="title-text">
-                <h4>{{ getUsername() }} {{card.title}}</h4>
+              <h4>{{ card.user }}</h4>
+                <h4>{{card.title}}</h4>
             </mat-card-title>
 
             <p *ngIf="card.top"><img [src]="'data:image/jpg;base64,'+card.top" class="images"></p>
@@ -15,7 +16,7 @@
                 {{card.description}}
             </mat-card-content>
 
-            <!-- <button mat-button color="primary">{{card.buttonText}}</button> -->
+            <button mat-icon-button color="accent" (click)="sendLike(card)"><mat-icon>favorite</mat-icon></button>
         </mat-card>
       </div>
     </div>

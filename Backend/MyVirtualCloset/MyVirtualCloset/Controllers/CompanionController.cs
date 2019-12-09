@@ -49,7 +49,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost("addByUsername")]
-        public IActionResult addCompanionByUsername([FromBody] string username)
+        public IActionResult addCompanionByUsername([FromForm(Name = "username")] string username)
         {
             try
             {

@@ -10,8 +10,6 @@
             </div>
             <div *ngIf="currentUser()">
                 <button mat-button routerLink="/build">Add <fa-icon [icon]="faPlusCircle"></fa-icon></button>
-                <!-- will go to profile eventually -->
-                <button mat-button (click)="openSendNotificationModal()">Send Notification</button>
                 <button mat-button routerLink="/profile">{{ currentUser().firstName }}</button>
                 <button mat-button (click)="signOut()">Sign out <fa-icon [icon]="faSignOut"></fa-icon></button>
             </div>

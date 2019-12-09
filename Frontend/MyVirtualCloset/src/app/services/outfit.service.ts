@@ -18,7 +18,7 @@ export class OutfitService {
   
   createOutfit(outfit: Outfit) {
 
-    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/create', outfit)
+    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', outfit)
     .pipe(map(res => {
       console.log("posting new outfit with name");
       let outfit = new Outfit();
@@ -46,7 +46,7 @@ export class OutfitService {
     formData.append("itemId", itemId);
 
     //TODO: post isnt working
-    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/addTo', formData)
+    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/addTo', formData)
     .pipe(map(res => {
       console.log("adding new item to outfit");
     }));
@@ -57,11 +57,11 @@ export class OutfitService {
     const formData = new FormData();
     formData.append('name', name);  //must be of type 'name'
   
-    return this.http.post<ClothingItem>('https://localhost:44383/api/Outfit/create', formData);
+    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', formData);
   }
 
   viewAllUsersOutfits() {
-    return this.http.get<any[][]>('https://localhost:44383/api/Outfit/viewByUser');
+    return this.http.get<any[][]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/viewByUser');
   }
 
 }

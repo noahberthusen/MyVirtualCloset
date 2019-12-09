@@ -14,7 +14,7 @@ export class CompanionService {
     const formData = new FormData();
 
     formData.append('user', currentUser);
-    return this.http.post<any[]>('https://localhost:44383/api/Companion/all', formData)
+    return this.http.post<any[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Companion/all', formData)
     .pipe(map(res => {
       let companions: User[] = [];
 
@@ -29,4 +29,10 @@ export class CompanionService {
     }));
   }
 
+  addCompanion(newCompanion: string){
+    const formData = new FormData();
+    formData.append('username', newCompanion);  //must be of type 'name'
+  
+    return this.http.post('http://coms-309-ks-7.misc.iastate.edu:8080/api/Companion/addByUsername', formData);
+  }
 }

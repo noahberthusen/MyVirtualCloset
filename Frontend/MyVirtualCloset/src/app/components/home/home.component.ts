@@ -8,6 +8,7 @@ import { User } from 'src/app/models/User';
 import { AuthService } from '../../services/auth.service';
 import { FeedService } from '../../services/feed.service';
 import { ClothingItemService } from '../../services/clothing-item.service';
+import { SignalRService } from 'src/app/services/signal-r.service';
 
 //angular material requires installation first: ng add @angular/material
 // import {MatButtonModule} from '@angular/material/button'; //angular material feature for using buttons
@@ -20,16 +21,18 @@ import { ClothingItemService } from '../../services/clothing-item.service';
 export class HomeComponent implements OnInit {
 
   encodedImages: string;
-  cards: any;
+  cards: any[] = [];
   myUser: User = null;
   outfits: Outfit[][] = [];
+  myCompanions: Map<string, string> = new Map<string, string>();
 
   constructor(
     private modalService: ModalService, 
     private authService: AuthService,
     private feedService: FeedService,
     private clothingItemService: ClothingItemService,
-    private router: Router) { }
+    private router: Router,
+    private signalRService: SignalRService) { }
 
   ngOnInit() {
     this.myUser = this.authService.currentUserValue;
@@ -53,41 +56,43 @@ export class HomeComponent implements OnInit {
         base = item;
       }
     })
-    //tasks.push(this.feedService.getUsersUsername(base.user));
-    console.log("here")
+    this.feedService.getUsersUsername(base.user)
+    .subscribe((myRes) => { 
+      this.myCompanions.set(myRes.id, myRes.username);
+    })
+
     forkJoin(tasks)
     .subscribe((res) => {
-      console.log("hioo")
-      console.log(res);
-      // let tagArr;
-      // let myTop;
-      // let myBottom;
-      // let myMisc;
+      let tagArr;
+      let myTop;
+      let myBottom;
+      let myMisc;
 
-      // res.forEach((item: ClothingItem) => {
-      //   tagArr = item.tags.split(";");
-      //   if (tagArr.indexOf("top") != -1) {
-      //     myTop = item.image;
-      //   } else if (tagArr.indexOf("bottom") != -1) {
-      //     myBottom = item.image;
-      //   } else if (tagArr.indexOf("misc") != -1) {
-      //     myMisc = item.image;
-      //   }
-      // })
+      res.forEach((item: ClothingItem) => {
+        tagArr = item.tags.split(";");
+        if (tagArr.indexOf("top") != -1) {
+          myTop = item.image;
+        } else if (tagArr.indexOf("bottom") != -1) {
+          myBottom = item.image;
+        } else if (tagArr.indexOf("misc") != -1) {
+          myMisc = item.image;
+        }
+      })
 
-      // this.cards.push({
-      //   user: 
-      //   title: base.name,
-      //   description: base.description,
-      //   top: myTop,
-      //   bottom: myBottom,
-      //   misc: myMisc
-      // })
+      this.cards.push({
+        user: this.myCompanions.get(base.user), 
+        userId: base.user,
+        title: base.name,
+        description: base.description,
+        top: myTop,
+        bottom: myBottom,
+        misc: myMisc
+      })
     })
   }
 
-  getUsername() {
-    return this.myUser.username;
+  sendLike(card) {
+    this.signalRService.sendNotification(this.myUser.username + " liked your outfit!", card.userId);
   }
 
 }

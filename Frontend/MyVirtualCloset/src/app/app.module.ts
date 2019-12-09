@@ -20,7 +20,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
-import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     BuildOutfitComponent,
     UploadComponent,
     ConfirmOutfitComponent,
-    SendNotificationComponent,
     ProfileComponent
   ],
   imports: [

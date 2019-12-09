@@ -7,6 +7,9 @@ import { forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { CompanionService } from '../../services/companion.service';
 import { User } from 'src/app/models/User';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorService } from 'src/app/services/error.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -20,12 +23,19 @@ export class ProfileComponent implements OnInit {
   totalOutfits: Number = 0;
   allCompanions: User[] = [];
   myUser: User = null;
+  something: boolean = false;
+
+  userForm: FormGroup;
+  submitted = false;
 
   constructor(
     private outfitService: OutfitService,
+    private fb: FormBuilder,
     private clothingItemService: ClothingItemService,
     private authService: AuthService,
-    private companionService: CompanionService
+    private companionService: CompanionService,
+    private errorService: ErrorService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -45,6 +55,10 @@ export class ProfileComponent implements OnInit {
         this.allCompanions.push(use);
       })
     })
+
+    this.userForm = this.fb.group({
+      username: ['', Validators.required]
+    });
   }
 
   buildCard(outfit: Outfit[]) {
@@ -99,6 +113,31 @@ export class ProfileComponent implements OnInit {
   }
 
   itWasClicked(){
-    console.log("You clicked it!");
+    this.something = !this.something;
+  }
+
+  get f() {
+    return this.userForm.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
+
+    let user = this.f.username.value;
+
+    this.companionService.addCompanion(user)
+    .subscribe(
+      data => {
+        this.toastr.success("Successfully added " + user + " as a companion");
+      },
+      error => {
+        console.log(error);
+        this.errorService.parseError(error);
+        this.toastr.error(this.errorService.parseError(error));
+      }
+    )
   }
 }
