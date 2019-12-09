@@ -9,13 +9,15 @@ import { ModalService } from 'src/app/services/modal.service';
 import { ClothingItem } from 'src/app/models/ClothingItem';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { ArticleTypeService } from 'src/app/services/article-type.service';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 //confirm outfit related
 import { Outfit } from 'src/app/models/Outfit';
 import { Tag } from 'src/app/models/Tag';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -45,15 +47,9 @@ export class BuildOutfitComponent implements OnInit {
   outfitItems: ClothingItem[];
 
   userInput: FormGroup;
-  submitted = false;
-
-
+  
 
   //confirm outfit related
-
-  //form related
-  userInputConfirmOutfit: FormGroup;
-  submittedConfirmOutfit = false;
 
   tags: Tag[] = [
     // {name: 'stylish'},
@@ -81,16 +77,13 @@ export class BuildOutfitComponent implements OnInit {
     private articleTypeService: ArticleTypeService,
     //confirm outfit related
     private fbConfirmOutfit: FormBuilder, 
-    private outfitService: OutfitService
+    private outfitService: OutfitService,
+    private toastr: ToastrService,
   ){}
 
   
 
   ngOnInit() {
-    // this.userInput = this.fb.group({
-    //   outfitName: ['', Validators.required],
-    // });
-
     this.clothingItemService.searchForClothes("top")
     .subscribe(res => {
       this.tops = res;
@@ -214,7 +207,7 @@ export class BuildOutfitComponent implements OnInit {
     }
   }
 
-    get f(){
+  get f(){
     return this.userInput.controls;
   }
 
@@ -222,7 +215,8 @@ export class BuildOutfitComponent implements OnInit {
     setTimeout(() => {
       console.log("inside submit name");
       if(this.userInput.invalid){
-      console.log("invalid input");
+        this.toastr.error('Invalid outfit details');
+        console.log("invalid input");
       return;
       }
 
@@ -231,6 +225,7 @@ export class BuildOutfitComponent implements OnInit {
       this.outfit.name = this.f.outfitName.value;
       this.outfit.description = this.f.description.value;
       this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
+      // this.outfit.private = this.f.private.value;
 
       //put tag items of array into a single string
       this.strTags="";
@@ -241,7 +236,6 @@ export class BuildOutfitComponent implements OnInit {
       }
       this.outfit.tags=this.strTags;
 
-      //TODO for demo 5: this.outfit.private = this.f.private.value;
         callBackFunction();
     }, 1000);
 
@@ -284,7 +278,7 @@ export class BuildOutfitComponent implements OnInit {
       .subscribe(res => {
         console.log("misc added to outfit");
       });
-
+      this.toastr.success('Outfit added!');
       callBackFunction();
     }, 1000);    
   }

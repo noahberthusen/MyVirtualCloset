@@ -22,4 +22,4 @@
 
 <router-outlet></router-outlet>
 
-<div id="modal-container" class="hidden"></div>
+<div *ngIf= "currentUser()" id="modal-container" class="hidden"></div>

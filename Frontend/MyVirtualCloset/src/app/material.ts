@@ -1,10 +1,11 @@
 import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule, MatSlideToggleModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatExpansionModule, MatGridListModule, MatChipsModule
 } from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   MatAutocompleteModule,
   MatExpansionModule,
   MatGridListModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSlideToggleModule
   ],
   exports: [
   CommonModule,
@@ -38,7 +40,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
    MatAutocompleteModule,
    MatExpansionModule,
    MatGridListModule,
-   MatChipsModule
-   ],
+   MatChipsModule,
+   MatSlideToggleModule
+  ],
 })
 export class MaterialModule { }

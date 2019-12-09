@@ -28,7 +28,7 @@
               <a (click)="selectBottom(image)"><img [src]="'data:image/jpg;base64,'+image.image" class="keep-size"></a>
               </slide>
           </carousel>
-          <button mat-raised-button color="primary" class="upload" (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
+          <button mat-raised-button color="primary" class="upload"  (click)="initAddClothingModalBottom()">Upload New Item <fa-icon [icon]="faArrowCircleUp"></fa-icon></button>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
@@ -71,6 +71,16 @@
                   </mat-form-field>                   
                 </table>    
             </form> 
+
+            <!-- TODO: private toggle -->
+            <!-- <form class="form" [formGroup]="userInput">    
+              <table class="form-table">   
+                <mat-form-field class="full-width">    
+                </mat-form-field>                   
+              </table>    
+          </form>  -->
+          <mat-slide-toggle>Private Post</mat-slide-toggle>  
+          <div></div>
             
             <!-- adding tags -->
             <mat-form-field class="example-chip-list">
@@ -87,16 +97,7 @@
                       (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>
             </mat-form-field>
-    
-            <!-- TODO: private toggle -->
-            <!-- <form class="form" [formGroup]="userInput">    
-                <table class="form-table">   
-                  <mat-form-field class="full-width">    
-                      <input matInput formControlName="outfitName" placeholder="Outfit Name" required>    
-                  </mat-form-field>                   
-                </table>    
-            </form>  -->
-            
+                       
           </mat-card-content> 
         </mat-expansion-panel>
       </mat-accordion>
@@ -116,3 +117,6 @@
   <button mat-fab aria-label color="warn" (click)="discard()"><fa-icon [icon]="faTimes" size="2x"></fa-icon></button>
   <button mat-fab aria-label (click)="save()"><fa-icon [icon]="faCheck" size="2x"></fa-icon></button>
 </div>
+
+
+
