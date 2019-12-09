@@ -10,6 +10,7 @@ import { BuildOutfitComponent } from './components/build-outfit/build-outfit.com
 import { ConfirmOutfitComponent } from './components/confirm-outfit/confirm-outfit.component';
 import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: '',
     component: FrontComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'build',
@@ -37,23 +43,28 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    component: UploadComponent
+    component: UploadComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'confirm-outfit',
-    component: ConfirmOutfitComponent
+    component: ConfirmOutfitComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'send-notification',
-    component:SendNotificationComponent
+    component:SendNotificationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'upload',
-    component: UploadComponent
+    component: UploadComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

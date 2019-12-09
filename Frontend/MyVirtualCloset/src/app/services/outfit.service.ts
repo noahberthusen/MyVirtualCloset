@@ -14,14 +14,11 @@ export class OutfitService {
   outfit: Outfit;
   
   constructor(
-      private http: HttpClient, ){
-    console.log("inside constructor of upload outfit service");
-  }
+      private http: HttpClient ){}
   
   createOutfit(outfit: Outfit) {
-    console.log("inside create outfit");
 
-    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', outfit)
+    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/create', outfit)
     .pipe(map(res => {
       console.log("posting new outfit with name");
       let outfit = new Outfit();
@@ -43,31 +40,28 @@ export class OutfitService {
   }
 
   addToOutfit(outfitId: string, itemId: string){
-    console.log("inside add to outfit");
 
     const formData = new FormData();
     formData.append("outfitId", outfitId);
     formData.append("itemId", itemId);
 
     //TODO: post isnt working
-    return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/addTo', formData)
+    return this.http.post<Outfit>('https://localhost:44383/api/Outfit/addTo', formData)
     .pipe(map(res => {
       console.log("adding new item to outfit");
     }));
   }
 
   public uploadOutfit(name:string): Observable<ClothingItem> {
-    console.log("inside uploadOutfit");
   
     const formData = new FormData();
     formData.append('name', name);  //must be of type 'name'
   
-    return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', formData);
+    return this.http.post<ClothingItem>('https://localhost:44383/api/Outfit/create', formData);
   }
 
   viewAllUsersOutfits() {
-    console.log('in view all outfit');
-    return this.http.get<any[][]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/viewByUser');
+    return this.http.get<any[][]>('https://localhost:44383/api/Outfit/viewByUser');
   }
 
 }

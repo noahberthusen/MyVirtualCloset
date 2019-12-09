@@ -5,6 +5,8 @@ import { ClothingItem } from 'src/app/models/ClothingItem';
 import { ClothingItemService } from 'src/app/services/clothing-item.service';
 import { forkJoin } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { CompanionService } from '../../services/companion.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-profile',
@@ -15,23 +17,34 @@ export class ProfileComponent implements OnInit {
 
   outfits: Outfit[][] = [];
   cards: any[] = [];
-  // totalOutfits: Number = 0;
+  totalOutfits: Number = 0;
+  allCompanions: User[] = [];
+  myUser: User = null;
+
   constructor(
     private outfitService: OutfitService,
     private clothingItemService: ClothingItemService,
-    private authService: AuthService
+    private authService: AuthService,
+    private companionService: CompanionService
   ) { }
 
   ngOnInit() {
+    this.myUser = this.authService.currentUserValue;
+
     this.outfitService.viewAllUsersOutfits()
     .subscribe((res: any[][]) => {
-      // console.log(res.length);
       res.forEach((outfitArr: Outfit[]) => {
-        console.log(outfitArr)
         this.buildCard(outfitArr);
         this.outfits.push(outfitArr);
       });
     });
+
+    this.companionService.getAllCompanions(this.myUser.id)
+    .subscribe((res: User[]) => {
+      res.forEach((use: User) => {
+        this.allCompanions.push(use);
+      })
+    })
   }
 
   buildCard(outfit: Outfit[]) {
@@ -72,7 +85,20 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  setNumOutfits() {
+    this.totalOutfits = this.cards.length;
+    return this.totalOutfits;
+  }
+
   currentUser() {
-    return this.authService.currentUserValue;
+    return this.myUser;
+  }
+
+  getCompanionNum(){
+    return this.allCompanions.length;
+  }
+
+  itWasClicked(){
+    console.log("You clicked it!");
   }
 }

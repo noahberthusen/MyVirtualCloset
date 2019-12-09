@@ -1,22 +1,22 @@
-<p>you shouldn't see this unless you log in</p>
+<div class="container">
+  
+    <div class="row">
+      <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
+        <mat-card>
+            <mat-card-title class="title-text">
+                <h4>{{ getUsername() }} {{card.title}}</h4>
+            </mat-card-title>
 
-<h3>Basic Buttons</h3>
-<div class="example-button-row" (click)="displayImages()">
-  <button mat-button>See Images</button>
-  <img *ngIf="encodedImages" [src]="encodedImages">
-</div>
+            <p *ngIf="card.top"><img [src]="'data:image/jpg;base64,'+card.top" class="images"></p>
+            <p *ngIf="card.bottom"><img [src]="'data:image/jpg;base64,'+card.bottom" class="images"></p>
+            <p *ngIf="card.misc"><img [src]="'data:image/jpg;base64,'+card.misc" class="images"></p>
 
-<div class="example-button-row" (click)="initBuildOutfitModal()">
-  <button mat-button>Modal</button>
-</div>
+            <mat-card-content class="desc">
+                {{card.description}}
+            </mat-card-content>
 
-<!-- <div class="example-button-row" (click)="goToUploadComponent()">
-  <button mat-button>Add Clothing</button>
-</div> -->
-
-<!-- use the following code if add clothing component is a modal -->
-<div class="example-button-row" (click)="initAddClothingModal()">
-  <button mat-button>Add Clothing</button>
-</div>
-
- 
+            <!-- <button mat-button color="primary">{{card.buttonText}}</button> -->
+        </mat-card>
+      </div>
+    </div>
+  </div>
