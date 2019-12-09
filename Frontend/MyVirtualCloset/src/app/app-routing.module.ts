@@ -36,19 +36,17 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    component: UploadComponent
+    component: UploadComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'send-notification',
     component:SendNotificationComponent
   },
   {
-    path: 'upload',
-    component: UploadComponent
-  },
-  {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

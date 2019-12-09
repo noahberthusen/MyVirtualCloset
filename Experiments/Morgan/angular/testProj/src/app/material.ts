@@ -33,6 +33,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
    MatIconModule,
    MatProgressSpinnerModule,
    MatAutocompleteModule
-   ],
+  ],
 })
 export class MaterialModule { }

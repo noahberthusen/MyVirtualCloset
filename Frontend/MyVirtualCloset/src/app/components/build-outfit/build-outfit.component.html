@@ -72,7 +72,15 @@
                 </table>    
             </form> 
 
-
+            <!-- TODO: private toggle -->
+            <!-- <form class="form" [formGroup]="userInput">    
+              <table class="form-table">   
+                <mat-form-field class="full-width">    
+                </mat-form-field>                   
+              </table>    
+          </form>  -->
+          <mat-slide-toggle>Private Post</mat-slide-toggle>  
+          <div></div>
             
             <!-- adding tags -->
             <mat-form-field class="example-chip-list">
@@ -89,16 +97,7 @@
                       (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>
             </mat-form-field>
-    
-            <!-- TODO: private toggle -->
-            <!-- <form class="form" [formGroup]="userInput">    
-                <table class="form-table">   
-                  <mat-form-field class="full-width">    
-                      <input matInput formControlName="outfitName" placeholder="Outfit Name" required>    
-                  </mat-form-field>                   
-                </table>    
-            </form>  -->
-            
+                       
           </mat-card-content> 
         </mat-expansion-panel>
       </mat-accordion>
@@ -121,5 +120,3 @@
 
 
 
-<!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
-<!-- <mat-checkbox  >Check me!</mat-checkbox> -->

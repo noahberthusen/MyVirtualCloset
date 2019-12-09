@@ -9,6 +9,8 @@ import { ModalService } from 'src/app/services/modal.service';
 import { ClothingItem } from 'src/app/models/ClothingItem';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { ArticleTypeService } from 'src/app/services/article-type.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 //confirm outfit related
@@ -76,7 +78,7 @@ export class BuildOutfitComponent implements OnInit {
     //confirm outfit related
     private fbConfirmOutfit: FormBuilder, 
     private outfitService: OutfitService,
-    private toggle: MatButtonToggleModule
+    private toastr: ToastrService,
   ){}
 
   
@@ -102,7 +104,7 @@ export class BuildOutfitComponent implements OnInit {
     this.userInput = this.fbConfirmOutfit.group({
       outfitName: ['', Validators.required],
       description: ['', Validators.required],
-      private: ['', Validators.required]
+      // private: ['', Validators.required]
     })
     console.log("updated outfit");
     this.created=false;
@@ -213,7 +215,8 @@ export class BuildOutfitComponent implements OnInit {
     setTimeout(() => {
       console.log("inside submit name");
       if(this.userInput.invalid){
-      console.log("invalid input");
+        this.toastr.error('Invalid outfit details');
+        console.log("invalid input");
       return;
       }
 
@@ -222,7 +225,7 @@ export class BuildOutfitComponent implements OnInit {
       this.outfit.name = this.f.outfitName.value;
       this.outfit.description = this.f.description.value;
       this.outfitItems = [this.currentTop,this.currentBottom, this.currentMisc]; 
-      this.outfit.private = this.f.private.value;
+      // this.outfit.private = this.f.private.value;
 
       //put tag items of array into a single string
       this.strTags="";
@@ -275,7 +278,7 @@ export class BuildOutfitComponent implements OnInit {
       .subscribe(res => {
         console.log("misc added to outfit");
       });
-
+      this.toastr.success('Outfit added!');
       callBackFunction();
     }, 1000);    
   }
