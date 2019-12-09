@@ -19,7 +19,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
@@ -33,7 +32,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     ResetPasswordComponent,
     BuildOutfitComponent,
     UploadComponent,
-    SendNotificationComponent,
     ProfileComponent
   ],
   imports: [

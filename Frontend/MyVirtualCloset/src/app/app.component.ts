@@ -8,11 +8,9 @@ import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { ModalService } from 'src/app/services/modal.service';
 
 
-import { SendNotificationComponent } from './components/send-notification/send-notification.component';
-
 //for websocket
-// import { SignalRService } from 'src/app/services/signal-r.service';
-// import { ToastrService } from 'ngx-toastr';
+import { SignalRService } from 'src/app/services/signal-r.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -29,13 +27,13 @@ export class AppComponent {
   constructor(private authService: AuthService,
               private modalService: ModalService ,  
               //for websockets
-              // private signalR: SignalRService,
+              private signalR: SignalRService,
               // private toastr: ToastrService  
     ) { }
 
     ngOnInit(){
       // for websockets
-      // this.signalR.startConnection();
+      //this.signalR.startConnection();
     }
   
     //for websocket
@@ -46,13 +44,6 @@ export class AppComponent {
   currentUser() {
     return this.authService.currentUserValue;
   }
-
-  openSendNotificationModal(){
-    let inputs = {
-      isMobile: false
-    }
-    this.modalService.init(SendNotificationComponent, inputs, {});
-}
 
   //the following code is used if this is a modal
   initAddClothingModal() {

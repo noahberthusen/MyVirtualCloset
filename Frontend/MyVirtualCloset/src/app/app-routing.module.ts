@@ -7,8 +7,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { BuildOutfitComponent } from './components/build-outfit/build-outfit.component';
-import { SendNotificationComponent } from './components/send-notification/send-notification.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -16,6 +16,11 @@ const routes: Routes = [
   {
     path: '',
     component: FrontComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'build',
@@ -36,12 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    component: UploadComponent,
+    component: UploadComponent, 
     canActivate: [AuthGuard]
   },
   {
-    path: 'send-notification',
-    component:SendNotificationComponent
+    path: 'upload',
+    component: UploadComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',

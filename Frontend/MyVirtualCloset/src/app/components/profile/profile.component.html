@@ -1,5 +1,16 @@
 <div class="container">
   <h5>{{ currentUser().firstName }} {{ currentUser().lastName }}</h5>
+  <h4>{{ setNumOutfits() }} Outfits      <a class="special" (click)="itWasClicked()">{{ getCompanionNum() }} Friends</a></h4>
+  <h4 *ngIf="something" class="border">
+    <div>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="my-form">
+        <mat-form-field class="full-width">
+                <input matInput required type="text" formControlName="username" placeholder="Username"/>
+        </mat-form-field>
+      </form>
+      </div>
+    <div *ngFor="let friend of allCompanions"><p class="friend">{{ friend.username }}</p></div>
+  </h4>
     <div class="row">
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
         <mat-card>
@@ -15,7 +26,6 @@
                 {{card.description}}
             </mat-card-content>
 
-            <!-- <button mat-button color="primary">{{card.buttonText}}</button> -->
         </mat-card>
       </div>
     </div>

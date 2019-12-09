@@ -12,7 +12,6 @@ export class UploadService {
   constructor(private http: HttpClient) {}
 
   public uploadImage(image: File, tagsArray: Tag[], name:string): Observable<ClothingItem> {
-    console.log("inside uploadImage");
 
     this.tags="";
 

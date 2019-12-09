@@ -43,6 +43,7 @@ export class SignalRService {
   public sendNotification(message: string, user: string) {
     // user must be the userId, i.e. 6b90b519-fd2e-4a85-9ef9-123f63feaf89
     // sends {{ message }} to {{ user }}. Like, comment, follow, etc.
+    console.log('sending message')
     this.hubConnection.invoke('Send', message, user);
   }
 }

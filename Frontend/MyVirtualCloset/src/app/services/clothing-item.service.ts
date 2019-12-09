@@ -12,7 +12,6 @@ export class ClothingItemService {
   constructor(private http: HttpClient) { }
 
   viewAllUsersClothes() {
-    console.log("inside view all users clothes function");
     let clothing: ClothingItem[] = [];
     return this.http.get<ClothingItem[]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/ClothingItem/viewAllUserClothes')
     .pipe(map(res => {
@@ -22,12 +21,8 @@ export class ClothingItemService {
         image.tags = obj.tags;
         image.image = obj.image;
         image.id = obj.id;
-        console.log(image);
         clothing.push(image);
       });
-      // console.log(res.length);
-      // console.log(res[20]);
-      // clothing.push(res[20]);
       return clothing;
     }));
   }

@@ -49,7 +49,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost("addByUsername")]
-        public IActionResult addCompanionByUsername([FromBody] string username)
+        public IActionResult addCompanionByUsername([FromForm(Name = "username")] string username)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace MyVirtualCloset.Api.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost("all")]
-        public async Task<IActionResult> getAllCompanions([FromBody] string user)
+        public async Task<IActionResult> getAllCompanions([FromForm(Name = "user")] string user)
         {
             List<User> companions = new List<User>();
             try

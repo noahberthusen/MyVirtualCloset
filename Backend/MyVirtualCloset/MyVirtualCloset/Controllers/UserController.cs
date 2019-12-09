@@ -47,9 +47,9 @@ namespace MyVirtualCloset.Api.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost("get")]
-        public IActionResult GetUserById([FromBody] string userId)
+        public IActionResult GetUserById([FromForm(Name = "id")] string userId)
         {
-            string user;
+            User user;
             try
             {
                 user = _userService.GetUserById(userId);

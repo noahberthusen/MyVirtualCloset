@@ -14,12 +14,9 @@ export class OutfitService {
   outfit: Outfit;
   
   constructor(
-      private http: HttpClient, ){
-    console.log("inside constructor of upload outfit service");
-  }
+      private http: HttpClient ){}
   
   createOutfit(outfit: Outfit) {
-    console.log("inside create outfit");
 
     return this.http.post<Outfit>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', outfit)
     .pipe(map(res => {
@@ -42,8 +39,7 @@ saveOutfit(outfit: Outfit){
     return this.outfit;
   }
 
-addToOutfit(outfitId: string, itemId: string){
-    console.log("inside add to outfit");
+  addToOutfit(outfitId: string, itemId: string){
 
     const formData = new FormData();
     formData.append("outfitId", outfitId);
@@ -55,8 +51,7 @@ addToOutfit(outfitId: string, itemId: string){
     }));
   }
 
-public uploadOutfit(name:string): Observable<ClothingItem> {
-    console.log("inside uploadOutfit");
+  public uploadOutfit(name:string): Observable<ClothingItem> {
   
     const formData = new FormData();
     formData.append('name', name);  //must be of type 'name'
@@ -64,8 +59,7 @@ public uploadOutfit(name:string): Observable<ClothingItem> {
     return this.http.post<ClothingItem>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/create', formData);
   }
 
-viewAllUsersOutfits() {
-    console.log('in view all outfit');
+  viewAllUsersOutfits() {
     return this.http.get<any[][]>('http://coms-309-ks-7.misc.iastate.edu:8080/api/Outfit/viewByUser');
   }
 
